@@ -1,5 +1,5 @@
 import React from 'react'
-import { heroImg } from '../component/assets'
+import { heroImg } from '../../assets'
 import { AiOutlineSearch } from 'react-icons/ai'
 
 const Hero = () => {

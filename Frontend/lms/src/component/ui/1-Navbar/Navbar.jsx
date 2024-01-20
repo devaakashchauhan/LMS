@@ -1,5 +1,5 @@
 import React from 'react'
-import { logo, lock, hamburgerMenu, close } from '../component/assets'
+import { logo, lock, hamburgerMenu, close } from '../../assets'
 import { useState } from 'react'
 
 const Navbar = () => {

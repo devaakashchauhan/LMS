@@ -1,5 +1,5 @@
 import React from 'react'
-import { companyLogo1, companyLogo2, companyLogo3, companyLogo4 } from '../component/assets'
+import { companyLogo1, companyLogo2, companyLogo3, companyLogo4 } from '../../assets'
 
 const Companies = () => {
   return (
