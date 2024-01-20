@@ -1,12 +1,13 @@
 import React from 'react'
-import { Hero, Navbar } from './components'
+import { Hero, Navbar,Companies } from './components'
 import './App.css'
 
 const App = () => {
   return (
     <>
-  <Navbar />
-  <Hero />
+      <Navbar />
+      <Hero />
+      <Companies />
     </>
   )
 }
