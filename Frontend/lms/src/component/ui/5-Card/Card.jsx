@@ -5,7 +5,9 @@ import StarRating from './StarRating.jsx'
 const Card = ({ course }) => {
   return (
     <>
+
       <div className="bg-white drop-shadow-md overflow-hidden rounded-2xl mr-4 my-4">
+
 
         <img src={course.linkImg} alt="" className="h-50 w-full object-cover p-3 rounded-3xl" />
         <div className="p-5  ">

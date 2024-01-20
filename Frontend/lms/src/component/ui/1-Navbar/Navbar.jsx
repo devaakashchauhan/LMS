@@ -1,6 +1,7 @@
 import React from 'react'
 import { logo, lock, hamburgerMenu, close } from '../../assets'
 import { useState } from 'react'
+import { Link, NavLink } from "react-router-dom";
 
 const Navbar = () => {
 
@@ -18,11 +19,55 @@ const Navbar = () => {
                     {/* menu */}
                     <div className="hidden md:flex items-center ">
                         <ul className='flex gap-4'>
-                            <li>Home</li>
-                            <li>About</li>
-                            <li>Support</li>
-                            <li>Platfrom</li>
-                            <li>Pricing</li>
+                            <li>
+                                <NavLink
+                                    to="/"
+                                    className={({ isActive }) =>
+                                        `block ${isActive ? "text-[#20B486]" : "text-gray-500"} py-2 pr-4 pl-3 duration-200 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 hover:text-[#20B486] lg:p-0`
+                                    }
+                                >
+                                    Home
+                                </NavLink>
+                            </li>
+                            <li>
+                                <NavLink
+                                    to="/about"
+                                    className={({ isActive }) =>
+                                        `block ${isActive ? "text-[#20B486]" : "text-gray-500"} py-2 pr-4 pl-3 duration-200 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 hover:text-[#20B486] lg:p-0`
+                                    }
+                                >
+                                    About
+                                </NavLink>
+                            </li>
+                            <li>
+                                <NavLink
+                                    to="/support"
+                                    className={({ isActive }) =>
+                                        `block ${isActive ? "text-[#20B486]" : "text-gray-500"} py-2 pr-4 pl-3 duration-200 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 hover:text-[#20B486] lg:p-0`
+                                    }
+                                >
+                                    Support
+                                </NavLink></li>
+                            <li>
+                                <NavLink
+                                    to="/platfrom"
+                                    className={({ isActive }) =>
+                                        `block ${isActive ? "text-[#20B486]" : "text-gray-500"} py-2 pr-4 pl-3 duration-200 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 hover:text-[#20B486] lg:p-0`
+                                    }
+                                >
+                                    Platfrom
+                                </NavLink></li>
+
+                            <li>
+                                <NavLink
+                                    to="/pricing"
+                                    className={({ isActive }) =>
+                                        `block ${isActive ? "text-[#20B486]" : "text-gray-500"} py-2 pr-4 pl-3 duration-200 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 hover:text-[#20B486] lg:p-0`
+                                    }
+                                >
+                                    Pricing
+                                </NavLink></li>
+
                         </ul>
                     </div>
 
@@ -67,7 +112,7 @@ const Navbar = () => {
                     </ul>
                 </div>
 
-            </div>
+            </div >
         </>
     )
 }

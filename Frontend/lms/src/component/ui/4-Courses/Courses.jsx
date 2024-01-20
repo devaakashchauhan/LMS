@@ -1,13 +1,14 @@
 import React from 'react'
+import Slider from 'react-slick';
 import Card from '../5-Card/Card.jsx'
-import Slider from "react-slick";
-import { courses } from './Courses-data/Courses.js';
+import { courses } from './Courses-data/Courses.js'
+import '../../..//App.css'
 
 
 const Courses = () => {
-  var settings = {
+  const settings = {
     dots: true,
-    infinite: true,
+    infinite: false,
     speed: 500,
     slidesToShow: 4,
     slidesToScroll: 1,
@@ -17,7 +18,7 @@ const Courses = () => {
         settings: {
           slidesToShow: 2,
           slidesToScroll: 1,
-          infinite: true,
+          infinite: false,
           dots: true
         }
       },
@@ -48,10 +49,16 @@ const Courses = () => {
 
           <h1 className='text-3xl py-3 font-bold '>Most Popular <span className='text-[#20B486]'>Courses</span></h1>
           <p className='text-[#6D737A]'>Various versions have evolved over the years, sometimes by accident.</p>
-          <Slider {...settings}>
-            {courses.map(course => <Card course={course} />)}
 
-          </Slider >
+          <Slider {...settings} className='px-5'>
+            {courses.map((course, i) =>
+              <div key={i}>
+                <Card course={course} />
+              </div>)}
+
+
+          </Slider>
+
 
         </div>
 
