@@ -25,6 +25,10 @@
 .slick-prev {
   z-index: 99999;
 }
+
+.category-card:hover .arrow-icon {
+  fill: white;
+}
 /* #root {
   max-width: 1280px;
   margin: 0 auto;
