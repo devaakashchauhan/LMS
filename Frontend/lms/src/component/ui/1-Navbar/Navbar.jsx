@@ -93,11 +93,55 @@ const Navbar = () => {
                 {/* sidebar for mobile */}
                 <div className={toggle ? 'absolute z-10 p-4 bg-white w-full px-8 md:hidden' : 'hidden'}>
                     <ul>
-                        <li className='p-4 hover:bg-gray-100 '>Home</li>
-                        <li className='p-4 hover:bg-gray-100 '>About</li>
-                        <li className='p-4 hover:bg-gray-100 '>Support</li>
-                        <li className='p-4 hover:bg-gray-100 '>Platfrom</li>
-                        <li className='p-4 hover:bg-gray-100 '>Pricing</li>
+                        <li>
+                            <NavLink
+                                to="/"
+                                className={({ isActive }) =>
+                                    `block ${isActive ? "text-[#20B486]" : "text-gray-500"} py-2 pr-4 pl-3 duration-200  hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 hover:text-[#20B486] lg:p-0`
+                                }
+                            >
+                                Home
+                            </NavLink>
+                        </li>
+                        <li>
+                            <NavLink
+                                to="/about"
+                                className={({ isActive }) =>
+                                    `block ${isActive ? "text-[#20B486]" : "text-gray-500"} py-2 pr-4 pl-3 duration-200  hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 hover:text-[#20B486] lg:p-0`
+                                }
+                            >
+                                About
+                            </NavLink>
+                        </li>
+                        <li>
+                            <NavLink
+                                to="/support"
+                                className={({ isActive }) =>
+                                    `block ${isActive ? "text-[#20B486]" : "text-gray-500"} py-2 pr-4 pl-3 duration-200  hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 hover:text-[#20B486] lg:p-0`
+                                }
+                            >
+                                Support
+                            </NavLink></li>
+                        <li>
+                            <NavLink
+                                to="/platfrom"
+                                className={({ isActive }) =>
+                                    `block ${isActive ? "text-[#20B486]" : "text-gray-500"} py-2 pr-4 pl-3 duration-200  hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 hover:text-[#20B486] lg:p-0`
+                                }
+                            >
+                                Platfrom
+                            </NavLink></li>
+
+                        <li>
+                            <NavLink
+                                to="/pricing"
+                                className={({ isActive }) =>
+                                    `block ${isActive ? "text-[#20B486]" : "text-gray-500"} py-2 pr-4 pl-3 duration-200  hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 hover:text-[#20B486] lg:p-0`
+                                }
+                            >
+                                Pricing
+                            </NavLink>
+                        </li>
 
                         <div className="flex flex-col my-4 gap-4 ">
                             <button className='border border-[#20B486]  flex justify-center items-center bg-transparent px-6 gap-4 py-4 '>
