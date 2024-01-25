@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link, NavLink } from "react-router-dom";
 import { logo } from '../../assets'
 import { FaBehance, FaDribbble, FaFacebookF, FaInstagram, FaLinkedinIn } from 'react-icons/fa'
 
@@ -10,7 +11,11 @@ function Footer() {
                 <div className=" md:max-w-[1480px] m-auto grid md:grid-cols-5 max-[780px]:grid-cols-2  gap-8  max-w-[600px] ">
                     <div className="col-span-2">
                         <img src={logo} className='h-[25px]' alt="" />
-                        <h3 className='text-2xl font-bold mt-10'> Contact Us</h3>
+                        <h3 className='text-2xl font-bold mt-10'>
+                            <NavLink to={'/contact'} className={'text-2xl font-bold'}>
+                                Contact Us
+                            </NavLink>
+                        </h3>
                         <h1 className='py-2 text-[#6D737A]'>Call : +123 400 123</h1>
                         <h1 className='py-2 text-[#6D737A]'>Praesent nulla massa, hendrerit <br /> vestibulum gravida in, feugiat auctor felis.</h1>
                         <h1 className='py-2 text-[#6D737A]'>Email: example@mail.com</h1>
@@ -27,10 +32,32 @@ function Footer() {
                     <div className="">
                         <h3 className='text-2xl font-bold'>Explore</h3>
                         <ul className='py-6  text-[#6D737A]'>
-                            <li className='py-2'>Home</li>
-                            <li className='py-2'>About</li>
-                            <li className='py-2'>Courses</li>
-                            <li className='py-2'>Contact</li>
+                            <li className='py-2 hover:cursor-pointer hover:text-[#20B486]'>
+                                <NavLink
+
+                                    to={'/'}
+                                >
+                                    Home
+                                </NavLink>
+                            </li>
+                            <li className='py-2 hover:cursor-pointer hover:text-[#20B486]'>
+                                <NavLink to={'/about'}>
+
+                                    About
+                                </NavLink>
+                            </li>
+                            <li className='py-2 hover:cursor-pointer hover:text-[#20B486]'>
+                                <NavLink to={'courses'}>
+
+                                    Courses
+                                </NavLink>
+                            </li>
+                            <li className='py-2 hover:cursor-pointer hover:text-[#20B486]'>
+                                <NavLink to={'/contact'}>
+
+                                    Contact
+                                </NavLink>
+                            </li>
 
                         </ul>
                     </div>

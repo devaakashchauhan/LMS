@@ -74,11 +74,35 @@ const Navbar = () => {
                     <div className="hidden md:flex">
                         <button className='flex justify-between items-center bg-transparent px-6 gap-2'>
                             <img src={lock} alt="" />
-                            Login
+
+                            <ul>
+                                <li>
+                                    <NavLink
+                                        to="/login"
+                                        className={({ isActive }) =>
+                                            `block ${isActive ? "text-[#20B486]" : "text-gray-500"} py-2 pr-4 pl-3 duration-200 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 hover:text-[#20B486] lg:p-0`
+                                        }
+                                    >
+                                        Login
+                                    </NavLink>
+                                </li>
+                            </ul>
                         </button>
 
                         <button className='bg-[#20B486] px-8 py-3 rounded-md text-white font-bold'>
-                            Sign Up For Free
+                            <ul>
+                                <li>
+                                    <NavLink
+                                        to="/signup"
+                                        className={({ isActive }) =>
+                                            `block ${isActive ? "text-gray-200" : "text-white"} py-2 pr-4 pl-3 duration-200 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0  lg:p-0`
+                                        }
+                                    >
+                                        Sign Up For Free
+                                    </NavLink>
+                                </li>
+                            </ul>
+
                         </button>
                     </div>
 
@@ -146,11 +170,21 @@ const Navbar = () => {
                         <div className="flex flex-col my-4 gap-4 ">
                             <button className='border border-[#20B486]  flex justify-center items-center bg-transparent px-6 gap-4 py-4 '>
                                 <img src={lock} alt="" />
-                                Login
+                                <NavLink
+                                    to="/login"
+
+                                >
+                                    Login
+                                </NavLink>
                             </button>
 
                             <button className='bg-[#20B486] px-8 py-5 rounded-md text-white font-bold'>
-                                Sign Up For Free
+                                <NavLink
+                                    to="/signup"
+
+                                >
+                                    Sign Up For Free
+                                </NavLink>
                             </button>
                         </div>
                     </ul>
