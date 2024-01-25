@@ -9,6 +9,7 @@ import About from './component/page/2-About/About.jsx'
 import Support from './component/page/3-Support/Support.jsx'
 import Platfrom from './component/page/4-PlatFrom/Platfrom.jsx'
 import Pricing from './component/page/5-Pricing/Pricing.jsx'
+import Login from './component/ui/11-Login/Login.jsx'
 
 
 
@@ -20,6 +21,7 @@ const router = createBrowserRouter(
       <Route path='/support' element={<Support />} />
       <Route path='/platfrom' element={<Platfrom />} />
       <Route path='/pricing' element={<Pricing />} />
+      <Route path='/login' element={<Login />} />
     </Route>
   )
 )
