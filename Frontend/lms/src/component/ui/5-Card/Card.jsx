@@ -16,10 +16,23 @@ const Card = ({ course }) => {
           <StarRating rating={course.rating} />
 
         </div>
-        <h3 className='p-5 text-xl'>{course.price}</h3>
+
+
+        <div className="flex items-center justify-between">
+          <h3 className='p-5 text-2xl font-bold text-gray-900 '>{course.price}</h3>
+          <a
+            href="/"
+            className="me-[10px] text-white bg-[#20B486] hover:bg-[#20B486] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
+          >
+            Add to cart
+          </a>
+        </div>
+
+
         <div className="absolute top-0 bg-white m-5 px-2 py-[2.5px] rounded font-bold">
           {course.category}
         </div>
+
 
       </div>
     </>
