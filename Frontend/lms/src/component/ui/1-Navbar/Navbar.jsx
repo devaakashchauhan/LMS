@@ -170,11 +170,21 @@ const Navbar = () => {
                         <div className="flex flex-col my-4 gap-4 ">
                             <button className='border border-[#20B486]  flex justify-center items-center bg-transparent px-6 gap-4 py-4 '>
                                 <img src={lock} alt="" />
-                                Login
+                                <NavLink
+                                    to="/login"
+
+                                >
+                                    Login
+                                </NavLink>
                             </button>
 
                             <button className='bg-[#20B486] px-8 py-5 rounded-md text-white font-bold'>
-                                Sign Up For Free
+                                <NavLink
+                                    to="/signup"
+
+                                >
+                                    Sign Up For Free
+                                </NavLink>
                             </button>
                         </div>
                     </ul>
