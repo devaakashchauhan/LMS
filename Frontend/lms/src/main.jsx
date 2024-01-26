@@ -14,6 +14,7 @@ import Registration from './component/ui/12-Registration/Registration.jsx'
 import Courses from './component/page/6-Courses/Courses.jsx'
 import Contact from './component/page/7-Contact/Contact.jsx'
 import Profile from './component/page/8-Profile/Profile.jsx'
+import Chapter from './component/ui/13-Chapter/Chapter.jsx'
 
 
 
@@ -30,6 +31,7 @@ const router = createBrowserRouter(
       <Route path='/courses' element={<Courses />} />
       <Route path='/contact' element={<Contact />} />
       <Route path='/profile' element={<Profile />} />
+      <Route path='/chapter' element={<Chapter />} />
     </Route>
   )
 )

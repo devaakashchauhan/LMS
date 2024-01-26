@@ -56,7 +56,8 @@ const Navbar = () => {
                                     }
                                 >
                                     Platfrom
-                                </NavLink></li>
+                                </NavLink>
+                            </li>
 
                             <li>
                                 <NavLink

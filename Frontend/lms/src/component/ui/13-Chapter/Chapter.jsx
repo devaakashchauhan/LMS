@@ -5,28 +5,7 @@ import { FcAddImage } from "react-icons/fc";
 import { MdOutlineVerified } from "react-icons/md";
 import { MdVerified } from "react-icons/md";
 
-
-function Courses() {
-    const inputRef = useRef(null)
-    const chapRef = useRef(null)
-    const [image, setImage] = useState('')
-
-    const [chapertNo, setChapertNo] = useState(1)
-    const [chapertTitle, setChapertTitle] = useState("No Title")
-    const [chapertPublish, setChapertPublish] = useState(false)
-
-    const handleImgClick = () => {
-        inputRef.current.click()
-    }
-    const handleChapClick = () => {
-        chapRef.current.click()
-    }
-    const handleImgChange = (event) => {
-        // const img = event.target.files[0]
-        setImage(event.target.files[0])
-
-    }
-
+const Chapter = () => {
     return (
         <>
             <div className='w-full bg-white py-24'>
@@ -148,7 +127,7 @@ function Courses() {
                                             Course Chapters
                                         </label>
                                         <FcAddImage size={40} onClick={handleChapClick} className='ms-auto' />
-                                        <NavLink to="/chapter" className={'hidden'} ref={chapRef}  >
+                                        <NavLink to="/platfrom" className={'hidden'} ref={chapRef}  >
                                             Platfrom
                                         </NavLink>
                                     </div>
@@ -172,4 +151,4 @@ function Courses() {
     )
 }
 
-export default Courses
+export default Chapter
