@@ -66,7 +66,18 @@ const Navbar = () => {
                                     }
                                 >
                                     Pricing
-                                </NavLink></li>
+                                </NavLink>
+                            </li>
+                            <li>
+                                <NavLink
+                                    to="/profile"
+                                    className={({ isActive }) =>
+                                        `block ${isActive ? "text-[#20B486]" : "text-gray-500"} py-2 pr-4 pl-3 duration-200 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 hover:text-[#20B486] lg:p-0`
+                                    }
+                                >
+                                    Profile
+                                </NavLink>
+                            </li>
 
                         </ul>
                     </div>
