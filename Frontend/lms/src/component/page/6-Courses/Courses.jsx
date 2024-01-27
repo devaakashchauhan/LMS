@@ -4,6 +4,9 @@ import { Link, NavLink } from "react-router-dom";
 import { FcAddImage } from "react-icons/fc";
 import { MdOutlineVerified } from "react-icons/md";
 import { MdVerified } from "react-icons/md";
+import { MdAddAPhoto } from "react-icons/md";
+import { MdAddBox } from "react-icons/md";
+import { TbEdit } from "react-icons/tb";
 
 
 function Courses() {
@@ -116,7 +119,7 @@ function Courses() {
                                         <label for="name" className="text-xl py-1 font-bold ">
                                             Course Image
                                         </label>
-                                        <FcAddImage size={40} onClick={handleImgClick} className='ms-auto' />
+                                        <MdAddAPhoto size={40} onClick={handleImgClick} className='ms-auto' />
                                     </div>
 
                                     <div className="w-full max-w-[300px]">
@@ -141,14 +144,14 @@ function Courses() {
                     <div className="p-3">
                         <div className=" bg-gray-100 w-full  max-w-[800px] p-4 shadow-lg rounded-md flex  border border-transparent ">
                             <form className="w-full flex flex-col justify-center">
-                                <div className="flex flex-col hover:cursor-pointer"  >
+                                <div className="flex flex-col "  >
 
                                     <div className="flex ">
                                         <label for="name" className="text-xl py-1 font-bold ">
                                             Course Chapters
                                         </label>
-                                        <FcAddImage size={40} onClick={handleChapClick} className='ms-auto' />
-                                        <NavLink to="/chapter" className={'hidden'} ref={chapRef}  >
+                                        <MdAddBox size={30} onClick={handleChapClick} className='ms-auto hover:cursor-pointer' />
+                                        <NavLink to="/chapter" className='hidden ' ref={chapRef}  >
                                             Platfrom
                                         </NavLink>
                                     </div>
@@ -156,8 +159,8 @@ function Courses() {
                                     <div className=" bg-white rounded h-[40px] pt-1 w-full max-w-[600px] flex justify-around text-center">
                                         <div className="text-xl font-bold">{chapertNo}</div>
                                         <div className="text-xl ">{chapertTitle}</div>
-                                        <div className="text-xl ">{chapertPublish ? <MdOutlineVerified size={30} /> : <MdVerified size={30} />}</div>
-                                        {image ? <img src={URL.createObjectURL(image)} /> : <img src={null} />}
+                                        <div className="">{chapertPublish ? <MdOutlineVerified size={30} /> : <MdVerified size={30} />}</div>
+                                        <div className="hover:cursor-pointer"><TbEdit size={30} onClick={handleChapClick} /></div>
                                     </div>
 
 
