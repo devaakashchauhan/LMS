@@ -1,6 +1,9 @@
 import React, { useState, useRef } from 'react'
 import { NavLink } from 'react-router-dom'
-import { FcAddImage } from "react-icons/fc";
+import { MdAddBox } from "react-icons/md";
+
+
+import { heroImg } from '../../assets'
 
 const Chapter = () => {
     const inputRef = useRef(null)
@@ -86,12 +89,12 @@ const Chapter = () => {
                                         <label for="name" className="text-xl py-1 font-bold ">
                                             Chapter Video
                                         </label>
-                                        <FcAddImage size={40} onClick={handleImgClick} className='ms-auto' />
+                                        <MdAddBox size={40} onClick={handleImgClick} className='ms-auto' />
                                     </div>
 
                                     <div className="w-full max-w-[300px]">
 
-                                        {image ? <img src={URL.createObjectURL(image)} /> : <img src={null} />}
+                                        {image ? <img src={URL.createObjectURL(image)} /> : <img src={heroImg} />}
                                     </div>
 
 
@@ -108,6 +111,8 @@ const Chapter = () => {
                             </form>
                         </div>
                     </div>
+                </div>
+                <div className="flex justify-center mt-5">
                     <NavLink to={'/courses'}>
                         <button className='w-full max-w-[300px] bg-[#20B486] my-4 px-8 py-3 rounded-md text-white font-bold'>
                             Submit Chapter

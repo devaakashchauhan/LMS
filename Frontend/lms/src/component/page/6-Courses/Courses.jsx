@@ -1,9 +1,11 @@
-import React, { useState, useRef } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import { Link, NavLink } from "react-router-dom";
+import { heroImg } from '../../assets'
 
-import { FcAddImage } from "react-icons/fc";
-import { MdOutlineVerified } from "react-icons/md";
-import { MdVerified } from "react-icons/md";
+// todo image improt error    
+// import { uploadImg } from '../../assets/'
+
+
 import { MdAddAPhoto } from "react-icons/md";
 import { MdAddBox } from "react-icons/md";
 import { TbEdit } from "react-icons/tb";
@@ -29,6 +31,11 @@ function Courses() {
         setImage(event.target.files[0])
 
     }
+
+    const handleChapPublish = () => {
+        setChapertPublish(!chapertPublish)
+    }
+
 
     return (
         <>
@@ -113,18 +120,17 @@ function Courses() {
                     <div className="p-3">
                         <div className=" bg-gray-100 w-full  max-w-[800px] p-4 shadow-lg rounded-md flex  border border-transparent ">
                             <form className="w-full flex flex-col justify-center">
-                                <div className="flex flex-col hover:cursor-pointer"  >
+                                <div className="flex flex-col "  >
 
                                     <div className="flex ">
                                         <label for="name" className="text-xl py-1 font-bold ">
                                             Course Image
                                         </label>
-                                        <MdAddAPhoto size={40} onClick={handleImgClick} className='ms-auto' />
+                                        <MdAddAPhoto size={40} onClick={handleImgClick} className='ms-auto hover:cursor-pointer' />
                                     </div>
 
                                     <div className="w-full max-w-[300px]">
-
-                                        {image ? <img src={URL.createObjectURL(image)} /> : <img src={null} />}
+                                        {image ? <img src={URL.createObjectURL(image)} /> : <img src={heroImg} />}
                                     </div>
 
 
@@ -156,12 +162,16 @@ function Courses() {
                                         </NavLink>
                                     </div>
 
-                                    <div className=" bg-white rounded h-[40px] pt-1 w-full max-w-[600px] flex justify-around text-center">
+
+                                    <div className=" bg-white  rounded h-[40px] py-2 mt-3 w-full max-w-[700px] flex justify-around text-center">
                                         <div className="text-xl font-bold">{chapertNo}</div>
                                         <div className="text-xl ">{chapertTitle}</div>
-                                        <div className="">{chapertPublish ? <MdOutlineVerified size={30} /> : <MdVerified size={30} />}</div>
+
+                                        {/* todo upcomming featurse */}
+                                        {/* <div className="w-full max-w-[70px] hover:cursor-pointer" onClick={handleChapPublish}>{chapertPublish ? <div className="w-full max-w-[70px] border border-black text-center rounded text-ellipsis bg-black text-white ">Publish</div> : <div className=" w-full max-w-[70px] border border-black text-center rounded text-ellipsis bg-white text-black">Publish</div>}</div> */}
                                         <div className="hover:cursor-pointer"><TbEdit size={30} onClick={handleChapClick} /></div>
                                     </div>
+
 
 
 
@@ -169,6 +179,13 @@ function Courses() {
                             </form>
                         </div>
                     </div>
+                </div>
+                <div className="flex justify-center mt-5">
+                    <NavLink to={'/courses'}>
+                        <button className='w-full max-w-[300px] bg-[#20B486] my-4 px-8 py-3 rounded-md text-white font-bold'>
+                            Submit Course
+                        </button>
+                    </NavLink>
                 </div>
             </div>
         </>
