@@ -1,11 +1,11 @@
 import React from 'react'
 import Slider from 'react-slick';
-import Card from '../5-Card/Card.jsx'
-import { courses } from './Courses-data/Courses.js'
-import '../../..//App.css'
+import Card from '../../5-Card/Card.jsx'
+import { courses } from '../Courses-data/Courses.js'
+import '../../../../App.css'
 
 
-const Courses = () => {
+const CoursesSlider = () => {
   const settings = {
     dots: true,
     infinite: false,
@@ -67,4 +67,4 @@ const Courses = () => {
   )
 }
 
-export default Courses
+export default CoursesSlider

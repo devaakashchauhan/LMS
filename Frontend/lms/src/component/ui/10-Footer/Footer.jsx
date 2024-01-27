@@ -47,7 +47,7 @@ function Footer() {
                                 </NavLink>
                             </li>
                             <li className='py-2 hover:cursor-pointer hover:text-[#20B486]'>
-                                <NavLink to={'courses'}>
+                                <NavLink to={'/courses'}>
 
                                     Courses
                                 </NavLink>
@@ -56,6 +56,12 @@ function Footer() {
                                 <NavLink to={'/contact'}>
 
                                     Contact
+                                </NavLink>
+                            </li>
+                            <li className='py-2 hover:cursor-pointer hover:text-[#20B486]'>
+                                <NavLink to={'/teachermode'}>
+
+                                    Teacher Mode
                                 </NavLink>
                             </li>
 

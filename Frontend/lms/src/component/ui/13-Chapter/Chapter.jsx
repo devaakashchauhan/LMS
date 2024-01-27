@@ -9,7 +9,6 @@ const Chapter = () => {
     const inputRef = useRef(null)
     const [image, setImage] = useState('')
 
-
     const handleImgClick = () => {
         inputRef.current.click()
     }
@@ -113,7 +112,7 @@ const Chapter = () => {
                     </div>
                 </div>
                 <div className="flex justify-center mt-5">
-                    <NavLink to={'/courses'}>
+                    <NavLink to={'/teachermode'}>
                         <button className='w-full max-w-[300px] bg-[#20B486] my-4 px-8 py-3 rounded-md text-white font-bold'>
                             Submit Chapter
                         </button>

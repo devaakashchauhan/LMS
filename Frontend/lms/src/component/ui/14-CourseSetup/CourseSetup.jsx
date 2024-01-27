@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react'
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { heroImg } from '../../assets'
 
 // todo image improt error    
@@ -11,7 +11,7 @@ import { MdAddBox } from "react-icons/md";
 import { TbEdit } from "react-icons/tb";
 
 
-function CoursesSetup() {
+function CourseSetup() {
     const inputRef = useRef(null)
     const chapRef = useRef(null)
     const [image, setImage] = useState('')
@@ -192,4 +192,4 @@ function CoursesSetup() {
     )
 }
 
-export default CoursesSetup
+export default CourseSetup

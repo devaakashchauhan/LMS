@@ -1,8 +1,8 @@
 import React from 'react'
-import { courses } from '../../ui/4-Courses/Courses-data/Courses'
-import Card from '../../ui/5-Card/Card'
+import { courses } from '../Courses-data/Courses.js'
+import Card from '../../5-Card/Card.jsx'
 
-const CoursesView = () => {
+function CourseView() {
     return (
         <>
             <div className='w-full bg-[#E9F8F3B2] py-32'>
@@ -23,4 +23,4 @@ const CoursesView = () => {
     )
 }
 
-export default CoursesView
+export default CourseView
