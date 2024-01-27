@@ -1,8 +1,8 @@
 import React from 'react'
 import { courses } from '../Courses-data/Courses.js'
-import Card from '../../5-Card/Card.jsx'
+import CardUI from '../../5-Card/CardUI.jsx'
 
-function CourseView() {
+function CourseViewUI() {
     return (
         <>
             <div className='w-full bg-[#E9F8F3B2] py-32'>
@@ -14,7 +14,7 @@ function CourseView() {
                 <div className=" md:max-w-[1480px] m-auto grid md:grid-cols-4 max-w-[600px]">
                     {courses.map((course, i) =>
                         <div key={i}>
-                            <Card course={course} />
+                            <CardUI course={course} />
                         </div>)}
                 </div>
 
@@ -23,4 +23,4 @@ function CourseView() {
     )
 }
 
-export default CourseView
+export default CourseViewUI

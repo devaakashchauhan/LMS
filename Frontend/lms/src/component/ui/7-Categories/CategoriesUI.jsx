@@ -1,9 +1,9 @@
 import React from 'react'
-import CategoryCard from './CategoryCard/CotegoryCard'
+import CategoryCardUI from './CategoryCard/CotegoryCardUI'
 import { BsVectorPen } from 'react-icons/bs'
 import { TiHtml5 } from 'react-icons/ti'
 
-const Categories = () => {
+const CategoriesUI = () => {
     return (
         <>
             <div className='w-full bg-[#F0FBF7] py-24'>
@@ -12,27 +12,27 @@ const Categories = () => {
                     <h1 className='text-3xl py-3 font-bold '>Most <span className='text-[#20B486]'>Popular Categories</span></h1>
                     <p className='text-[#6D737A]'>Various versions have evolved over the years, sometimes by accident.</p>
                     <div className="grid lg:grid-cols-4  grid-cols-2 py-12 gap-4">
-                        <CategoryCard
+                        <CategoryCardUI
                             icon={<BsVectorPen size={30} />}
                             title={'Design'}
                         />
-                        <CategoryCard
+                        <CategoryCardUI
                             icon={<TiHtml5 size={30} />}
                             title={'Devlopment'}
                         />
 
-                        <CategoryCard />
-                        <CategoryCard />
+                        <CategoryCardUI />
+                        <CategoryCardUI />
 
-                        <CategoryCard />
-                        <CategoryCard />
-                        <CategoryCard />
-                        <CategoryCard />
+                        <CategoryCardUI />
+                        <CategoryCardUI />
+                        <CategoryCardUI />
+                        <CategoryCardUI />
 
-                        <CategoryCard />
-                        <CategoryCard />
-                        <CategoryCard />
-                        <CategoryCard />
+                        <CategoryCardUI />
+                        <CategoryCardUI />
+                        <CategoryCardUI />
+                        <CategoryCardUI />
                     </div>
                 </div>
             </div>
@@ -40,4 +40,4 @@ const Categories = () => {
     )
 }
 
-export default Categories
+export default CategoriesUI

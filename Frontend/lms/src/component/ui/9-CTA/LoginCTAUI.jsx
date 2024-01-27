@@ -2,7 +2,7 @@ import React from 'react'
 import { cta } from '../../assets'
 import { NavLink } from 'react-router-dom'
 
-const LoginCTA = () => {
+const LoginCTAUI = () => {
   return (
     <>
       <div className='w-full bg-[#E9F8F3] py-24'>
@@ -26,4 +26,4 @@ const LoginCTA = () => {
   )
 }
 
-export default LoginCTA
+export default LoginCTAUI

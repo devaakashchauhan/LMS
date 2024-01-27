@@ -1,10 +1,10 @@
 import React from 'react'
-import Registration from '../../ui/12-Registration/Registration'
+import RegistrationUI from '../../ui/12-Registration/RegistrationUI'
 
 function RegistrationPage() {
     return (
         <>
-            <Registration />
+            <RegistrationUI />
         </>
     )
 }

@@ -1,7 +1,7 @@
 import React from 'react'
 import { BsVectorPen, BsArrowUpRight } from 'react-icons/bs'
 
-const CotegoryCard = ({ icon, title }) => {
+const CotegoryCardUI = ({ icon, title }) => {
     return (
         <>
             <div className="category-card bg-white p-4 shadow-lg rounded-md flex items-center gap-4 justify-between border border-transparent hover:border-[#20B486] hover:cursor-pointer  group/edit">
@@ -21,4 +21,4 @@ const CotegoryCard = ({ icon, title }) => {
     )
 }
 
-export default CotegoryCard
+export default CotegoryCardUI

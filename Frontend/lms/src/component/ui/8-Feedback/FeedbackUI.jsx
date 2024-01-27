@@ -1,11 +1,11 @@
 import React from 'react'
 import Slider from 'react-slick';
 import '../../..//App.css'
-import FeedbackCard from './FeedbackCard/FeedbackCard.jsx'
+import FeedbackCardUI from './FeedbackCard/FeedbackCardUI.jsx'
 
 
 
-const Feedback = () => {
+const FeedbackUI = () => {
     const settings = {
         dots: true,
         infinite: false,
@@ -56,10 +56,10 @@ const Feedback = () => {
                                 <Card course={course} />
                             </div>)} */}
 
-                        <FeedbackCard />
-                        <FeedbackCard />
-                        <FeedbackCard />
-                        <FeedbackCard />
+                        <FeedbackCardUI />
+                        <FeedbackCardUI />
+                        <FeedbackCardUI />
+                        <FeedbackCardUI />
 
                     </Slider>
 
@@ -71,4 +71,4 @@ const Feedback = () => {
     )
 }
 
-export default Feedback
+export default FeedbackUI

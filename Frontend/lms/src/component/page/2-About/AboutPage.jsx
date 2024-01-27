@@ -1,11 +1,11 @@
 import React from 'react'
-import Contact from '../../ui/6-Contact/Contact'
+import ContactUI from '../../ui/6-Contact/ContactUI'
 
 function AboutPage() {
     return (
         <>
-        {/* todo :- add  different pages for about and contact */}
-            <Contact />
+            {/* todo :- add  different pages for about and contact */}
+            <ContactUI />
         </>
     )
 }

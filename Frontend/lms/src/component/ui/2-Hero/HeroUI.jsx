@@ -2,7 +2,7 @@ import React from 'react'
 import { heroImg } from '../../assets'
 import { AiOutlineSearch } from 'react-icons/ai'
 
-const Hero = () => {
+const HeroUI = () => {
   return (
     <>
       <div className='w-full bg-white py-24'>
@@ -34,4 +34,4 @@ const Hero = () => {
   )
 }
 
-export default Hero
+export default HeroUI

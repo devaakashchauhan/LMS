@@ -1,10 +1,10 @@
 import React from 'react'
-import CourseSetup from '../../ui/14-CourseSetup/CourseSetup'
+import CourseSetupUI from '../../ui/14-CourseSetup/CourseSetupUI'
 
 function TeacherPage() {
     return (
         <>
-            <CourseSetup />
+            <CourseSetupUI />
         </>
     )
 }

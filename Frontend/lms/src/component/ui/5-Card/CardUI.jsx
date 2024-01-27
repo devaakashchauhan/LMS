@@ -2,7 +2,7 @@ import React from 'react'
 import StarRating from './StarRating.jsx'
 
 
-const Card = ({ course }) => {
+const CardUI = ({ course }) => {
   return (
     <>
 
@@ -39,4 +39,4 @@ const Card = ({ course }) => {
   )
 }
 
-export default Card
+export default CardUI

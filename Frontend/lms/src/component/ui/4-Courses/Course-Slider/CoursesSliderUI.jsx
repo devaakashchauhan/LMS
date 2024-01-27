@@ -1,11 +1,11 @@
 import React from 'react'
 import Slider from 'react-slick';
-import Card from '../../5-Card/Card.jsx'
+import CardUI from '../../5-Card/CardUI.jsx'
 import { courses } from '../Courses-data/Courses.js'
 import '../../../../App.css'
 
 
-const CoursesSlider = () => {
+const CoursesSliderUI = () => {
   const settings = {
     dots: true,
     infinite: false,
@@ -53,7 +53,7 @@ const CoursesSlider = () => {
           <Slider {...settings} className='px-5'>
             {courses.map((course, i) =>
               <div key={i}>
-                <Card course={course} />
+                <CardUI course={course} />
               </div>)}
 
 
@@ -67,4 +67,4 @@ const CoursesSlider = () => {
   )
 }
 
-export default CoursesSlider
+export default CoursesSliderUI

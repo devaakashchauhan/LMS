@@ -1,10 +1,10 @@
 import React from 'react'
-import Login from '../../ui/11-Login/Login'
+import LoginUI from '../../ui/11-Login/LoginUI'
 
 function LoginPage() {
     return (
         <>
-            <Login />
+            <LoginUI />
         </>
     )
 }

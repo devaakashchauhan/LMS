@@ -4,7 +4,7 @@ import './index.css'
 import { Route, RouterProvider, createBrowserRouter, createRoutesFromChildren } from 'react-router-dom'
 
 import Layout from './Layout.jsx'
-import Chapter from './component/ui/13-Chapter/Chapter.jsx'
+import ChapterUI from './component/ui/13-Chapter/ChapterUI.jsx'
 import TeacherPage from './component/page/9-TeacherPage/TeacherPage.jsx'
 import LoginPage from './component/page/10-Login/LoginPage.jsx'
 import RegistrationPage from './component/page/11-Registration/RegistrationPage.jsx'
@@ -33,7 +33,7 @@ const router = createBrowserRouter(
       <Route path='/courses' element={<CoursePage />} />
       <Route path='/contact' element={<ContactPage />} />
       <Route path='/profile' element={<ProfilePage />} />
-      <Route path='/chapter' element={<Chapter />} />
+      <Route path='/chapter' element={<ChapterUI />} />
       <Route path='/teachermode' element={<TeacherPage />} />
     </Route>
   )

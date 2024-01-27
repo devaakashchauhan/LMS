@@ -3,7 +3,7 @@ import { logo, lock, hamburgerMenu, close } from '../../assets'
 import { useState } from 'react'
 import { Link, NavLink } from "react-router-dom";
 
-const Navbar = () => {
+const NavbarUI = () => {
 
     const [toggle, setToggle] = useState(false)
     const handleClick = () => setToggle(!toggle)
@@ -207,4 +207,4 @@ const Navbar = () => {
     )
 }
 
-export default Navbar
+export default NavbarUI

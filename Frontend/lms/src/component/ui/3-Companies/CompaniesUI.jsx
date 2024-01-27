@@ -1,7 +1,7 @@
 import React from 'react'
 import { companyLogo1, companyLogo2, companyLogo3, companyLogo4 } from '../../assets'
 
-const Companies = () => {
+const CompaniesUI = () => {
   return (
     <>
       <div className='w-full bg-white py-[50px]'>
@@ -23,4 +23,4 @@ const Companies = () => {
   )
 }
 
-export default Companies
+export default CompaniesUI

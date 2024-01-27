@@ -1,22 +1,22 @@
 import React from 'react'
-import Hero from '../../ui/2-Hero/Hero'
-import Companies from '../../ui/3-Companies/Companies'
-import CoursesSlider from '../../ui/4-Courses/Course-Slider/CoursesSlider'
-import Categories from '../../ui/7-Categories/Categories'
-import Feedback from '../../ui/8-Feedback/Feedback'
-import LoginCTA from '../../ui/9-CTA/LoginCTA'
+import HeroUI from '../../ui/2-Hero/HeroUI'
+import CompaniesUI from '../../ui/3-Companies/CompaniesUI'
+import CoursesSliderUI from '../../ui/4-Courses/Course-Slider/CoursesSliderUI'
+import CategoriesUI from '../../ui/7-Categories/CategoriesUI'
+import FeedbackUI from '../../ui/8-Feedback/FeedbackUI'
+import LoginCTAUI from '../../ui/9-CTA/LoginCTAUI'
 
 
 
 const HomePage = () => {
     return (
         <>
-            <Hero />
-            <Companies />
-            <CoursesSlider />
-            <Categories />
-            <Feedback />
-            <LoginCTA />
+            <HeroUI />
+            <CompaniesUI />
+            <CoursesSliderUI />
+            <CategoriesUI />
+            <FeedbackUI />
+            <LoginCTAUI />
         </>
     )
 }

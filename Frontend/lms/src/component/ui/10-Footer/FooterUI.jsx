@@ -3,7 +3,7 @@ import { Link, NavLink } from "react-router-dom";
 import { logo } from '../../assets'
 import { FaBehance, FaDribbble, FaFacebookF, FaInstagram, FaLinkedinIn } from 'react-icons/fa'
 
-function Footer() {
+function FooterUI() {
     return (
         <>
             <div className='w-full bg-white py-24'>
@@ -94,4 +94,4 @@ function Footer() {
     )
 }
 
-export default Footer 
+export default FooterUI

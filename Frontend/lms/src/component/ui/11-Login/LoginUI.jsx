@@ -1,7 +1,7 @@
 import React from 'react'
 import { heroImg } from '../../assets'
 
-function Registration() {
+const LoginUI = () => {
     return (
         <>
             <div className='w-full bg-white py-24'>
@@ -25,15 +25,24 @@ function Registration() {
                                     className="w-100 mt-2 py-3 px-3 rounded-lg bg-white border border-gray-400 text-gray-800 font-semibold focus:border-[#20B486] focus:outline-none"
                                 />
                             </div>
-                            <p className='py-4  text-gray-400 '>We’ll send an OTP for verification</p>
-
-
+                            <div className="flex flex-col mt-2">
+                                <label for="tel" className="hidden">
+                                    Password
+                                </label>
+                                <input
+                                    type="tel"
+                                    name="tel"
+                                    id="tel"
+                                    placeholder="Password"
+                                    className="w-100 mt-2 py-3 px-3 rounded-lg bg-white border border-gray-400 text-gray-800 font-semibold focus:border-[#20B486] focus:outline-none"
+                                />
+                            </div>
 
                             <button
                                 type="submit"
                                 className=" w-full max-w-[500px] bg-[#20B486] hover:bg-blue-dark text-white font-bold py-3 px-6 rounded-lg mt-3 hover:bg-[#20B486] transition ease-in-out duration-300"
                             >
-                                Sign Up For Free
+                                Login
                             </button>
                         </form>
                     </div>
@@ -45,4 +54,4 @@ function Registration() {
     )
 }
 
-export default Registration
+export default LoginUI

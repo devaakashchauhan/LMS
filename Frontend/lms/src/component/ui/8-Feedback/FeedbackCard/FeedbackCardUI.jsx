@@ -1,7 +1,7 @@
 import React from 'react'
 import { avatar, quotationMark, } from '../../../assets'
 
-const FeedbackCard = () => {
+const FeedbackCardUI = () => {
     return (
         <>
             <div className="bg-white p-8 rounded-3xl shadow-xl my-8 mx-2">
@@ -26,4 +26,4 @@ const FeedbackCard = () => {
     )
 }
 
-export default FeedbackCard
+export default FeedbackCardUI
