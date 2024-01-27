@@ -11,7 +11,7 @@ import { MdAddBox } from "react-icons/md";
 import { TbEdit } from "react-icons/tb";
 
 
-function Courses() {
+function CoursesSetup() {
     const inputRef = useRef(null)
     const chapRef = useRef(null)
     const [image, setImage] = useState('')
@@ -192,4 +192,4 @@ function Courses() {
     )
 }
 
-export default Courses
+export default CoursesSetup
