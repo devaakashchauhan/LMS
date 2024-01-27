@@ -4,7 +4,7 @@ import { heroImg } from '../../assets'
 // todo con not import image 
 // import { profile } from '../../assets'
 
-function Profile() {
+function ProfilePage() {
     const inputRef = useRef(null)
     const [image, setImage] = useState('')
 
@@ -97,4 +97,4 @@ function Profile() {
     )
 }
 
-export default Profile
+export default ProfilePage

@@ -1,7 +1,7 @@
 import React from 'react'
 import Contact from '../../ui/6-Contact/Contact'
 
-function About() {
+function AboutPage() {
     return (
         <>
         {/* todo :- add  different pages for about and contact */}
@@ -10,4 +10,4 @@ function About() {
     )
 }
 
-export default About
+export default AboutPage

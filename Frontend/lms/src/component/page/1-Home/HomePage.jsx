@@ -8,7 +8,7 @@ import LoginCTA from '../../ui/9-CTA/LoginCTA'
 
 
 
-const Home = () => {
+const HomePage = () => {
     return (
         <>
             <Hero />
@@ -21,4 +21,4 @@ const Home = () => {
     )
 }
 
-export default Home
+export default HomePage

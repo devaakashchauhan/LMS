@@ -4,18 +4,18 @@ import './index.css'
 import { Route, RouterProvider, createBrowserRouter, createRoutesFromChildren } from 'react-router-dom'
 
 import Layout from './Layout.jsx'
-import Home from './component/page/1-Home/Home.jsx'
-import About from './component/page/2-About/About.jsx'
-import Support from './component/page/3-Support/Support.jsx'
-import Platfrom from './component/page/4-PlatFrom/Platfrom.jsx'
-import Pricing from './component/page/5-Pricing/Pricing.jsx'
-import Login from './component/ui/11-Login/Login.jsx'
-import Registration from './component/ui/12-Registration/Registration.jsx'
-import Contact from './component/page/7-Contact/Contact.jsx'
-import Profile from './component/page/8-Profile/Profile.jsx'
 import Chapter from './component/ui/13-Chapter/Chapter.jsx'
 import TeacherPage from './component/page/9-TeacherPage/TeacherPage.jsx'
-import Course from './component/page/6-Course/Course.jsx'
+import LoginPage from './component/page/10-Login/LoginPage.jsx'
+import RegistrationPage from './component/page/11-Registration/RegistrationPage.jsx'
+import HomePage from './component/page/1-Home/HomePage.jsx'
+import AboutPage from './component/page/2-About/AboutPage.jsx'
+import SupportPage from './component/page/3-Support/SupportPage.jsx'
+import PlatfromPage from './component/page/4-PlatFrom/PlatfromPage.jsx'
+import PricingPage from './component/page/5-Pricing/PricingPage.jsx'
+import CoursePage from './component/page/6-Course/CoursePage.jsx'
+import ContactPage from './component/page/7-Contact/ContactPage.jsx'
+import ProfilePage from './component/page/8-Profile/ProfilePage.jsx'
 
 
 
@@ -23,16 +23,16 @@ import Course from './component/page/6-Course/Course.jsx'
 const router = createBrowserRouter(
   createRoutesFromChildren(
     <Route path='/' element={<Layout />}>
-      <Route path='' element={<Home />} />
-      <Route path='/about' element={<About />} />
-      <Route path='/support' element={<Support />} />
-      <Route path='/platfrom' element={<Platfrom />} />
-      <Route path='/pricing' element={<Pricing />} />
-      <Route path='/login' element={<Login />} />
-      <Route path='/signup' element={<Registration />} />
-      <Route path='/courses' element={<Course />} />
-      <Route path='/contact' element={<Contact />} />
-      <Route path='/profile' element={<Profile />} />
+      <Route path='' element={<HomePage />} />
+      <Route path='/about' element={<AboutPage />} />
+      <Route path='/support' element={<SupportPage />} />
+      <Route path='/platfrom' element={<PlatfromPage />} />
+      <Route path='/pricing' element={<PricingPage />} />
+      <Route path='/login' element={<LoginPage />} />
+      <Route path='/signup' element={<RegistrationPage />} />
+      <Route path='/courses' element={<CoursePage />} />
+      <Route path='/contact' element={<ContactPage />} />
+      <Route path='/profile' element={<ProfilePage />} />
       <Route path='/chapter' element={<Chapter />} />
       <Route path='/teachermode' element={<TeacherPage />} />
     </Route>

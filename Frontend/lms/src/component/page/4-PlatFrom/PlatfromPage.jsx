@@ -1,9 +1,9 @@
 import React from 'react'
 
-const Platfrom = () => {
+const PlatfromPage = () => {
     return (
         <div>Platfrom</div>
     )
 }
 
-export default Platfrom
+export default PlatfromPage

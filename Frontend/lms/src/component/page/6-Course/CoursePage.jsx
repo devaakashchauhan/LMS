@@ -1,7 +1,7 @@
 import React from 'react'
 import CourseView from '../../ui/4-Courses/Course-View/CourseView'
 
-function Course() {
+function CoursePage() {
     return (
         <>
 
@@ -10,4 +10,4 @@ function Course() {
     )
 }
 
-export default Course
+export default CoursePage
