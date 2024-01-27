@@ -1,7 +1,8 @@
 import React, { useRef, useState } from 'react'
 import { MdAddAPhoto } from "react-icons/md";
 import { heroImg } from '../../assets'
-// import { } from '../../assets'
+// todo con not import image 
+// import { profile } from '../../assets'
 
 function Profile() {
     const inputRef = useRef(null)
