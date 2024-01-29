@@ -64,6 +64,12 @@ function FooterUI() {
                                     Teacher Mode
                                 </NavLink>
                             </li>
+                            <li className='py-2 hover:cursor-pointer hover:text-[#20B486]'>
+                                <NavLink to={'/admin'}>
+
+                                    Admin Mode
+                                </NavLink>
+                            </li>
 
                         </ul>
                     </div>
