@@ -59,17 +59,24 @@ function FooterUI() {
                                 </NavLink>
                             </li>
                             <li className='py-2 hover:cursor-pointer hover:text-[#20B486]'>
-                                <NavLink to={'/teachermode'}>
+                                <NavLink to={'/teacherDashboard'}>
 
                                     Teacher Mode
                                 </NavLink>
                             </li>
                             <li className='py-2 hover:cursor-pointer hover:text-[#20B486]'>
-                                <NavLink to={'/admin'}>
+                                <NavLink to={'/adminDashboard'}>
 
                                     Admin Mode
                                 </NavLink>
                             </li>
+                            <li className='py-2 hover:cursor-pointer hover:text-[#20B486]'>
+                                <NavLink to={'/userDashboard'}>
+
+                                    User Mode
+                                </NavLink>
+                            </li>
+
 
                         </ul>
                     </div>

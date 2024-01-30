@@ -16,7 +16,10 @@ import PricingPage from './component/page/5-Pricing/PricingPage.jsx'
 import CoursePage from './component/page/6-Course/CoursePage.jsx'
 import ContactPage from './component/page/7-Contact/ContactPage.jsx'
 import ProfilePage from './component/page/8-Profile/ProfilePage.jsx'
-import AdminPage from './component/page/12-AdminPage/AdminPage.jsx'
+import UserDashboarsPage from './component/page/12-UserDashboardPage/UserDashboarsPage.jsx'
+import AdminDashboard from './component/page/13-AdminDashboardPage/AdminDashboardPage.jsx'
+import TeacherDashboardPage from './component/page/14-TeacherDashboardPage/TeacherDashboardPage.jsx'
+
 
 
 
@@ -36,7 +39,9 @@ const router = createBrowserRouter(
       <Route path='/profile' element={<ProfilePage />} />
       <Route path='/chapter' element={<ChapterUI />} />
       <Route path='/teachermode' element={<TeacherPage />} />
-      <Route path='/admin' element={<AdminPage />} />
+      <Route path='/adminDashboard' element={<AdminDashboard />} />
+      <Route path='/userDashboard' element={<UserDashboarsPage />} />
+      <Route path='/teacherDashboard' element={<TeacherDashboardPage />} />
     </Route>
   )
 )

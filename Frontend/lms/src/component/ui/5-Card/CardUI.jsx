@@ -1,5 +1,6 @@
 import React from 'react'
 import StarRating from './StarRating.jsx'
+import { FaRupeeSign } from "react-icons/fa";
 
 
 const CardUI = ({ course }) => {
