@@ -19,6 +19,7 @@ import ProfilePage from './component/page/8-Profile/ProfilePage.jsx'
 import UserDashboarsPage from './component/page/12-UserDashboardPage/UserDashboarsPage.jsx'
 import AdminDashboard from './component/page/13-AdminDashboardPage/AdminDashboardPage.jsx'
 import TeacherDashboardPage from './component/page/14-TeacherDashboardPage/TeacherDashboardPage.jsx'
+import PageNotFoundUI from './component/ui/17-PageNotFoundUI/PageNotFoundUI.jsx'
 
 
 
@@ -27,6 +28,7 @@ import TeacherDashboardPage from './component/page/14-TeacherDashboardPage/Teach
 const router = createBrowserRouter(
   createRoutesFromChildren(
     <Route path='/' element={<Layout />}>
+      <Route path='*' element={<PageNotFoundUI />} />
       <Route path='' element={<HomePage />} />
       <Route path='/about' element={<AboutPage />} />
       <Route path='/support' element={<SupportPage />} />
