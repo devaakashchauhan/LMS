@@ -4,6 +4,7 @@ import { User } from "../models/user.model.js";
 import { uploadOnCloudinary } from "../utils/cloudinary.js";
 import { apiResponse } from "../utils/apiResponse.js";
 import jwt from "jsonwebtoken";
+import mongoose from "mongoose";
 
 const generateAccessAndRefreshToken = async (userId) => {
   try {
@@ -43,7 +44,7 @@ const registerUser = asyncHandler(async (req, res) => {
     throw new apiError(400, "username and email already exists !!!");
   }
 
-  const avatarLocalPath = req.files?.avatar[0]?.path;
+  const avatarLocalPath = req.file?.path;
   console.log(avatarLocalPath);
 
   if (!avatarLocalPath) {
@@ -204,17 +205,17 @@ const refreshAccessToken = asyncHandler(async (req, res) => {
 });
 
 const changeCurrentPassword = asyncHandler(async (req, res) => {
-  const { oldPassword, newPassword, confPassword } = req.body;
+  const { oldPassword, newPassword } = req.body;
 
-  if (newPassword !== confPassword) {
-    throw new apiError(400, "newpassword and confirm Password are different.");
-  }
+  // if (newPassword !== confPassword) {
+  //   throw new apiError(400, "newpassword and confirm Password are different.");
+  // }
 
+  console.log(req.user, " ak");
   const user = await User.findById(req.user?._id);
 
-  const isPasswordCorrect = await user.isPasswordCorrect(oldPassword);
-
-  if (!isPasswordCorrect) {
+  const isPasswordCCorrect = await user.isPasswordCorrect(oldPassword);
+  if (!isPasswordCCorrect) {
     throw new apiError(400, "Invalid Password.");
   }
 
@@ -229,7 +230,7 @@ const changeCurrentPassword = asyncHandler(async (req, res) => {
 const getCurrentUser = asyncHandler(async (req, res) => {
   return res
     .status(200)
-    .json(200, req.user, "Current user fetched successFully.");
+    .json(new apiResponse(200, req.user, "Current user fetched successFully."));
 });
 
 const updateUserDetails = asyncHandler(async (req, res) => {
@@ -257,6 +258,7 @@ const updateUserDetails = asyncHandler(async (req, res) => {
 
 const updateUserAvatar = asyncHandler(async (req, res) => {
   const avatarLocalPath = req.file?.path;
+  console.log(avatarLocalPath);
   if (!avatarLocalPath) {
     throw new apiError(400, "Avtar file is missing.");
   }
@@ -271,7 +273,7 @@ const updateUserAvatar = asyncHandler(async (req, res) => {
     req.user?._id,
     {
       $set: {
-        avatar,
+        avatar: avatar.url,
       },
     },
     {
