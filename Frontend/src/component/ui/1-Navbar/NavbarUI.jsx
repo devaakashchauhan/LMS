@@ -110,7 +110,7 @@ const NavbarUI = () => {
                                             `block ${isActive ? "text-gray-200" : "text-white"} py-2 pr-4 pl-3 duration-200 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0  lg:p-0`
                                         }
                                     >
-                                        Sign Up For Free
+                                        Resgistration
                                     </NavLink>
                                 </li>
                             </ul>

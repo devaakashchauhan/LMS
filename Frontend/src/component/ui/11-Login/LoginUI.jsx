@@ -1,7 +1,35 @@
-import React from 'react'
+import { useState } from 'react'
 import { heroImg } from '../../assets'
+import axios from 'axios'
 
 const LoginUI = () => {
+    const [form, setForm] = useState({
+        username: "",
+        password: "",
+    });
+    const handleInputChange = (e) => {
+        setForm({ ...form, [e.target.name]: e.target.value });
+    };
+
+    const userRegistration = () => {
+
+
+        axios.post('/api/v1/users/login',
+            { ...form }
+        )
+            .then(function (response) {
+                console.log(response);
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+
+    }
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        userRegistration()
+    }
     return (
         <>
             <div className='w-full bg-white py-24'>
@@ -12,34 +40,38 @@ const LoginUI = () => {
                         <h1 className=' md:leading-[72px] py-4 md:text-6xl text-5xl font-semibold'>Crack your goal with India’s top educators
                         </h1>
                         <p className='py-4 text-lg text-gray-600 font-bold'>Over <span className='text-[#20B486]'>10 crore</span>  learners trust us for their preparation</p>
-                        <form action="" className=' max-w-[500px] py-4 input-bx-shadow rounded-md '>
+                        <form action="" onSubmit={(e) => handleSubmit(e)} className=' max-w-[500px] py-4 input-bx-shadow rounded-md '>
                             <div className="flex flex-col mt-2">
-                                <label for="tel" className="hidden">
-                                    Number
+                                <label htmlFor="tel" className="hidden">
+                                    User Name
                                 </label>
                                 <input
                                     type="tel"
-                                    name="tel"
+                                    name="username"
                                     id="tel"
-                                    placeholder="Phone Number"
+                                    placeholder="User Name"
+                                    onChange={handleInputChange}
                                     className="w-100 mt-2 py-3 px-3 rounded-lg bg-white border border-gray-400 text-gray-800 font-semibold focus:border-[#20B486] focus:outline-none"
                                 />
                             </div>
                             <div className="flex flex-col mt-2">
-                                <label for="tel" className="hidden">
+                                <label htmlFor="tel" className="hidden">
                                     Password
                                 </label>
                                 <input
                                     type="tel"
-                                    name="tel"
+                                    name="password"
                                     id="tel"
-                                    placeholder="Password"
+                                    placeholder="Phone Number"
+                                    onChange={handleInputChange}
                                     className="w-100 mt-2 py-3 px-3 rounded-lg bg-white border border-gray-400 text-gray-800 font-semibold focus:border-[#20B486] focus:outline-none"
                                 />
                             </div>
 
+
                             <button
                                 type="submit"
+                                // onClick={() => userRegistration()}
                                 className=" w-full max-w-[500px] bg-[#20B486] hover:bg-blue-dark text-white font-bold py-3 px-6 rounded-lg mt-3 hover:bg-[#20B486] transition ease-in-out duration-300"
                             >
                                 Login

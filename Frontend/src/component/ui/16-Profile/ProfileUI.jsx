@@ -1,12 +1,15 @@
-import React, { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { MdAddAPhoto } from "react-icons/md";
 import { heroImg } from '../../assets'
-// todo con not import image 
-// import { profile } from '../../assets'
+import axios from 'axios'
+
 
 function ProfileUI() {
     const inputRef = useRef(null)
     const [image, setImage] = useState('')
+    const [fullname, setFullname] = useState('')
+    const [email, setEmail] = useState('')
+    const [userName, setUserName] = useState('')
 
     const handleImgClick = () => {
         inputRef.current.click()
@@ -18,6 +21,26 @@ function ProfileUI() {
     }
 
 
+
+    useEffect(() => {
+        axios.post('/api/v1/users/userDetails',
+            {}
+        )
+            .then(function (response) {
+                // console.log(response);
+                // console.log(response.data.data);
+                setImage(response.data.data.avatar)
+                setFullname(response.data.data.fullname)
+                setEmail(response.data.data.email)
+                setUserName(response.data.data.username)
+
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+    }, [])
+
+
     return (
         <>
 
@@ -27,14 +50,14 @@ function ProfileUI() {
                         <div className="flex flex-col "  >
 
                             <div className="flex ">
-                                <label for="name" className="text-xl py-1 font-bold ">
+                                <label htmlFor="name" className="text-xl py-1 font-bold ">
                                     Profile Image
                                 </label>
-                                <MdAddAPhoto size={40} onClick={handleImgClick} className='ms-auto hover:cursor-pointer' />
+                                <MdAddAPhoto size={40} onClick={handleImgClick} className='hidden ms-auto hover:cursor-pointer' />
                             </div>
 
                             <div className="w-full max-w-[300px]">
-                                {image ? <img src={URL.createObjectURL(image)} /> : <img src={heroImg} />}
+                                {image ? <img src={image} /> : <img src={heroImg} />}
                             </div>
 
 
@@ -49,19 +72,21 @@ function ProfileUI() {
                             />
                         </div>
                         <div className="flex flex-col mt-2">
-                            <label for="name" className="text-xl py-1 font-bold ">
-                                Name
+                            <label htmlFor="name" className="text-xl py-1 font-bold ">
+                                Full Name
                             </label>
                             <input
                                 type="name"
                                 name="name"
                                 id="name"
                                 placeholder="Name"
+                                defaultValue={fullname}
+                                // value={fullname}
                                 className="w-100 mt-2 py-3 px-3 rounded-lg bg-white border border-gray-400 text-gray-800 font-semibold focus:border-[#20B486] focus:outline-none"
                             />
                         </div>
                         <div className="flex flex-col mt-2">
-                            <label for="email" className="text-xl py-1 font-bold ">
+                            <label htmlFor="email" className="text-xl py-1 font-bold ">
                                 Email
                             </label>
                             <input
@@ -69,18 +94,20 @@ function ProfileUI() {
                                 name="email"
                                 id="email"
                                 placeholder="Email"
+                                defaultValue={email}
                                 className="w-100 mt-2 py-3 px-3 rounded-lg bg-white border border-gray-400 text-gray-800 font-semibold focus:border-[#20B486] focus:outline-none"
                             />
                         </div>
                         <div className="flex flex-col mt-2">
-                            <label for="tel" className="text-xl py-1 font-bold ">
-                                Number
+                            <label htmlFor="tel" className="text-xl py-1 font-bold ">
+                                User Name
                             </label>
                             <input
                                 type="tel"
                                 name="tel"
                                 id="tel"
-                                placeholder="Telephone Number"
+                                placeholder="User Name"
+                                defaultValue={userName}
                                 className="w-100 mt-2 py-3 px-3 rounded-lg bg-white border border-gray-400 text-gray-800 font-semibold focus:border-[#20B486] focus:outline-none"
                             />
                         </div>

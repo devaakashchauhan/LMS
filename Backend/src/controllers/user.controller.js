@@ -29,6 +29,7 @@ const generateAccessAndRefreshToken = async (userId) => {
 
 const registerUser = asyncHandler(async (req, res) => {
   const { fullname, email, username, password } = req.body;
+  console.log(req.body);
 
   if (
     [fullname, email, username, password].some((field) => field?.trim() === "")
@@ -45,7 +46,7 @@ const registerUser = asyncHandler(async (req, res) => {
   }
 
   const avatarLocalPath = req.file?.path;
-  console.log(avatarLocalPath);
+  console.log("req path =", avatarLocalPath);
 
   if (!avatarLocalPath) {
     throw new apiError(400, "Avatar files is required !!!");
@@ -79,15 +80,13 @@ const registerUser = asyncHandler(async (req, res) => {
 });
 
 const loginUser = asyncHandler(async (req, res) => {
-  const { email, username, password } = req.body;
-
-  if (!username && !email) {
+  const { username, password } = req.body;
+  console.log(req.body);
+  if (!username && !password) {
     throw new apiError(400, "username and password is requried !!!");
   }
 
-  const user = await User.findOne({
-    $or: [{ username }, { email }],
-  });
+  const user = await User.findOne({ username });
 
   if (!user) {
     throw new apiError(400, "user does not exists.");

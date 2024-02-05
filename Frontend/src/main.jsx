@@ -29,12 +29,12 @@ const router = createBrowserRouter(
   createRoutesFromChildren(
     <Route path='/' element={<Layout />}>
       <Route path='*' element={<PageNotFoundUI />} />
-      <Route path='' element={<HomePage />} />
+      <Route path='/login' element={<LoginPage />} />
+      <Route path='/home' element={<HomePage />} />
       <Route path='/about' element={<AboutPage />} />
       <Route path='/support' element={<SupportPage />} />
       <Route path='/platfrom' element={<PlatfromPage />} />
       <Route path='/pricing' element={<PricingPage />} />
-      <Route path='/login' element={<LoginPage />} />
       <Route path='/signup' element={<RegistrationPage />} />
       <Route path='/courses' element={<CoursePage />} />
       <Route path='/contact' element={<ContactPage />} />
