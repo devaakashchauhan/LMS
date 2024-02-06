@@ -1,16 +1,63 @@
-import React from 'react'
 import { logo, lock, hamburgerMenu, close } from '../../assets'
-import { useState } from 'react'
-import { Link, NavLink } from "react-router-dom";
+import { useEffect, useState } from 'react'
+import { NavLink, useNavigate } from "react-router-dom";
+import axios from 'axios';
 
 const NavbarUI = () => {
-
+    const navigate = useNavigate()
     const [toggle, setToggle] = useState(false)
     const handleClick = () => setToggle(!toggle)
 
+    const [image, setImage] = useState('')
+    const [fullname, setFullname] = useState('')
+    const [email, setEmail] = useState('')
+    const [userName, setUserName] = useState('')
+
+    const userLogout = () => {
+        axios.post('/api/v1/users/logout',
+            null
+        )
+            .then(function (response) {
+                console.log(response);
+                console.log(response.data.data);
+                console.log(response.data.data.accessToken);
+                const user = response.data.data.accessToken;
+                console.log("user = ", user)
+                if (!user) {
+                    setImage("")
+                    navigate("")
+                }
+
+            })
+            .catch(function (error) {
+                console.log(error);
+
+            });
+
+    }
+
+    useEffect(() => {
+        axios.post('/api/v1/users/userDetails',
+            {}
+        )
+            .then(function (response) {
+                // console.log(response);
+                // console.log(response.data.data);
+                setImage(response.data.data.avatar)
+                setFullname(response.data.data.fullname)
+                setEmail(response.data.data.email)
+                setUserName(response.data.data.username)
+
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+    })
+
+
+
     return (
         <>
-            {/* Navbar */}
             <div className='w-full h-[80px] bg-white border-b'>
                 <div className="md:max-w-[1480px] max-w-[600px] w-full h-full flex justify-between items-center m-auto">
                     {/* Logo */}
@@ -21,7 +68,7 @@ const NavbarUI = () => {
                         <ul className='flex gap-4'>
                             <li>
                                 <NavLink
-                                    to="/"
+                                    to="/home"
                                     className={({ isActive }) =>
                                         `block ${isActive ? "text-[#20B486]" : "text-gray-500"} py-2 pr-4 pl-3 duration-200 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 hover:text-[#20B486] lg:p-0`
                                     }
@@ -61,12 +108,12 @@ const NavbarUI = () => {
 
                             <li>
                                 <NavLink
-                                    to="/pricing"
+                                    onClick={() => userLogout()}
                                     className={({ isActive }) =>
                                         `block ${isActive ? "text-[#20B486]" : "text-gray-500"} py-2 pr-4 pl-3 duration-200 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 hover:text-[#20B486] lg:p-0`
                                     }
                                 >
-                                    Pricing
+                                    Logout
                                 </NavLink>
                             </li>
                             <li>
@@ -84,38 +131,7 @@ const NavbarUI = () => {
                     </div>
 
                     <div className="hidden md:flex">
-                        <button className='flex justify-between items-center bg-transparent px-6 gap-2'>
-                            <img src={lock} alt="" />
-
-                            <ul>
-                                <li>
-                                    <NavLink
-                                        to="/login"
-                                        className={({ isActive }) =>
-                                            `block ${isActive ? "text-[#20B486]" : "text-gray-500"} py-2 pr-4 pl-3 duration-200 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 hover:text-[#20B486] lg:p-0`
-                                        }
-                                    >
-                                        Login
-                                    </NavLink>
-                                </li>
-                            </ul>
-                        </button>
-
-                        <button className='bg-[#20B486] px-8 py-3 rounded-md text-white font-bold'>
-                            <ul>
-                                <li>
-                                    <NavLink
-                                        to="/signup"
-                                        className={({ isActive }) =>
-                                            `block ${isActive ? "text-gray-200" : "text-white"} py-2 pr-4 pl-3 duration-200 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0  lg:p-0`
-                                        }
-                                    >
-                                        Resgistration
-                                    </NavLink>
-                                </li>
-                            </ul>
-
-                        </button>
+                        <div className="max-w-[100px] rounded-lg "><img src={image} /></div>
                     </div>
 
                     {/* toggle button  */}
@@ -183,7 +199,7 @@ const NavbarUI = () => {
                             <button className='border border-[#20B486]  flex justify-center items-center bg-transparent px-6 gap-4 py-4 '>
                                 <img src={lock} alt="" />
                                 <NavLink
-                                    to="/login"
+                                    to=""
 
                                 >
                                     Login

@@ -8,7 +8,7 @@ import FooterUI from './component/ui/10-Footer/FooterUI.jsx'
 const Layout = () => {
     return (
         <>
-            <NavbarUI />
+            {/* <NavbarUI /> */}
             <Outlet />
             <FooterUI />
         </>

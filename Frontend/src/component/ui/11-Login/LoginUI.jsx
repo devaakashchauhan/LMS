@@ -1,8 +1,17 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { heroImg } from '../../assets'
 import axios from 'axios'
+import { useNavigate } from 'react-router-dom';
+
 
 const LoginUI = () => {
+
+
+    useEffect(() => {
+      
+    }, [])
+    
+    const navigate = useNavigate()
     const [form, setForm] = useState({
         username: "",
         password: "",
@@ -12,22 +21,32 @@ const LoginUI = () => {
     };
 
     const userRegistration = () => {
-
-
         axios.post('/api/v1/users/login',
             { ...form }
         )
-            .then(function (response) {
+            .then(function ak(response) {
                 console.log(response);
+                console.log(response.data.data);
+                console.log(response.data.data.accessToken);
+                console.log(response.data.data.refreshToken);
+                const user = response.data.data.accessToken;
+                console.log("user = ", user)
+                if (user) {
+                    navigate("/home")
+                }
+
+
             })
             .catch(function (error) {
                 console.log(error);
+
             });
 
     }
 
     const handleSubmit = (e) => {
         e.preventDefault();
+
         userRegistration()
     }
     return (

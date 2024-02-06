@@ -1,4 +1,4 @@
-import React from 'react'
+
 import HeroUI from '../../ui/2-Hero/HeroUI'
 import CompaniesUI from '../../ui/3-Companies/CompaniesUI'
 import CoursesSliderUI from '../../ui/4-Courses/Course-Slider/CoursesSliderUI'
