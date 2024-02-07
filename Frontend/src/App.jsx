@@ -21,57 +21,38 @@ import AdminDashboard from './component/page/13-AdminDashboardPage/AdminDashboar
 import TeacherDashboardPage from './component/page/14-TeacherDashboardPage/TeacherDashboardPage.jsx'
 import PageNotFoundUI from './component/ui/17-PageNotFoundUI/PageNotFoundUI.jsx'
 import axios from 'axios'
-import { useEffect, useState } from 'react'
+
 
 
 const App = () => {
 
 
-    const [validUser, setValidUser] = useState(false)
-
-    useEffect(() => {
-        axios.post('/api/v1/users/chkuser',
-        )
-            .then(function (response) {
-                console.log(response);
-                console.log(response.data.data);
-                console.log(response.data.data.accessToken);
-                console.log(response.data.data.refreshToken);
-                const user = response.data.data.accessToken;
-                console.log("user = ", user)
-                if (user) {
-                    setValidUser(true)
-                }
-            })
-            .catch(function (error) {
-                console.log(error);
-            });
-    }, [])
 
 
-    axios.interceptors.request.use(function (config) {
-        console.log("inter req = ", config);
-        return config;
-    }, function (error) {
 
-        return Promise.reject(error);
-    });
+    // axios.interceptors.request.use(function (config) {
+    //     console.log("inter req = ", config);
+    //     return config;
+    // }, function (error) {
 
-    // Add a response interceptor
-    axios.interceptors.response.use(function (response) {
-        console.log("inter res = ", response);
-        return response;
-    }, function (error) {
+    //     return Promise.reject(error);
+    // });
 
-        return Promise.reject(error);
-    });
+
+    // axios.interceptors.response.use(function (response) {
+    //     console.log("inter res = ", response);
+    //     return response;
+    // }, function (error) {
+
+    //     return Promise.reject(error);
+    // });
     return (
         <>
             <BrowserRouter>
                 <Routes>
                     <Route path='/' element={<Layout />}>
                         <Route path='*' element={<PageNotFoundUI />} />
-                        <Route path='' element={<LoginPage  />} />
+                        <Route path='' element={<LoginPage />} />
                         <Route path='/home' element={<HomePage />} />
                         <Route path='/about' element={<AboutPage />} />
                         <Route path='/support' element={<SupportPage />} />

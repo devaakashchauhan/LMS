@@ -36,23 +36,23 @@ const NavbarUI = () => {
 
     }
 
-    useEffect(() => {
-        axios.post('/api/v1/users/userDetails',
-            {}
-        )
-            .then(function (response) {
-                // console.log(response);
-                // console.log(response.data.data);
-                setImage(response.data.data.avatar)
-                setFullname(response.data.data.fullname)
-                setEmail(response.data.data.email)
-                setUserName(response.data.data.username)
+    // useEffect(() => {
+    //     axios.post('/api/v1/users/userDetails',
+    //         {}
+    //     )
+    //         .then(function (response) {
+    //             // console.log(response);
+    //             // console.log(response.data.data);
+    //             setImage(response.data.data.avatar)
+    //             setFullname(response.data.data.fullname)
+    //             setEmail(response.data.data.email)
+    //             setUserName(response.data.data.username)
 
-            })
-            .catch(function (error) {
-                console.log(error);
-            });
-    })
+    //         })
+    //         .catch(function (error) {
+    //             console.log(error);
+    //         });
+    // })
 
 
 
@@ -131,7 +131,7 @@ const NavbarUI = () => {
                     </div>
 
                     <div className="hidden md:flex">
-                        <div className="max-w-[100px] rounded-lg "><img src={image} /></div>
+                        <div className="max-w-[100px] border border-green-500 rounded-full overflow-hidden "><img src={image} /></div>
                     </div>
 
                     {/* toggle button  */}

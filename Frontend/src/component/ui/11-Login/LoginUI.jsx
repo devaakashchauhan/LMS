@@ -8,9 +8,9 @@ const LoginUI = () => {
 
 
     useEffect(() => {
-      
+
     }, [])
-    
+
     const navigate = useNavigate()
     const [form, setForm] = useState({
         username: "",
@@ -25,29 +25,23 @@ const LoginUI = () => {
             { ...form }
         )
             .then(function ak(response) {
-                console.log(response);
-                console.log(response.data.data);
-                console.log(response.data.data.accessToken);
-                console.log(response.data.data.refreshToken);
+                // console.log(response);
+                // console.log(response.data.data);
                 const user = response.data.data.accessToken;
-                console.log("user = ", user)
                 if (user) {
                     navigate("/home")
                 }
-
-
             })
             .catch(function (error) {
-                console.log(error);
-
+                // console.log(error);
+                console.log("please Enter valid User name and Id !!!")
             });
-
     }
 
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        userRegistration()
+
     }
     return (
         <>
@@ -90,7 +84,7 @@ const LoginUI = () => {
 
                             <button
                                 type="submit"
-                                // onClick={() => userRegistration()}
+                                onClick={() => userRegistration()}
                                 className=" w-full max-w-[500px] bg-[#20B486] hover:bg-blue-dark text-white font-bold py-3 px-6 rounded-lg mt-3 hover:bg-[#20B486] transition ease-in-out duration-300"
                             >
                                 Login

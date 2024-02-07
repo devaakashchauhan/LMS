@@ -1,10 +1,11 @@
-import React from 'react'
 import ProfileUI from '../../ui/16-Profile/ProfileUI'
 import TeacherSidebarUI from '../../ui/15-Sidebar/TeacherSidebarUI'
+import Userchk from '../../ui/19-UserChk/Userchk'
 
 function TeacherDashboardPage() {
     return (
         <>
+            <Userchk />
             <div className="h-full grid grid-cols-6 border border-b">
 
                 <div className="hidden md:flex h-full  flex-col   ">
