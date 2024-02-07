@@ -16,12 +16,8 @@ const NavbarUI = () => {
             null
         )
             .then(function (response) {
-                console.log(response);
-                const user = response.data.data.accessToken;
-                if (!user) {
-                    setImage("")
-                    navigate("/")
-                }
+                navigate("/login")
+
 
             })
             .catch(function (error) {

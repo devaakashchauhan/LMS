@@ -1,7 +1,8 @@
-import React, { useRef, useState } from 'react'
+import { useRef, useState } from 'react'
 import { heroImg } from '../../assets'
 import { MdAddAPhoto } from "react-icons/md";
 import axios from 'axios'
+import { NavLink } from "react-router-dom";
 
 
 function RegistrationUI() {
@@ -12,7 +13,7 @@ function RegistrationUI() {
         username: "",
         email: "",
         password: "",
-        number: "",
+        role: "",
 
     });
 
@@ -27,7 +28,8 @@ function RegistrationUI() {
     }
 
     const handleInputChange = (e) => {
-        setForm({ ...form, [e.target.name]: e.target.value });
+        setForm({ ...form, [e.target.name]: e.target.value })
+        console.log({ ...form });
     };
 
     const userRegistration = () => {
@@ -37,7 +39,7 @@ function RegistrationUI() {
         formdata.append("username", form.username)
         formdata.append("email", form.email)
         formdata.append("password", form.password)
-        formdata.append("number", form.number)
+        formdata.append("role", form.role)
         formdata.append("avatar", image)
         axios.post('/api/v1/users/register',
             formdata
@@ -130,29 +132,28 @@ function RegistrationUI() {
                         </div>
                         <div className="flex flex-col mt-2">
                             <label htmlFor="tel" className="text-xl py-1 font-bold ">
-                                Number
+                                Password
                             </label>
                             <input
                                 type="tel"
-                                name="number"
+                                name="password"
                                 id="number"
-                                placeholder="Phone Number"
+                                placeholder="Password"
                                 onChange={handleInputChange}
                                 className="w-100 mt-2 py-3 px-3 rounded-lg bg-white border border-gray-400 text-gray-800 font-semibold focus:border-[#20B486] focus:outline-none"
                             />
                         </div>
                         <div className="flex flex-col mt-2">
+
                             <label htmlFor="tel" className="text-xl py-1 font-bold ">
-                                Password
+                                Role
                             </label>
-                            <input
-                                type="text"
-                                name="password"
-                                id="password"
-                                placeholder="Password"
-                                onChange={handleInputChange}
-                                className="w-100 mt-2 py-3 px-3 rounded-lg bg-white border border-gray-400 text-gray-800 font-semibold focus:border-[#20B486] focus:outline-none"
-                            />
+                            <select name="role" onChange={handleInputChange} value={form.role} className="w-100 mt-2 py-3 px-3 rounded-lg bg-white border border-gray-400 text-gray-800 font-semibold focus:border-[#20B486] focus:outline-none">
+                                <option value="student">Role</option>
+                                <option value="student">Student</option>
+                                <option value="teacher">Teacher</option>
+                            </select>
+
                         </div>
                         <button
                             type="submit"
@@ -161,9 +162,18 @@ function RegistrationUI() {
                         >
                             Resgistration
                         </button>
+                        <ul className='pt-4'>
+
+                            <li>
+                                I  have an account
+                                <NavLink to="/login"                                >
+                                    <span className="hover:text-[#20B486] "> Login</span>
+                                </NavLink>
+                            </li>
+                        </ul>
                     </form>
-                </div>
-            </div>
+                </div >
+            </div >
 
         </>
     )

@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { heroImg } from '../../assets'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom';
+import { NavLink } from "react-router-dom";
 
 
 const LoginUI = () => {
@@ -15,12 +16,15 @@ const LoginUI = () => {
     const [form, setForm] = useState({
         username: "",
         password: "",
+        role: ""
     });
     const handleInputChange = (e) => {
         setForm({ ...form, [e.target.name]: e.target.value });
+        console.log({ ...form })
     };
 
     const userRegistration = () => {
+        console.log({ ...form })
         axios.post('/api/v1/users/login',
             { ...form }
         )
@@ -68,6 +72,13 @@ const LoginUI = () => {
                                 />
                             </div>
                             <div className="flex flex-col mt-2">
+                                <select name="role" onChange={handleInputChange} value={form.role} className="w-100 mt-2 py-3 px-3 rounded-lg bg-white border border-gray-400 text-gray-800 font-semibold focus:border-[#20B486] focus:outline-none">
+                                    <option value="student">{form.role ? form.role : "Role"}</option>
+                                    <option value="student">Student</option>
+                                    <option value="teacher">Teacher</option>
+                                </select>
+                            </div>
+                            <div className="flex flex-col mt-2">
                                 <label htmlFor="tel" className="hidden">
                                     Password
                                 </label>
@@ -75,7 +86,7 @@ const LoginUI = () => {
                                     type="tel"
                                     name="password"
                                     id="tel"
-                                    placeholder="Phone Number"
+                                    placeholder="Password"
                                     onChange={handleInputChange}
                                     className="w-100 mt-2 py-3 px-3 rounded-lg bg-white border border-gray-400 text-gray-800 font-semibold focus:border-[#20B486] focus:outline-none"
                                 />
@@ -89,6 +100,18 @@ const LoginUI = () => {
                             >
                                 Login
                             </button>
+                            <ul className='pt-4' >
+
+                                <li>
+                                    I did not have an account
+                                    <NavLink
+                                        to="/signup"
+
+                                    >
+                                        <span className="hover:text-[#20B486] "> Registration</span>
+                                    </NavLink>
+                                </li>
+                            </ul>
                         </form>
                     </div>
 

@@ -4,7 +4,6 @@ import { User } from "../models/user.model.js";
 import { uploadOnCloudinary } from "../utils/cloudinary.js";
 import { apiResponse } from "../utils/apiResponse.js";
 import jwt from "jsonwebtoken";
-import mongoose from "mongoose";
 
 const generateAccessAndRefreshToken = async (userId) => {
   try {
@@ -28,8 +27,8 @@ const generateAccessAndRefreshToken = async (userId) => {
 };
 
 const registerUser = asyncHandler(async (req, res) => {
-  const { fullname, email, username, password } = req.body;
-  console.log(req.body);
+  const { fullname, email, username, password, role } = req.body;
+  console.log("all data=", req.body);
 
   if (
     [fullname, email, username, password].some((field) => field?.trim() === "")
@@ -63,6 +62,7 @@ const registerUser = asyncHandler(async (req, res) => {
     avatar: avatar.url,
     email,
     password,
+    role,
     username: username.toLowerCase(),
   });
 
@@ -80,13 +80,13 @@ const registerUser = asyncHandler(async (req, res) => {
 });
 
 const loginUser = asyncHandler(async (req, res) => {
-  const { username, password } = req.body;
+  const { username, password, role } = req.body;
   console.log(req.body);
   if (!username && !password) {
     throw new apiError(400, "username and password is requried !!!");
   }
 
-  const user = await User.findOne({ username });
+  const user = await User.findOne({ $and: [{ username }, { role }] });
 
   if (!user) {
     throw new apiError(400, "user does not exists.");
