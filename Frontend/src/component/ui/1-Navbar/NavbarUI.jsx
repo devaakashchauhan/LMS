@@ -1,5 +1,5 @@
 import { logo, lock, hamburgerMenu, close } from '../../assets'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { NavLink, useNavigate } from "react-router-dom";
 import axios from 'axios';
 
@@ -9,9 +9,7 @@ const NavbarUI = () => {
     const handleClick = () => setToggle(!toggle)
 
     const [image, setImage] = useState('')
-    const [fullname, setFullname] = useState('')
-    const [email, setEmail] = useState('')
-    const [userName, setUserName] = useState('')
+
 
     const userLogout = () => {
         axios.post('/api/v1/users/logout',
@@ -19,13 +17,10 @@ const NavbarUI = () => {
         )
             .then(function (response) {
                 console.log(response);
-                console.log(response.data.data);
-                console.log(response.data.data.accessToken);
                 const user = response.data.data.accessToken;
-                console.log("user = ", user)
                 if (!user) {
                     setImage("")
-                    navigate("")
+                    navigate("/")
                 }
 
             })
@@ -68,7 +63,7 @@ const NavbarUI = () => {
                         <ul className='flex gap-4'>
                             <li>
                                 <NavLink
-                                    to="/home"
+                                    to="/"
                                     className={({ isActive }) =>
                                         `block ${isActive ? "text-[#20B486]" : "text-gray-500"} py-2 pr-4 pl-3 duration-200 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 hover:text-[#20B486] lg:p-0`
                                     }

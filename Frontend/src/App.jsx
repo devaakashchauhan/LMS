@@ -20,7 +20,7 @@ import UserDashboarsPage from './component/page/12-UserDashboardPage/UserDashboa
 import AdminDashboard from './component/page/13-AdminDashboardPage/AdminDashboardPage.jsx'
 import TeacherDashboardPage from './component/page/14-TeacherDashboardPage/TeacherDashboardPage.jsx'
 import PageNotFoundUI from './component/ui/17-PageNotFoundUI/PageNotFoundUI.jsx'
-import axios from 'axios'
+
 
 
 
@@ -52,8 +52,8 @@ const App = () => {
                 <Routes>
                     <Route path='/' element={<Layout />}>
                         <Route path='*' element={<PageNotFoundUI />} />
-                        <Route path='' element={<LoginPage />} />
-                        <Route path='/home' element={<HomePage />} />
+                        <Route path='/login' element={<LoginPage />} />
+                        <Route path='/' element={<HomePage />} />
                         <Route path='/about' element={<AboutPage />} />
                         <Route path='/support' element={<SupportPage />} />
                         <Route path='/platfrom' element={<PlatfromPage />} />

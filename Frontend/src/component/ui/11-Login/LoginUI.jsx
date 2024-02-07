@@ -29,7 +29,7 @@ const LoginUI = () => {
                 // console.log(response.data.data);
                 const user = response.data.data.accessToken;
                 if (user) {
-                    navigate("/home")
+                    navigate("/")
                 }
             })
             .catch(function (error) {
