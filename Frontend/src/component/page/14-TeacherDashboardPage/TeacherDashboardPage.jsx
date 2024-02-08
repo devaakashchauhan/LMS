@@ -2,7 +2,7 @@ import ProfileUI from '../../ui/16-Profile/ProfileUI'
 import TeacherSidebarUI from '../../ui/15-Sidebar/TeacherSidebarUI'
 import Userchk from '../../ui/19-UserChk/Userchk'
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { Outlet, useNavigate } from 'react-router-dom';
 
 function TeacherDashboardPage() {
     const navigate = useNavigate()
@@ -21,7 +21,7 @@ function TeacherDashboardPage() {
         })
         .catch(function (error) {
             // console.log(error);
-            
+
         });
     return (
         <>
@@ -31,7 +31,7 @@ function TeacherDashboardPage() {
                 <div className="hidden md:flex h-full  flex-col   ">
                     <TeacherSidebarUI />
                 </div>
-                <main className=" md:pl-56 col-span-5 py-10"><ProfileUI /></main>
+                <main className=" md:pl-56 col-span-5 py-10"><Outlet /></main>
             </div>
         </>
     )

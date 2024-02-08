@@ -23,6 +23,10 @@ import TeacherDashboardPage from './component/page/14-TeacherDashboardPage/Teach
 import PageNotFoundUI from './component/ui/17-PageNotFoundUI/PageNotFoundUI.jsx'
 import { useEffect, useState } from 'react';
 import DashboardPage from './component/page/15-Dashboard/DashboardPage.jsx';
+import CourseSetupUI from './component/ui/14-CourseSetup/CourseSetupUI.jsx';
+import CourseVieew from './component/ui/20-CourseView/CourseVieew.jsx';
+import AllStudentUI from './component/ui/21-AllStudentUI/AllStudentUI.jsx';
+import AllTeacherUI from './component/ui/22-AllTeacherUI/AllTeacherUI.jsx';
 
 
 
@@ -73,9 +77,22 @@ const App = () => {
                         <Route path='/chapter' element={<ChapterUI />} />
                         <Route path='/dashbord' element={<DashboardPage />} />
                         <Route path='/teachermode' element={<TeacherPage />} />
-                        <Route path='/adminDashboard' element={<AdminDashboard />} />
-                        <Route path='/studentDashboard' element={<UserDashboarsPage />} />
-                        <Route path='/teacherDashboard' element={<TeacherDashboardPage />} />
+                        <Route path='/adminDashboard' element={<AdminDashboard />} >
+                            <Route path='profile' element={<ProfilePage />} />
+                            <Route path='students' element={<AllStudentUI />} />
+                            <Route path='teachers' element={<AllTeacherUI />} />
+                            <Route path='courseview' element={<CourseVieew />} />
+                        </Route>
+                        <Route path='/studentDashboard' element={<UserDashboarsPage />} >
+                            <Route path='profile' element={<ProfilePage />} />
+                            <Route path='createcourse' element={<CourseSetupUI />} />
+                            <Route path='courseview' element={<CourseVieew />} />
+                        </Route>
+                        <Route path='/teacherDashboard' element={<TeacherDashboardPage />} >
+                            <Route path='profile' element={<ProfilePage />} />
+                            <Route path='createcourse' element={<CourseSetupUI />} />
+                            <Route path='courseview' element={<CourseVieew />} />
+                        </Route>
                     </Route>
                 </Routes>
             </BrowserRouter>

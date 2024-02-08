@@ -1,4 +1,4 @@
-import React from 'react'
+import { NavLink } from "react-router-dom";
 
 function AdminSidebarUI() {
     return (
@@ -14,7 +14,10 @@ function AdminSidebarUI() {
                     >
                         <div className="flex items-center gap-x-2 py-4">
                             {/* todo put icon */}
-                            Profile
+                            <NavLink to="/adminDashboard/profile"                          >
+
+                                Profile
+                            </NavLink>
                         </div>
                     </button>
                     <button
@@ -24,7 +27,11 @@ function AdminSidebarUI() {
                     >
                         <div className="flex items-center gap-x-2 py-4">
                             {/* todo put icon */}
-                            Course
+                            <NavLink to="/adminDashboard/courseview"                          >
+                                Course
+
+
+                            </NavLink>
                         </div>
                     </button>
                     <button
@@ -34,7 +41,12 @@ function AdminSidebarUI() {
                     >
                         <div className="flex items-center gap-x-2 py-4">
                             {/* todo put icon */}
-                            Teachers
+                            <NavLink to="/adminDashboard/teachers"                          >
+                                Teachers
+
+
+
+                            </NavLink>
                         </div>
                     </button>
                     <button
@@ -44,7 +56,11 @@ function AdminSidebarUI() {
                     >
                         <div className="flex items-center gap-x-2 py-4">
                             {/* todo put icon */}
-                            Students
+                            <NavLink to="/adminDashboard/students"                          >
+
+
+                                Students
+                            </NavLink>
                         </div>
                     </button>
 

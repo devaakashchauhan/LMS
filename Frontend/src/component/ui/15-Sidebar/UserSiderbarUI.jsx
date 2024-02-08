@@ -1,4 +1,5 @@
-import React from 'react'
+
+import { NavLink } from "react-router-dom";
 
 function UserSiderbarUI() {
     return (
@@ -14,7 +15,10 @@ function UserSiderbarUI() {
                     >
                         <div className="flex items-center gap-x-2 py-4">
                             {/* todo put icon */}
-                            Profile
+                            <NavLink to="/studentDashboard/profile"                          >
+
+                                Profile
+                            </NavLink>
                         </div>
                     </button>
                     <button
