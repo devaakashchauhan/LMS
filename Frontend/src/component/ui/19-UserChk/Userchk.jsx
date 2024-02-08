@@ -10,7 +10,7 @@ function Userchk() {
             {}
         )
             .then(function () {
-                console.log("User Invalid !!!")
+
             })
             .catch(function (error) {
                 if (error.name === "AxiosError") {

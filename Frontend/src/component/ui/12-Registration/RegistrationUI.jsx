@@ -3,9 +3,11 @@ import { heroImg } from '../../assets'
 import { MdAddAPhoto } from "react-icons/md";
 import axios from 'axios'
 import { NavLink } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
 
 
 function RegistrationUI() {
+    const navigate = useNavigate()
     const inputRef = useRef(null)
     const [image, setImage] = useState('')
     const [form, setForm] = useState({
@@ -29,7 +31,7 @@ function RegistrationUI() {
 
     const handleInputChange = (e) => {
         setForm({ ...form, [e.target.name]: e.target.value })
-        console.log({ ...form });
+
     };
 
     const userRegistration = () => {
@@ -45,7 +47,12 @@ function RegistrationUI() {
             formdata
         )
             .then(function (response) {
-                console.log(response);
+                // console.log(response);
+                // console.log(response.data.data._id);
+                const user = response.data.data._id;
+                if (user) {
+                    navigate("/login")
+                }
             })
             .catch(function (error) {
                 console.log(error);
@@ -152,6 +159,7 @@ function RegistrationUI() {
                                 <option value="student">Role</option>
                                 <option value="student">Student</option>
                                 <option value="teacher">Teacher</option>
+                                {/* <option value="admin">Admin</option> */}
                             </select>
 
                         </div>

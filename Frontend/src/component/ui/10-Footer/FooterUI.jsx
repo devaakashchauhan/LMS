@@ -57,7 +57,7 @@ function FooterUI() {
                                     Contact
                                 </NavLink>
                             </li>
-                            <li className='py-2 hover:cursor-pointer hover:text-[#20B486]'>
+                            {/* <li className='py-2 hover:cursor-pointer hover:text-[#20B486]'>
                                 <NavLink to={'/teacherDashboard'}>
 
                                     Teacher Mode
@@ -74,7 +74,7 @@ function FooterUI() {
 
                                     User Mode
                                 </NavLink>
-                            </li>
+                            </li> */}
 
 
                         </ul>

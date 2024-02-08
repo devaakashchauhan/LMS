@@ -1,16 +1,15 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { heroImg } from '../../assets'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom';
 import { NavLink } from "react-router-dom";
 
 
+
 const LoginUI = () => {
 
 
-    useEffect(() => {
 
-    }, [])
 
     const navigate = useNavigate()
     const [form, setForm] = useState({
@@ -20,17 +19,18 @@ const LoginUI = () => {
     });
     const handleInputChange = (e) => {
         setForm({ ...form, [e.target.name]: e.target.value });
-        console.log({ ...form })
+
     };
 
     const userRegistration = () => {
-        console.log({ ...form })
+
         axios.post('/api/v1/users/login',
             { ...form }
         )
             .then(function ak(response) {
                 // console.log(response);
-                // console.log(response.data.data);
+                console.log(response.data.data.user.role);
+
                 const user = response.data.data.accessToken;
                 if (user) {
                     navigate("/")
@@ -76,6 +76,7 @@ const LoginUI = () => {
                                     <option value="student">{form.role ? form.role : "Role"}</option>
                                     <option value="student">Student</option>
                                     <option value="teacher">Teacher</option>
+                                    <option value="admin">Admin</option>
                                 </select>
                             </div>
                             <div className="flex flex-col mt-2">

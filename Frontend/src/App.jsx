@@ -1,6 +1,7 @@
 import './index.css'
 import './App.css'
 import { Route, BrowserRouter, Routes } from 'react-router-dom'
+import { Cookies } from 'react-cookie';
 
 
 import Layout from './Layout.jsx'
@@ -20,12 +21,19 @@ import UserDashboarsPage from './component/page/12-UserDashboardPage/UserDashboa
 import AdminDashboard from './component/page/13-AdminDashboardPage/AdminDashboardPage.jsx'
 import TeacherDashboardPage from './component/page/14-TeacherDashboardPage/TeacherDashboardPage.jsx'
 import PageNotFoundUI from './component/ui/17-PageNotFoundUI/PageNotFoundUI.jsx'
+import { useEffect, useState } from 'react';
+import DashboardPage from './component/page/15-Dashboard/DashboardPage.jsx';
 
 
 
 
 const App = () => {
 
+    const cookies = new Cookies();
+    const [role, setRole] = useState('');
+    useEffect(() => {
+        setRole(cookies.get('role'))
+    }, [])
 
 
 
@@ -63,9 +71,10 @@ const App = () => {
                         <Route path='/contact' element={<ContactPage />} />
                         <Route path='/profile' element={<ProfilePage />} />
                         <Route path='/chapter' element={<ChapterUI />} />
+                        <Route path='/dashbord' element={<DashboardPage />} />
                         <Route path='/teachermode' element={<TeacherPage />} />
                         <Route path='/adminDashboard' element={<AdminDashboard />} />
-                        <Route path='/userDashboard' element={<UserDashboarsPage />} />
+                        <Route path='/studentDashboard' element={<UserDashboarsPage />} />
                         <Route path='/teacherDashboard' element={<TeacherDashboardPage />} />
                     </Route>
                 </Routes>

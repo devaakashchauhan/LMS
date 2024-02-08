@@ -115,6 +115,7 @@ const loginUser = asyncHandler(async (req, res) => {
     .status(200)
     .cookie("accessToken", accessToken, options)
     .cookie("refreshToken", refreshToken, options)
+    .cookie("role", role)
     .json(
       new apiResponse(
         200,
@@ -150,6 +151,7 @@ const logoutUser = asyncHandler(async (req, res) => {
     .status(200)
     .clearCookie("accessToken", options)
     .clearCookie("refreshToken", options)
+    .clearCookie("role")
     .json(new apiResponse(200, {}, "User logged Out."));
 });
 

@@ -19,6 +19,7 @@ function ProfileUI() {
         setImage(event.target.files[0])
 
     }
+   
 
 
 
