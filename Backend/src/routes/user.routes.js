@@ -10,6 +10,9 @@ import {
   updateUserAvatar,
   courseUpload,
   allVideos,
+  allcoruses,
+  allTeacher,
+  allstudent,
 } from "../controllers/user.controller.js";
 import { upload } from "../middlewares/multer.middleware.js";
 import { verifyJWT } from "../middlewares/auth.middleware.js";
@@ -59,5 +62,8 @@ router.route("/courseupload").post(
 );
 
 router.route("/allvideos").post(verifyJWT, allVideos);
+router.route("/allcourses").post(allcoruses);
+router.route("/allstudent").post(allstudent);
+router.route("/allteacher").post(allTeacher);
 
 export default router;

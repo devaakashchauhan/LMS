@@ -1,4 +1,3 @@
-import ProfileUI from '../../ui/16-Profile/ProfileUI'
 import AdminSidebarUI from '../../ui/15-Sidebar/AdminSidebarUI'
 import Userchk from '../../ui/19-UserChk/Userchk'
 import axios from 'axios';
@@ -31,7 +30,7 @@ function AdminDashboardPage() {
                 <div className="hidden md:flex h-full  flex-col   ">
                     <AdminSidebarUI />
                 </div>
-                <main className=" md:pl-56 col-span-5 py-10"><Outlet /></main>
+                <main className=" col-span-5 py-10"><Outlet /></main>
             </div>
         </>
     )

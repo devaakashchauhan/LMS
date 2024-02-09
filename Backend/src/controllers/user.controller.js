@@ -393,9 +393,26 @@ const allVideos = asyncHandler(async (req, res) => {
 
   return res
     .status(200)
-    .json(
-      new apiResponse(200, allVideos, "Current user fetched successFully.")
-    );
+    .json(new apiResponse(200, allVideos, "All videos fetched successFully."));
+});
+
+const allcoruses = asyncHandler(async (req, res) => {
+  const allVideos = await Video.find();
+  return res
+    .status(200)
+    .json(new apiResponse(200, allVideos, "All videos fetched successFully."));
+});
+const allstudent = asyncHandler(async (req, res) => {
+  const students = await User.find({ role: "student" });
+  return res
+    .status(200)
+    .json(new apiResponse(200, students, "All videos fetched successFully."));
+});
+const allTeacher = asyncHandler(async (req, res) => {
+  const teachers = await User.find({ role: "teacher" });
+  return res
+    .status(200)
+    .json(new apiResponse(200, teachers, "All videos fetched successFully."));
 });
 
 export {
@@ -409,4 +426,7 @@ export {
   updateUserAvatar,
   courseUpload,
   allVideos,
+  allcoruses,
+  allTeacher,
+  allstudent,
 };

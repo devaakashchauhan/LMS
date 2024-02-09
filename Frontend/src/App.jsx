@@ -28,6 +28,7 @@ import CourseVieew from './component/ui/20-CourseView/CourseVieew.jsx';
 import AllStudentUI from './component/ui/21-AllStudentUI/AllStudentUI.jsx';
 import AllTeacherUI from './component/ui/22-AllTeacherUI/AllTeacherUI.jsx';
 import VideoPlayerUI from './component/ui/23-VideoPlayerUI/VideoPlayerUI.jsx';
+import CourseViewUI from './component/ui/4-Courses/Course-View/CourseViewUI.jsx';
 
 
 
@@ -83,7 +84,7 @@ const App = () => {
                             <Route path='profile' element={<ProfilePage />} />
                             <Route path='students' element={<AllStudentUI />} />
                             <Route path='teachers' element={<AllTeacherUI />} />
-                            <Route path='courseview' element={<CourseVieew />} />
+                            <Route path='courseview' element={<CourseViewUI />} />
                         </Route>
                         <Route path='/studentDashboard' element={<UserDashboarsPage />} >
                             <Route path='profile' element={<ProfilePage />} />

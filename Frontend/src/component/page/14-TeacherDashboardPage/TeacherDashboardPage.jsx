@@ -1,4 +1,3 @@
-import ProfileUI from '../../ui/16-Profile/ProfileUI'
 import TeacherSidebarUI from '../../ui/15-Sidebar/TeacherSidebarUI'
 import Userchk from '../../ui/19-UserChk/Userchk'
 import axios from 'axios';
