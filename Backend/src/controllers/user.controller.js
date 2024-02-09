@@ -236,10 +236,37 @@ const getCurrentUser = asyncHandler(async (req, res) => {
 });
 
 const updateUserDetails = asyncHandler(async (req, res) => {
-  const { fullname, email } = req.body;
+  const { fullname, email, username } = req.body;
+
+  console.log("=", fullname, " ", email);
 
   if (!fullname && !email) {
-    throw new apiError(400, "All feilds required.");
+    throw new apiError(400, "1All feilds required.");
+  }
+  if (!username) {
+    throw new apiError(400, "2All feilds required.");
+  }
+
+  const exitedUsername = await User.findOne({ username });
+  const exitedUseremail = await User.findOne({ email });
+
+  if (exitedUsername) {
+    throw new apiError(401, "username already exists !!!");
+  }
+  if (exitedUseremail) {
+    throw new apiError(402, "email already exists !!!");
+  }
+
+  const avatarLocalPath = req.file?.path;
+  console.log(avatarLocalPath);
+  if (!avatarLocalPath) {
+    throw new apiError(400, "Avtar file is missing.");
+  }
+
+  const avatar = await uploadOnCloudinary(avatarLocalPath);
+
+  if (!avatar) {
+    throw new apiError(400, "Error while uploading avatar file.");
   }
 
   const user = await User.findByIdAndUpdate(
@@ -248,6 +275,8 @@ const updateUserDetails = asyncHandler(async (req, res) => {
       $set: {
         fullname,
         email,
+        username,
+        avatar: avatar.url,
       },
     },
     { new: true }
@@ -402,12 +431,14 @@ const allcoruses = asyncHandler(async (req, res) => {
     .status(200)
     .json(new apiResponse(200, allVideos, "All videos fetched successFully."));
 });
+
 const allstudent = asyncHandler(async (req, res) => {
   const students = await User.find({ role: "student" });
   return res
     .status(200)
     .json(new apiResponse(200, students, "All videos fetched successFully."));
 });
+
 const allTeacher = asyncHandler(async (req, res) => {
   const teachers = await User.find({ role: "teacher" });
   return res

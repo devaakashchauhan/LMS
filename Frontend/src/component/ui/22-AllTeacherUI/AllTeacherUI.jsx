@@ -35,7 +35,6 @@ function AllTeacherUI() {
                                 avatar={student.avatar}
                                 fullname={student.fullname}
                                 username={student.username}
-
                             />
                         </div>
                     ))}

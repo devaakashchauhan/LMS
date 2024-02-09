@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { courses } from "../4-Courses/Courses-data/Courses.js"
 import CardUI from "../5-Card/CardUI"
 import axios from "axios";
 
