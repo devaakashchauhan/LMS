@@ -12,7 +12,7 @@ function TeacherDashboardPage() {
     )
         .then(function ak(response) {
             // console.log(response);
-            console.log(response);
+            // console.log(response);
 
             const user = response.data.data.role;
             if (user !== "teacher") {
@@ -31,7 +31,7 @@ function TeacherDashboardPage() {
                 <div className="hidden md:flex h-full  flex-col   ">
                     <TeacherSidebarUI />
                 </div>
-                <main className=" md:pl-56 col-span-5 py-10"><Outlet /></main>
+                <main className=" col-span-5 "><Outlet /></main>
             </div>
         </>
     )

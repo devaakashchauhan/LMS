@@ -29,7 +29,7 @@ const LoginUI = () => {
         )
             .then(function ak(response) {
                 // console.log(response);
-                console.log(response.data.data.user.role);
+                // console.log(response.data.data.user.role);
 
                 const user = response.data.data.accessToken;
                 if (user) {

@@ -4,6 +4,7 @@ import { User } from "../models/user.model.js";
 import { uploadOnCloudinary } from "../utils/cloudinary.js";
 import { apiResponse } from "../utils/apiResponse.js";
 import jwt from "jsonwebtoken";
+import { Video } from "../models/video.model.js";
 
 const generateAccessAndRefreshToken = async (userId) => {
   try {
@@ -81,7 +82,7 @@ const registerUser = asyncHandler(async (req, res) => {
 
 const loginUser = asyncHandler(async (req, res) => {
   const { username, password, role } = req.body;
-  console.log(req.body);
+
   if (!username && !password) {
     throw new apiError(400, "username and password is requried !!!");
   }
@@ -212,7 +213,7 @@ const changeCurrentPassword = asyncHandler(async (req, res) => {
   //   throw new apiError(400, "newpassword and confirm Password are different.");
   // }
 
-  console.log(req.user, " ak");
+  console.log(req.user, " == ak");
   const user = await User.findById(req.user?._id);
 
   const isPasswordCCorrect = await user.isPasswordCorrect(oldPassword);
@@ -287,6 +288,116 @@ const updateUserAvatar = asyncHandler(async (req, res) => {
     .json(new apiResponse(200, user, "Avatar Image uploaded Successfully."));
 });
 
+// todo :-pendding
+const courseUpload = asyncHandler(async (req, res) => {
+  const { title, description, thumbnail, video } = req.body;
+
+  try {
+    const token =
+      req.cookies?.accessToken ||
+      req.header("Authorization")?.replace("Bearer ", "");
+
+    if (!token) {
+      throw new apiError(401, "Inauthorized request. ");
+    }
+    const decodedToken = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
+
+    const user = await User.findById(decodedToken?._id).select(
+      "-password -refreshToken"
+    );
+
+    if (!user) {
+      throw new apiError(401, "Invalid accessToken.");
+    }
+
+    req.user = user;
+  } catch (error) {
+    throw new apiError(401, error?.message || "Invalid Access token");
+  }
+
+  const userdataId = req.user._id;
+
+  const thumbnailLocalPath = req.files?.thumbnail[0]?.path;
+  console.log("req path =", thumbnailLocalPath);
+
+  if (!thumbnailLocalPath) {
+    throw new apiError(400, "thumbnail files is required !!!");
+  }
+  const videoFileLocalPath = req.files?.video[0]?.path;
+  console.log("req path =", videoFileLocalPath);
+
+  if (!videoFileLocalPath) {
+    throw new apiError(400, "videoFile files is required !!!");
+  }
+
+  const thumbnailfile = await uploadOnCloudinary(thumbnailLocalPath);
+  const videoFile = await uploadOnCloudinary(videoFileLocalPath);
+
+  if (!thumbnailfile) {
+    throw new apiError(400, "thumbnailfile files is required !!!");
+  }
+  if (!videoFile) {
+    throw new apiError(400, "videoFile files is required !!!");
+  }
+
+  const videos = await Video.create({
+    video: videoFile.url,
+    thumbnail: thumbnailfile.url,
+    title,
+    description,
+    owner: userdataId,
+  });
+
+  const createdVideo = await Video.findById(videos._id);
+
+  if (!createdVideo) {
+    throw new apiError(500, "Error when registering the user !!!");
+  }
+
+  return res
+    .status(201)
+    .json(
+      new apiResponse(200, createdVideo, "User registered video successfully.")
+    );
+});
+
+const allVideos = asyncHandler(async (req, res) => {
+  try {
+    const token =
+      req.cookies?.accessToken ||
+      req.header("Authorization")?.replace("Bearer ", "");
+
+    if (!token) {
+      throw new apiError(401, "Inauthorized request. ");
+    }
+    const decodedToken = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
+
+    const user = await User.findById(decodedToken?._id).select(
+      "-password -refreshToken"
+    );
+
+    if (!user) {
+      throw new apiError(401, "Invalid accessToken.");
+    }
+
+    req.user = user;
+  } catch (error) {
+    throw new apiError(401, error?.message || "Invalid Access token");
+  }
+
+  const userdataId = req.user._id;
+  // console.log(userdataId);
+
+  const allVideos = await Video.find({ owner: userdataId });
+  console.log(allVideos);
+
+  return res
+    .status(200)
+    .json(
+      new apiResponse(200, allVideos, "Current user fetched successFully.")
+    );
+});
+
 export {
   registerUser,
   loginUser,
@@ -296,4 +407,6 @@ export {
   getCurrentUser,
   updateUserDetails,
   updateUserAvatar,
+  courseUpload,
+  allVideos,
 };

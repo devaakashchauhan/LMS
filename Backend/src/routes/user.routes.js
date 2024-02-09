@@ -8,6 +8,8 @@ import {
   getCurrentUser,
   updateUserDetails,
   updateUserAvatar,
+  courseUpload,
+  allVideos,
 } from "../controllers/user.controller.js";
 import { upload } from "../middlewares/multer.middleware.js";
 import { verifyJWT } from "../middlewares/auth.middleware.js";
@@ -15,6 +17,19 @@ import { verifyJWT } from "../middlewares/auth.middleware.js";
 const router = Router();
 
 router.route("/register").post(upload.single("avatar"), registerUser);
+router.route("/courseupload").post(
+  upload.fields([
+    {
+      name: "thumbnail",
+      maxCount: 1,
+    },
+    {
+      name: "video",
+      maxCount: 1,
+    },
+  ]),
+  courseUpload
+);
 router.route("/login").post(loginUser);
 
 // secured routes
@@ -26,5 +41,23 @@ router.route("/userDetails").post(verifyJWT, getCurrentUser);
 router
   .route("/updateavatar")
   .post(verifyJWT, upload.single("avatar"), updateUserAvatar);
+
+router.route("/courseupload").post(
+  verifyJWT,
+  upload.fields([
+    {
+      name: "thumbnail",
+      maxCount: 1,
+    },
+    {
+      name: "video",
+      maxCount: 1,
+    },
+  ]),
+
+  courseUpload
+);
+
+router.route("/allvideos").post(verifyJWT, allVideos);
 
 export default router;

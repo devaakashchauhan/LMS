@@ -14,7 +14,7 @@ function DashboardPage() {
         setRole(cookies.get('role'))
     }, [])
 
-    console.log(cookies.get('refreshToken'))
+
 
 
 
