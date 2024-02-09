@@ -19,9 +19,6 @@ function ProfileUI() {
         setImage(event.target.files[0])
 
     }
-   
-
-
 
     useEffect(() => {
         axios.post('/api/v1/users/userDetails',
@@ -54,7 +51,7 @@ function ProfileUI() {
                                 <label htmlFor="name" className="text-xl py-1 font-bold ">
                                     Profile Image
                                 </label>
-                                <MdAddAPhoto size={40} onClick={handleImgClick} className='hidden ms-auto hover:cursor-pointer' />
+                                <MdAddAPhoto size={40} onClick={handleImgClick} className=' ms-auto hover:cursor-pointer' />
                             </div>
 
                             <div className="w-full max-w-[300px]">
@@ -69,6 +66,7 @@ function ProfileUI() {
                                 placeholder="Name"
                                 ref={inputRef}
                                 onChange={handleImgChange}
+                                readOnly
                                 className="hidden w-100 mt-2 py-3 px-3 rounded-lg bg-white border border-gray-200 text-gray-800 font-semibold focus:border-[#20B486] focus:outline-none"
                             />
                         </div>
