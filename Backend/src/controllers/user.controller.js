@@ -81,13 +81,13 @@ const registerUser = asyncHandler(async (req, res) => {
 });
 
 const loginUser = asyncHandler(async (req, res) => {
-  const { username, password, role } = req.body;
+  const { username, password } = req.body;
 
   if (!username && !password) {
     throw new apiError(400, "username and password is requried !!!");
   }
 
-  const user = await User.findOne({ $and: [{ username }, { role }] });
+  const user = await User.findOne({ username });
 
   if (!user) {
     throw new apiError(400, "user does not exists.");
@@ -116,7 +116,7 @@ const loginUser = asyncHandler(async (req, res) => {
     .status(200)
     .cookie("accessToken", accessToken, options)
     .cookie("refreshToken", refreshToken, options)
-    .cookie("role", role)
+    .cookie("role", user.role)
     .json(
       new apiResponse(
         200,

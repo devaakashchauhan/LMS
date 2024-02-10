@@ -22,7 +22,6 @@ const CoursesSliderUI = () => {
       });
   }, [])
 
-
   const settings = {
     dots: true,
     infinite: false,

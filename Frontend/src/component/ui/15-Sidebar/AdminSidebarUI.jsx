@@ -14,8 +14,7 @@ function AdminSidebarUI() {
                     >
                         <div className="flex items-center gap-x-2 py-4">
                             {/* todo put icon */}
-                            <NavLink to="/adminDashboard/profile"                          >
-
+                            <NavLink to="/adminDashboard/profile">
                                 Profile
                             </NavLink>
                         </div>
@@ -29,8 +28,6 @@ function AdminSidebarUI() {
                             {/* todo put icon */}
                             <NavLink to="/adminDashboard/courseview"                          >
                                 Course
-
-
                             </NavLink>
                         </div>
                     </button>
@@ -43,9 +40,6 @@ function AdminSidebarUI() {
                             {/* todo put icon */}
                             <NavLink to="/adminDashboard/teachers"                          >
                                 Teachers
-
-
-
                             </NavLink>
                         </div>
                     </button>
@@ -56,9 +50,7 @@ function AdminSidebarUI() {
                     >
                         <div className="flex items-center gap-x-2 py-4">
                             {/* todo put icon */}
-                            <NavLink to="/adminDashboard/students"                          >
-
-
+                            <NavLink to="/adminDashboard/students" >
                                 Students
                             </NavLink>
                         </div>
@@ -70,8 +62,7 @@ function AdminSidebarUI() {
                     >
                         <div className="flex items-center gap-x-2 py-4">
                             {/* todo put icon */}
-                            <NavLink to="/adminDashboard/updatedetails"                           >
-
+                            <NavLink to="/adminDashboard/updatedetails" >
                                 Update Details
                             </NavLink>
                         </div>

@@ -15,7 +15,7 @@ const LoginUI = () => {
     const [form, setForm] = useState({
         username: "",
         password: "",
-        role: ""
+
     });
     const handleInputChange = (e) => {
         setForm({ ...form, [e.target.name]: e.target.value });
@@ -37,8 +37,8 @@ const LoginUI = () => {
                 }
             })
             .catch(function (error) {
-                // console.log(error);
-                console.log("please Enter valid User name and Id !!!")
+                console.log(error);
+                // console.log("please Enter valid User name and Id !!!")
             });
     }
 
@@ -71,14 +71,14 @@ const LoginUI = () => {
                                     className="w-100 mt-2 py-3 px-3 rounded-lg bg-white border border-gray-400 text-gray-800 font-semibold focus:border-[#20B486] focus:outline-none"
                                 />
                             </div>
-                            <div className="flex flex-col mt-2">
+                            {/* <div className="flex flex-col mt-2">
                                 <select name="role" onChange={handleInputChange} value={form.role} className="w-100 mt-2 py-3 px-3 rounded-lg bg-white border border-gray-400 text-gray-800 font-semibold focus:border-[#20B486] focus:outline-none">
                                     <option value="student">{form.role ? form.role : "Role"}</option>
                                     <option value="student">Student</option>
                                     <option value="teacher">Teacher</option>
                                     <option value="admin">Admin</option>
                                 </select>
-                            </div>
+                            </div> */}
                             <div className="flex flex-col mt-2">
                                 <label htmlFor="tel" className="hidden">
                                     Password
