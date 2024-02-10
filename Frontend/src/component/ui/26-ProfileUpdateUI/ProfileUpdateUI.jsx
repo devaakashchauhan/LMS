@@ -2,12 +2,13 @@ import { MdAddAPhoto } from "react-icons/md";
 import { heroImg } from '../../assets'
 import axios from 'axios'
 import { useState, useRef } from "react";
-
+import { useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 
 function ProfileUpdateUI() {
+    const navigate = useNavigate()
     const inputRef = useRef(null)
     const [image, setImage] = useState('')
     const [form, setForm] = useState({
@@ -42,7 +43,28 @@ function ProfileUpdateUI() {
             .then(function (response) {
                 // console.log(response);
                 // console.log(response.data.data._id);
-                // const user = response.data.data._id;
+                const user = response.data.data;
+
+                function firstFunction() {
+                    toast("user updated !!! ")
+                    return new Promise(resolve => {
+                        setTimeout(() => {
+                            resolve();
+                        }, 7000);
+                    });
+                }
+
+                function secondFunction() {
+                    console.log("First function completed");
+                    navigate("/studentDashboard/profile")
+                }
+
+                function callFunctionsSequentially() {                 
+                    firstFunction().then(() => {
+                        secondFunction();
+                    })
+                }               
+                callFunctionsSequentially();
             })
             .catch(function (error) {
                 console.log(error);
@@ -54,7 +76,6 @@ function ProfileUpdateUI() {
                 if (us === 402) {
                     toast("Email already exist !!!");
                 }
-
             });
     }
 
@@ -75,7 +96,6 @@ function ProfileUpdateUI() {
                                 </label>
                                 <MdAddAPhoto size={40} onClick={handleImgClick} className=' ms-auto hover:cursor-pointer' />
                             </div>
-
                             <div className="w-full max-w-[300px]">
                                 {image ? <img src={URL.createObjectURL(image)} /> : <img src={heroImg} />}
                             </div>
@@ -86,7 +106,6 @@ function ProfileUpdateUI() {
                                 id="image"
                                 ref={inputRef}
                                 onChange={handleImgChange}
-
                                 className="hidden w-100 mt-2 py-3 px-3 rounded-lg bg-white border border-gray-200 text-gray-800 font-semibold focus:border-[#20B486] focus:outline-none"
                             />
                         </div>

@@ -60,6 +60,7 @@ function ProfileUI() {
                                 id="name"
                                 placeholder="Name"
                                 defaultValue={fullname}
+                                readOnly
                                 className="w-100 mt-2 py-3 px-3 rounded-lg bg-white border border-gray-400 text-gray-800 font-semibold focus:border-[#20B486] focus:outline-none"
                             />
                         </div>
@@ -73,6 +74,7 @@ function ProfileUI() {
                                 id="email"
                                 placeholder="Email"
                                 defaultValue={email}
+                                readOnly
                                 className="w-100 mt-2 py-3 px-3 rounded-lg bg-white border border-gray-400 text-gray-800 font-semibold focus:border-[#20B486] focus:outline-none"
                             />
                         </div>
@@ -86,6 +88,7 @@ function ProfileUI() {
                                 id="tel"
                                 placeholder="User Name"
                                 defaultValue={userName}
+                                readOnly
                                 className="w-100 mt-2 py-3 px-3 rounded-lg bg-white border border-gray-400 text-gray-800 font-semibold focus:border-[#20B486] focus:outline-none"
                             />
                         </div>
