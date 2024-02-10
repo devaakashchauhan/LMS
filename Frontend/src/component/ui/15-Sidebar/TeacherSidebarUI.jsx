@@ -56,7 +56,7 @@ function TeacherSidebarUI() {
                             {/* todo put icon */}
                             <NavLink to="/teacherDashboard/updatedetails"                           >
 
-                                Create Courses
+                                Update Details
                             </NavLink>
                         </div>
                     </button>

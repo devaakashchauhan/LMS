@@ -41,6 +41,19 @@ function UserSiderbarUI() {
                             History
                         </div>
                     </button>
+                    <button
+
+                        type="button"
+                        className={"flex items-center py-4 gap-x-2 text-sky-700 text-sm font-[500]  transition-all bg-sky-200/20 hover:bg-sky-200/20 hover:text-sky-700 pl-6"}
+                    >
+                        <div className="flex items-center gap-x-2 py-4">
+                            {/* todo put icon */}
+                            <NavLink to="/studentDashboard/updatedetails"                           >
+
+                                Update Details
+                            </NavLink>
+                        </div>
+                    </button>
 
 
 
