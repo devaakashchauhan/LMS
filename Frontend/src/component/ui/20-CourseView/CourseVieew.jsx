@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import CardUI from "../5-Card/CardUI"
 import axios from "axios";
+import StudentCardUI from "../24-studentCardUI/StudentCardUI";
 
 
 function CourseVieew() {
@@ -8,16 +8,16 @@ function CourseVieew() {
     const [videos, setVideos] = useState([])
 
     useEffect(() => {
-        axios.post('/api/v1/users/allvideos',
+        axios.post('/api/v1/users/allcourses',
 
         )
             .then(function ak(response) {
-                // console.log(response);
+                console.log(response);
                 // console.log(response.data.data);
                 setVideos(response.data.data)
             })
             .catch(function (error) {
-                // console.log(error);
+                console.log(error);
                 console.log("please Enter valid User name and Id !!!")
             });
     }, [])
@@ -32,7 +32,7 @@ function CourseVieew() {
                 <div className=" md:max-w-[1480px] m-auto grid md:grid-cols-4 max-w-[600px]">
                     {videos.map((video, index) => (
                         <div key={index}>
-                            <CardUI
+                            <StudentCardUI
                                 title={video.title}
                                 description={video.description}
                                 thumbnail={video.thumbnail}

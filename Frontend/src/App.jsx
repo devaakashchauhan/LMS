@@ -85,7 +85,6 @@ const App = () => {
                             <Route path='profile' element={<ProfilePage />} />
                             <Route path='students' element={<AllStudentUI />} />
                             <Route path='teachers' element={<AllTeacherUI />} />
-                            {/* todo :- change path name courseview to all courses */}
                             <Route path='courseview' element={<CourseViewUI />} />
                             <Route path='updatedetails' element={<ProfileUpdateUI />} />
                         </Route>
@@ -93,14 +92,12 @@ const App = () => {
                         <Route path='/teacherDashboard' element={<TeacherDashboardPage />} >
                             <Route path='profile' element={<ProfilePage />} />
                             <Route path='createcourse' element={<CourseSetupUI />} />
-                            {/* todo :- change path name courseview to all mycourses */}
-                            <Route path='courseview' element={<CourseVieew />} />
+                            <Route path='courseview' element={<CourseViewUI />} />
                             <Route path='updatedetails' element={<ProfileUpdateUI />} />
                         </Route>
 
                         <Route path='/studentDashboard' element={<UserDashboarsPage />} >
                             <Route path='profile' element={<ProfilePage />} />
-                            <Route path='courseview' element={<CourseVieew />} />
                             <Route path='updatedetails' element={<ProfileUpdateUI />} />
                         </Route>
 

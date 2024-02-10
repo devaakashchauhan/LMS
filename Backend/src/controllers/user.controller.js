@@ -5,6 +5,7 @@ import { uploadOnCloudinary } from "../utils/cloudinary.js";
 import { apiResponse } from "../utils/apiResponse.js";
 import jwt from "jsonwebtoken";
 import { Video } from "../models/video.model.js";
+import mongoose from "mongoose";
 
 const generateAccessAndRefreshToken = async (userId) => {
   try {
@@ -317,7 +318,6 @@ const updateUserAvatar = asyncHandler(async (req, res) => {
     .json(new apiResponse(200, user, "Avatar Image uploaded Successfully."));
 });
 
-// todo :-pendding
 const courseUpload = asyncHandler(async (req, res) => {
   const { title, description, thumbnail, video } = req.body;
 
@@ -446,6 +446,42 @@ const allTeacher = asyncHandler(async (req, res) => {
     .json(new apiResponse(200, teachers, "All videos fetched successFully."));
 });
 
+const deletevideo = asyncHandler(async (req, res) => {
+  const _id = req.body;
+  console.log(_id);
+  const objectId = new mongoose.Types.ObjectId(_id);
+  if (!_id) {
+    throw new apiError(400, "Video ID requried !!!");
+  }
+
+  const v = await Video.findOneAndDelete({ _id: objectId });
+  console.log(v);
+});
+
+const deleteStudent = asyncHandler(async (req, res) => {
+  const _id = req.body;
+  console.log(_id);
+  const objectId = new mongoose.Types.ObjectId(_id);
+  if (!_id) {
+    throw new apiError(400, "Video ID requried !!!");
+  }
+
+  const v = await Video.findOneAndDelete({ _id: objectId });
+  console.log(v);
+});
+
+const deleteTeacher = asyncHandler(async (req, res) => {
+  const _id = req.body;
+  console.log(_id);
+  const objectId = new mongoose.Types.ObjectId(_id);
+  if (!_id) {
+    throw new apiError(400, "Video ID requried !!!");
+  }
+
+  const v = await Video.findOneAndDelete({ _id: objectId });
+  console.log(v);
+});
+
 export {
   registerUser,
   loginUser,
@@ -460,4 +496,5 @@ export {
   allcoruses,
   allTeacher,
   allstudent,
+  deletevideo,
 };

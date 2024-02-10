@@ -1,4 +1,4 @@
-const CardUI = ({ video, title, description, thumbnail, _id }) => {
+const StudentCardUI = ({ video, title, description, thumbnail, _id }) => {
 
     const setPlayerVideo = () => {
         localStorage.setItem("playerVideo", video)
@@ -23,6 +23,7 @@ const CardUI = ({ video, title, description, thumbnail, _id }) => {
                         >
                             Play
                         </a>
+
                     </div>
                 </div>
                 <div className="absolute top-0 bg-white m-5 px-2 py-[2.5px] rounded font-bold">
@@ -33,4 +34,5 @@ const CardUI = ({ video, title, description, thumbnail, _id }) => {
     )
 }
 
-export default CardUI
+export default StudentCardUI
+

@@ -42,11 +42,12 @@ function ProfileUpdateUI() {
         )
             .then(function (response) {
                 // console.log(response);
-                // console.log(response.data.data._id);
+                // console.log(response.data.data);
                 const user = response.data.data;
+                const role = response.data.data.role
 
                 function firstFunction() {
-                    toast("user updated !!! ")
+                    toast("Profile updated 😃😃😃")
                     return new Promise(resolve => {
                         setTimeout(() => {
                             resolve();
@@ -55,15 +56,14 @@ function ProfileUpdateUI() {
                 }
 
                 function secondFunction() {
-                    console.log("First function completed");
-                    navigate("/studentDashboard/profile")
+                    navigate(`/${role}Dashboard/profile`)
                 }
 
-                function callFunctionsSequentially() {                 
+                function callFunctionsSequentially() {
                     firstFunction().then(() => {
                         secondFunction();
                     })
-                }               
+                }
                 callFunctionsSequentially();
             })
             .catch(function (error) {

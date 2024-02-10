@@ -1,7 +1,7 @@
 import AdminSidebarUI from '../../ui/15-Sidebar/AdminSidebarUI'
 import Userchk from '../../ui/19-UserChk/Userchk'
 import axios from 'axios';
-import {Outlet, useNavigate } from 'react-router-dom';
+import { Outlet, useNavigate } from 'react-router-dom';
 
 function AdminDashboardPage() {
     const navigate = useNavigate()

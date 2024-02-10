@@ -9,7 +9,7 @@ function CourseViewUI() {
         axios.post('/api/v1/users/allcourses',
         )
             .then(function ak(response) {
-                // console.log(response);
+                console.log(response);
                 // console.log(response.data.data);
                 setVideos(response.data.data)
             })
@@ -33,6 +33,7 @@ function CourseViewUI() {
                                 description={video.description}
                                 thumbnail={video.thumbnail}
                                 video={video.video}
+                                _id={video._id}
                             />
                         </div>
                     ))}
