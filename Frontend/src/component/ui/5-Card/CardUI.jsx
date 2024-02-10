@@ -1,13 +1,8 @@
-import { useEffect, useState } from 'react';
 import { Cookies } from 'react-cookie';
 
 const CardUI = ({ video, title, description, thumbnail }) => {
-
-  const cookies = new Cookies();
-
   const setPlayerVideo = () => {
     localStorage.setItem("playerVideo", video)
-
   }
   return (
     <>

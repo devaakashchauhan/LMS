@@ -1,11 +1,28 @@
-import React from 'react'
 import Slider from 'react-slick';
 import CardUI from '../../5-Card/CardUI.jsx'
-import { courses } from '../Courses-data/Courses.js'
 import '../../../../App.css'
+import { useEffect, useState } from 'react';
+import axios from 'axios';
 
 
 const CoursesSliderUI = () => {
+
+  const [videos, setVideos] = useState([])
+  useEffect(() => {
+    axios.post('/api/v1/users/allcourses',
+    )
+      .then(function ak(response) {
+        // console.log(response);
+        // console.log(response.data.data);
+        setVideos(response.data.data)
+      })
+      .catch(function (error) {
+        // console.log(error);
+        console.log("please Enter valid User name and Id !!!")
+      });
+  }, [])
+
+
   const settings = {
     dots: true,
     infinite: false,
@@ -51,17 +68,18 @@ const CoursesSliderUI = () => {
           <p className='text-[#6D737A]'>Various versions have evolved over the years, sometimes by accident.</p>
 
           <Slider {...settings} className='px-5'>
-            {courses.map((course, i) =>
-              <div key={i}>
-                <CardUI course={course} />
-              </div>)}
-
-
+            {videos.map((video, index) => (
+              <div key={index}>
+                <CardUI
+                  title={video.title}
+                  description={video.description}
+                  thumbnail={video.thumbnail}
+                  video={video.video}
+                />
+              </div>
+            ))}
           </Slider>
-
-
         </div>
-
       </div>
     </>
   )

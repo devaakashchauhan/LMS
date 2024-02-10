@@ -3,11 +3,10 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 
 function CourseViewUI() {
-    const [videos, setVideos] = useState([])
 
+    const [videos, setVideos] = useState([])
     useEffect(() => {
         axios.post('/api/v1/users/allcourses',
-
         )
             .then(function ak(response) {
                 // console.log(response);
