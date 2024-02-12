@@ -1,5 +1,5 @@
 import { logo, lock, hamburgerMenu, close } from '../../assets'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { NavLink, useNavigate } from "react-router-dom";
 import axios from 'axios';
 
@@ -9,6 +9,7 @@ const NavbarUI = () => {
     const handleClick = () => setToggle(!toggle)
 
     const [image, setImage] = useState('')
+    const [logout, setLogout] = useState(false)
 
 
     const userLogout = () => {
@@ -16,6 +17,7 @@ const NavbarUI = () => {
             null
         )
             .then(function (response) {
+                setLogout(false)
                 navigate("/login")
 
 
@@ -27,23 +29,24 @@ const NavbarUI = () => {
 
     }
 
-    // useEffect(() => {
-    //     axios.post('/api/v1/users/userDetails',
-    //         {}
-    //     )
-    //         .then(function (response) {
-    //             // console.log(response);
-    //             // console.log(response.data.data);
-    //             setImage(response.data.data.avatar)
-    //             setFullname(response.data.data.fullname)
-    //             setEmail(response.data.data.email)
-    //             setUserName(response.data.data.username)
+    useEffect(() => {
+        axios.post('/api/v1/users/userDetails',
+            {}
+        )
+            .then(function (response) {
+                // console.log(response);
+                // console.log(response.data.data);
+                setImage(response.data.data.avatar)
+                setLogout(true)
 
-    //         })
-    //         .catch(function (error) {
-    //             console.log(error);
-    //         });
-    // })
+
+            })
+            .catch(function (error) {
+                console.log(error);
+
+                setImage('')
+            });
+    })
 
 
 
@@ -86,16 +89,17 @@ const NavbarUI = () => {
                                 >
                                     Courses
                                 </NavLink></li>
-                            <li>
-                                <NavLink
-                                    onClick={() => userLogout()}
-                                    className={
-                                        `block text-gray-500 py-2 pr-4 pl-3 duration-200 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 hover:text-[#20B486] lg:p-0`
-                                    }
-                                >
-                                    Logout
-                                </NavLink>
-                            </li>
+                            {logout ?
+                                <li>
+                                    <NavLink
+                                        onClick={() => userLogout()}
+                                        className={
+                                            `block text-gray-500 py-2 pr-4 pl-3 duration-200 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 hover:text-[#20B486] lg:p-0`
+                                        }
+                                    >
+                                        Logout
+                                    </NavLink>
+                                </li> : null}
                             <li>
                                 <NavLink
                                     to="/dashbord"
@@ -111,7 +115,7 @@ const NavbarUI = () => {
                     </div>
 
                     <div className="hidden md:flex">
-                        <div className="max-w-[100px] border border-green-500 rounded-full overflow-hidden "><img src={image} /></div>
+                        <div className="max-w-[50px] max-h-[50px] border border-green-500 rounded-full overflow-hidden "><img src={image} /></div>
                     </div>
 
                     {/* toggle button  */}
