@@ -13,10 +13,13 @@ function ProfileUpdateUI() {
     const [image, setImage] = useState('')
     const [form, setForm] = useState({
         fullname: "",
-        username: "",
         email: "",
     });
+    const [btndisable, setBtndisable] = useState(false)
 
+    const handleBtndisable = () => {
+        setBtndisable(true);
+    }
     const handleImgClick = () => {
         inputRef.current.click()
     }
@@ -34,7 +37,6 @@ function ProfileUpdateUI() {
     const updateDetails = () => {
         const formdata = new FormData()
         formdata.append("fullname", form.fullname)
-        formdata.append("username", form.username)
         formdata.append("email", form.email)
         formdata.append("avatar", image)
         axios.post('/api/v1/users/updatedetails',
@@ -70,9 +72,7 @@ function ProfileUpdateUI() {
                 console.log(error);
                 console.log(error.response.status);
                 const us = error.response.status;
-                if (us === 401) {
-                    toast("Username already exist !!!");
-                }
+
                 if (us === 402) {
                     toast("Email already exist !!!");
                 }
@@ -81,6 +81,25 @@ function ProfileUpdateUI() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+    }
+
+    function firstFunction() {
+        return new Promise(resolve => {
+            handleBtndisable();
+            setTimeout(() => {
+                resolve();
+            }, 1000);
+        });
+    }
+
+    function secondFunction() {
+        updateDetails();
+    }
+
+    const btnOnclickHandel = () => {
+        firstFunction().then(() => {
+            secondFunction();
+        })
     }
 
     return (
@@ -109,6 +128,21 @@ function ProfileUpdateUI() {
                                 className="hidden w-100 mt-2 py-3 px-3 rounded-lg bg-white border border-gray-200 text-gray-800 font-semibold focus:border-[#20B486] focus:outline-none"
                             />
                         </div>
+                        {/* <div className="flex flex-col mt-2">
+                            <label htmlFor="tel" className="text-xl py-1 font-bold ">
+                                User Name
+                            </label>
+                            <input
+                                type="tel"
+                                name="username"
+                                id="tel"
+                                placeholder="User Name"
+
+
+                                onChange={handleInputChange}
+                                className="w-100 mt-2 py-3 px-3 rounded-lg bg-white border border-gray-400 text-gray-800 font-semibold focus:border-[#20B486] focus:outline-none"
+                            />
+                        </div> */}
                         <div className="flex flex-col mt-2">
                             <label htmlFor="name" className="text-xl py-1 font-bold ">
                                 Full Name
@@ -137,26 +171,13 @@ function ProfileUpdateUI() {
                                 className="w-100 mt-2 py-3 px-3 rounded-lg bg-white border border-gray-400 text-gray-800 font-semibold focus:border-[#20B486] focus:outline-none"
                             />
                         </div>
-                        <div className="flex flex-col mt-2">
-                            <label htmlFor="tel" className="text-xl py-1 font-bold ">
-                                User Name
-                            </label>
-                            <input
-                                type="tel"
-                                name="username"
-                                id="tel"
-                                placeholder="User Name"
 
-
-                                onChange={handleInputChange}
-                                className="w-100 mt-2 py-3 px-3 rounded-lg bg-white border border-gray-400 text-gray-800 font-semibold focus:border-[#20B486] focus:outline-none"
-                            />
-                        </div>
                         <div className=" flex gap-3">
                             <button
                                 type="submit"
-                                onClick={updateDetails}
-                                className="md:w-32 bg-[#20B486] hover:bg-blue-dark text-white font-bold py-3 px-6 rounded-lg mt-3 hover:bg-[#20B486] transition ease-in-out duration-300 "
+                                onClick={btnOnclickHandel}
+                                disabled={btndisable}
+                                className="md:w-32 bg-[#20B486]  text-white font-bold py-3 px-6 rounded-lg mt-3 hover:bg-[#20B486]  "
                             >
                                 Submit
                             </button>

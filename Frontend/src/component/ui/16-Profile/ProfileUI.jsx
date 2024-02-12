@@ -36,13 +36,14 @@ function ProfileUI() {
             <div className=" flex justify-center  ">
                 <div className=" bg-white w-full  max-w-[800px] p-4 shadow-lg rounded-md flex  border border-transparent ">
                     <form className="p-6  w-full   flex flex-col justify-center" onSubmit={(e) => handleSubmit(e)}>
+
                         <div className="flex flex-col "  >
                             <div className="flex ">
                                 <label className="text-xl py-1 font-bold ">
                                     Profile Image
                                 </label>
                             </div>
-                            <div className="w-full max-w-[300px]">
+                            <div className="w-full max-w-[300px] rounded-lg overflow-hidden">
                                 {image ? <img src={image} /> : <img src={heroImg} />}
                             </div>
                             <input
@@ -50,6 +51,20 @@ function ProfileUI() {
                                 name="image"
                                 id="image"
                                 className="hidden w-100 mt-2 py-3 px-3 rounded-lg bg-white border border-gray-200 text-gray-800 font-semibold focus:border-[#20B486] focus:outline-none"
+                            />
+                        </div>
+                        <div className="flex flex-col mt-2">
+                            <label htmlFor="tel" className="text-xl py-1 font-bold ">
+                                User Name
+                            </label>
+                            <input
+                                type="tel"
+                                name="username"
+                                id="tel"
+                                placeholder="User Name"
+                                defaultValue={userName}
+                                readOnly
+                                className="w-100 mt-2 py-3 px-3 rounded-lg bg-white border border-gray-400 text-gray-800 font-semibold focus:border-[#20B486] focus:outline-none"
                             />
                         </div>
                         <div className="flex flex-col mt-2">
@@ -78,20 +93,7 @@ function ProfileUI() {
                                 className="w-100 mt-2 py-3 px-3 rounded-lg bg-white border border-gray-400 text-gray-800 font-semibold focus:border-[#20B486] focus:outline-none"
                             />
                         </div>
-                        <div className="flex flex-col mt-2">
-                            <label htmlFor="tel" className="text-xl py-1 font-bold ">
-                                User Name
-                            </label>
-                            <input
-                                type="tel"
-                                name="username"
-                                id="tel"
-                                placeholder="User Name"
-                                defaultValue={userName}
-                                readOnly
-                                className="w-100 mt-2 py-3 px-3 rounded-lg bg-white border border-gray-400 text-gray-800 font-semibold focus:border-[#20B486] focus:outline-none"
-                            />
-                        </div>
+
                     </form>
                 </div>
             </div>

@@ -9,8 +9,7 @@ function CourseViewUI() {
         axios.post('/api/v1/users/allcourses',
         )
             .then(function ak(response) {
-                console.log(response);
-                // console.log(response.data.data);
+                // console.log(response);                ;
                 setVideos(response.data.data)
             })
             .catch(function (error) {

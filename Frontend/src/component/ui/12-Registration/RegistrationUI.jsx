@@ -155,10 +155,10 @@ function RegistrationUI() {
                             <label htmlFor="tel" className="text-xl py-1 font-bold ">
                                 Role
                             </label>
-                            <select name="role" onChange={handleInputChange} value={form.role} className="w-100 mt-2 py-3 px-3 rounded-lg bg-white border border-gray-400 text-gray-800 font-semibold focus:border-[#20B486] focus:outline-none">
-                                <option value="student">Role</option>
-                                <option value="student">Student</option>
-                                <option value="teacher">Teacher</option>
+                            <select name="role" onChange={handleInputChange} value={form.role ? form.role : "Role"} className="w-100 mt-2 py-3 px-3 rounded-lg bg-white border border-gray-400 text-gray-800 font-semibold focus:border-[#20B486] focus:outline-none">
+                                <option >Role</option>
+                                <option name="student" value="student">Student</option>
+                                <option name="teacher" value="teacher">Teacher</option>
                                 {/* <option value="admin">Admin</option> */}
                             </select>
 

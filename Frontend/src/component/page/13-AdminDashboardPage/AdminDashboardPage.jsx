@@ -11,7 +11,7 @@ function AdminDashboardPage() {
     )
         .then(function ak(response) {
             // console.log(response);
-            console.log(response);
+
 
             const user = response.data.data.role;
             if (user !== "admin") {

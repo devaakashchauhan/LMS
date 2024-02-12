@@ -237,23 +237,14 @@ const getCurrentUser = asyncHandler(async (req, res) => {
 });
 
 const updateUserDetails = asyncHandler(async (req, res) => {
-  const { fullname, email, username } = req.body;
-
-  console.log("=", fullname, " ", email);
+  const { fullname, email } = req.body;
 
   if (!fullname && !email) {
     throw new apiError(400, "1All feilds required.");
   }
-  if (!username) {
-    throw new apiError(400, "2All feilds required.");
-  }
 
-  const exitedUsername = await User.findOne({ username });
   const exitedUseremail = await User.findOne({ email });
 
-  if (exitedUsername) {
-    throw new apiError(401, "username already exists !!!");
-  }
   if (exitedUseremail) {
     throw new apiError(402, "email already exists !!!");
   }
@@ -276,7 +267,6 @@ const updateUserDetails = asyncHandler(async (req, res) => {
       $set: {
         fullname,
         email,
-        username,
         avatar: avatar.url,
       },
     },
@@ -466,7 +456,7 @@ const deleteStudent = asyncHandler(async (req, res) => {
     throw new apiError(400, "Video ID requried !!!");
   }
 
-  const v = await Video.findOneAndDelete({ _id: objectId });
+  const v = await User.findOneAndDelete({ _id: objectId });
   console.log(v);
 });
 
@@ -478,7 +468,7 @@ const deleteTeacher = asyncHandler(async (req, res) => {
     throw new apiError(400, "Video ID requried !!!");
   }
 
-  const v = await Video.findOneAndDelete({ _id: objectId });
+  const v = await User.findOneAndDelete({ _id: objectId });
   console.log(v);
 });
 
@@ -497,4 +487,6 @@ export {
   allTeacher,
   allstudent,
   deletevideo,
+  deleteStudent,
+  deleteTeacher,
 };
