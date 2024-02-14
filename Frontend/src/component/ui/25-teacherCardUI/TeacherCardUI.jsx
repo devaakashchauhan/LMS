@@ -22,8 +22,8 @@ const TeacherCardUI = ({ avatar, fullname, username, _id }) => {
     return (
         <>
 
-            <div className="bg-white drop-shadow-md overflow-hidden rounded-2xl mr-4 my-4 card" >
-                <img src={avatar} alt="" className="max-h-72 w-full object-cover p-3 rounded-3xl" style={{ height: "200px" }} />
+            <div className="bg-white drop-shadow-md overflow-hidden rounded-2xl mr-4 my-4 card h-[400px]" >
+                <img src={avatar} alt="" className="object-center w-full h-[200px]" />
                 <div className="p-5  ">
                     <h1 className='py-2 truncate'>{fullname}</h1>
                     {/* <StarRating rating={course.rating} /> */}
@@ -33,13 +33,13 @@ const TeacherCardUI = ({ avatar, fullname, username, _id }) => {
                     <div className=" px-3 flex justify-between">
                         <a
                             href="/videoPlayer"
-                            className="me-[10px] text-white bg-[#20B486] hover:bg-[#20B486] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
+                            className="me-[10px] text-white  focus:ring-4 focus:outline-none  font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
                         >
-                            Play
+                            View
                         </a>
                         <a
                             onClick={handelDeleteTeacher}
-                            className="me-[10px] text-white focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800"
+                            className="me-[10px] text-white focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800 hover:cursor-pointer"
                         >
                             Delete
                         </a>

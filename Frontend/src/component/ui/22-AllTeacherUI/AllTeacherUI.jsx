@@ -12,8 +12,7 @@ function AllTeacherUI() {
 
         )
             .then(function ak(response) {
-                // console.log(response);
-                // console.log(response.data.data);
+                // console.log(response);                
                 setStudent(response.data.data)
             })
             .catch(function (error) {
