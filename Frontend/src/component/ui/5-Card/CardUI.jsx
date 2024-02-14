@@ -1,16 +1,9 @@
-
 import axios from 'axios';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 const CardUI = ({ video, title, description, thumbnail, _id }) => {
 
   const [id, setId] = useState(_id)
-  const [rolechk, setRolechk] = useState(false)
-
-
-
-
-
 
   const handelDeleteVideo = () => {
     axios.post('/api/v1/users/deletevideo',
@@ -34,8 +27,8 @@ const CardUI = ({ video, title, description, thumbnail, _id }) => {
   return (
     <>
 
-      <div className="bg-white drop-shadow-md overflow-hidden rounded-2xl mr-4 my-4 card h-[400px]" >
-        <img src={thumbnail} alt="" className="max-h-72 w-full object-cover p-3 rounded-3xl" style={{ height: "200px" }} />
+      <div className="bg-white drop-shadow-md overflow-hidden rounded-2xl mr-4 my-4 card h-[400px]  " >
+        <img src={thumbnail} alt="" className=" object-center w-full h-[200px]" />
         <div className="p-5  ">
           <h1 className='py-2 truncate'>{description}</h1>
           {/* <StarRating rating={course.rating} /> */}
@@ -47,13 +40,13 @@ const CardUI = ({ video, title, description, thumbnail, _id }) => {
             <a
               href="/videoPlayer"
               onClick={setPlayerVideo}
-              className="me-[10px] text-white bg-[#20B486] hover:bg-[#20B486] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
+              className="me-[10px] text-white bg-[#20B486] hover:bg-[#20B486] focus:ring-4 focus:outline-none  font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
             >
               Play
             </a>
             <a
               onClick={handelDeleteVideo}
-              className="me-[10px] text-white focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800"
+              className="me-[10px] text-white focus:ring-4 focus:outline-none  font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800"
             >
               Delete
             </a>

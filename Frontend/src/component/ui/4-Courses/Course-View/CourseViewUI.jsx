@@ -6,7 +6,7 @@ function CourseViewUI() {
 
     const [videos, setVideos] = useState([])
     useEffect(() => {
-        axios.post('/api/v1/users/allcourses',
+        axios.post('/api/v1/users/allvideos',
         )
             .then(function ak(response) {
                 // console.log(response);                ;
@@ -21,10 +21,10 @@ function CourseViewUI() {
         <>
             <div className='w-full bg-[#E9F8F3B2] p-0 maincard'>
                 <div className="text-center">
-                    <h1 className='text-3xl py-3 font-bold '>Most Popular <span className='text-[#20B486]'>Courses</span></h1>
-                    <p className='text-[#6D737A]'>Various versions have evolved over the years, sometimes by accident.</p>
+                    <h1 className='text-3xl py-3 font-bold '><span className='text-[#20B486]'>Courses</span></h1>
+
                 </div>
-                <div className=" md:max-w-[1480px] m-auto grid md:grid-cols-4 max-w-[600px]">
+                <div className="grid md:grid-cols-4  ms-5 ">
                     {videos.map((video, index) => (
                         <div key={index}>
                             <CardUI
