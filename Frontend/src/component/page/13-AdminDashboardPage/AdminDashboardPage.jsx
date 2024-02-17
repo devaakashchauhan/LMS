@@ -19,7 +19,7 @@ function AdminDashboardPage() {
             }
         })
         .catch(function (error) {
-            // console.log(error);
+            console.log(error);
 
         });
     return (

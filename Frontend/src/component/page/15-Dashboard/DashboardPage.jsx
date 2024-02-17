@@ -18,7 +18,7 @@ function DashboardPage() {
 
 
 
-    role == "teacher" ? navigate("/teacherDashboard") : role == "student" ? navigate("/studentDashboard") : role == "admin" ? navigate("/adminDashboard") : role != "admin" ? navigate("/login") : null
+    role == "teacher" ? navigate("/teacherDashboard/profile") : role == "student" ? navigate("/studentDashboard/profile") : role == "admin" ? navigate("/adminDashboard/profile") : role != "admin" ? navigate("/login") : null
 
     return (
         <>    </>
