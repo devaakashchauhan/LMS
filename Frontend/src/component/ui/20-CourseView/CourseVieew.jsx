@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import StudentCardUI from "../24-studentCardUI/StudentCardUI";
+import AllCoursesCardUI from "../27-AllCoursesCardUI/AllCoursesCardUI.jsx";
 
 
 function CourseVieew() {
@@ -32,7 +32,7 @@ function CourseVieew() {
                 <div className=" md:max-w-[1480px] m-auto grid md:grid-cols-4 max-w-[600px]">
                     {videos.map((video, index) => (
                         <div key={index}>
-                            <StudentCardUI
+                            <AllCoursesCardUI
                                 title={video.title}
                                 description={video.description}
                                 thumbnail={video.thumbnail}

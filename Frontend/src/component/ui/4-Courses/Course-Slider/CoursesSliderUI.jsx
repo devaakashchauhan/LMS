@@ -3,6 +3,7 @@ import CardUI from '../../5-Card/CardUI.jsx'
 import '../../../../App.css'
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import AllCoursesCardUI from '../../27-AllCoursesCardUI/AllCoursesCardUI.jsx';
 
 
 const CoursesSliderUI = () => {
@@ -69,7 +70,7 @@ const CoursesSliderUI = () => {
           <Slider {...settings} className='px-5'>
             {videos.map((video, index) => (
               <div key={index}>
-                <CardUI
+                <AllCoursesCardUI
                   title={video.title}
                   description={video.description}
                   thumbnail={video.thumbnail}

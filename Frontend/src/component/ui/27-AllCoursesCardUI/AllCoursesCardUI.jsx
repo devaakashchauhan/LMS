@@ -1,4 +1,4 @@
-const StudentCardUI = ({ video, title, description, thumbnail, _id }) => {
+const AllCoursesCardUI = ({ video, title, description, thumbnail }) => {
 
     const setPlayerVideo = () => {
         localStorage.setItem("playerVideo", video)
@@ -7,7 +7,7 @@ const StudentCardUI = ({ video, title, description, thumbnail, _id }) => {
         <>
 
             <div className="bg-white drop-shadow-md overflow-hidden rounded-2xl mr-4 my-4 card h-[400px]" >
-                <img src={thumbnail} alt="" className="max-h-72 w-full object-cover p-3 rounded-3xl" style={{ height: "200px" }} />
+                <img src={thumbnail} alt="" className="object-center w-full h-[200px]" />
                 <div className="p-5  ">
                     <h1 className='py-2 truncate'>{description}</h1>
                     {/* <StarRating rating={course.rating} /> */}
@@ -34,5 +34,5 @@ const StudentCardUI = ({ video, title, description, thumbnail, _id }) => {
     )
 }
 
-export default StudentCardUI
+export default AllCoursesCardUI
 
