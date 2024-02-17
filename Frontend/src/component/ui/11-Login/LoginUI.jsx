@@ -3,6 +3,7 @@ import { heroImg } from '../../assets'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom';
 import { NavLink } from "react-router-dom";
+import { toast } from 'react-toastify';
 
 
 
@@ -31,8 +32,10 @@ const LoginUI = () => {
                 // console.log(response);
                 // console.log(response.data.data.user.role);
 
-                const user = response.data.data.accessToken;
+                const user = response.data.data.user
+
                 if (user) {
+                    toast(`Welcome ${response.data.data.user.username} 😃😃😃`)
                     navigate("/")
                 }
             })

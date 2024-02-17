@@ -446,6 +446,9 @@ const deletevideo = asyncHandler(async (req, res) => {
 
   const v = await Video.findOneAndDelete({ _id: objectId });
   console.log(v);
+  return res
+    .status(200)
+    .json(new apiResponse(200, {}, "Video deleted successFully."));
 });
 
 const deleteStudent = asyncHandler(async (req, res) => {
@@ -458,6 +461,9 @@ const deleteStudent = asyncHandler(async (req, res) => {
 
   const v = await User.findOneAndDelete({ _id: objectId });
   console.log(v);
+  return res
+    .status(200)
+    .json(new apiResponse(200, {}, "Student deleted successFully."));
 });
 
 const deleteTeacher = asyncHandler(async (req, res) => {
@@ -470,6 +476,9 @@ const deleteTeacher = asyncHandler(async (req, res) => {
 
   const v = await User.findOneAndDelete({ _id: objectId });
   console.log(v);
+  return res
+    .status(200)
+    .json(new apiResponse(200, {}, "Teacher deleted successFully."));
 });
 
 export {

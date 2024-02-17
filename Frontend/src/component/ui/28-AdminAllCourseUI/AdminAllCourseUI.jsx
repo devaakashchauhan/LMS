@@ -14,8 +14,7 @@ function AdminAllCourseUI() {
         setVideos(response.data.data)
       })
       .catch(function (error) {
-        // console.log(error);
-        console.log("please Enter valid User name and Id !!!")
+        console.log(error);
       });
   }, [])
   return (

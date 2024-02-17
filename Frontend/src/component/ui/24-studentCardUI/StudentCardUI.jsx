@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useState } from "react"
+import { toast } from 'react-toastify';
 
 const TeacherCardUI = ({ avatar, fullname, username, _id }) => {
     const [id, setId] = useState(_id)
@@ -11,6 +12,11 @@ const TeacherCardUI = ({ avatar, fullname, username, _id }) => {
             .then(function ak(response) {
                 // console.log(response);
 
+                console.log(response.data.statusCode);
+                const chk = response.data.statusCode;
+                if (chk === 200) {
+                    toast(`Student deleted successfully 😃`)
+                }
 
             })
             .catch(function (error) {

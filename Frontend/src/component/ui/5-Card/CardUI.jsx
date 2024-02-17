@@ -1,5 +1,7 @@
 import axios from 'axios';
 import { useState } from 'react';
+import { toast } from 'react-toastify';
+
 
 const CardUI = ({ video, title, description, thumbnail, _id }) => {
 
@@ -10,8 +12,12 @@ const CardUI = ({ video, title, description, thumbnail, _id }) => {
       { id }
     )
       .then(function ak(response) {
-        // console.log(response);
-        // console.log(response.data.data);
+
+        console.log(response.data.statusCode);
+        const chk = response.data.statusCode;
+        if (chk === 200) {
+          toast(`Video deleted successfully 😃😃😃`)
+        }
 
       })
       .catch(function (error) {

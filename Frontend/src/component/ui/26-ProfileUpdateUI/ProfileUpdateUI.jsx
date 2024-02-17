@@ -45,11 +45,11 @@ function ProfileUpdateUI() {
             .then(function (response) {
                 // console.log(response);
                 // console.log(response.data.data);
-                const user = response.data.data;
+                // const user = response.data.data;
                 const role = response.data.data.role
 
                 function firstFunction() {
-                    toast("Profile updated 😃😃😃")
+                    toast("Profile updated 😃")
                     return new Promise(resolve => {
                         setTimeout(() => {
                             resolve();
@@ -69,7 +69,6 @@ function ProfileUpdateUI() {
                 callFunctionsSequentially();
             })
             .catch(function (error) {
-                console.log(error);
                 console.log(error.response.status);
                 const us = error.response.status;
 
