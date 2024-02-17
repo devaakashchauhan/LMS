@@ -41,6 +41,7 @@ const LoginUI = () => {
                 }
             })
             .catch(function (error) {
+                toast(`User does not exist !!!`)
                 console.log(error);
                 // console.log("please Enter valid User name and Id !!!")
             });
