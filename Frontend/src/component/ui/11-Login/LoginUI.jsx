@@ -32,10 +32,11 @@ const LoginUI = () => {
                 // console.log(response);
                 // console.log(response.data.data.user.role);
 
-                const user = response.data.data.user
+                const user = response.data.data.user.username
+                console.log(response.data.data.user.username);
 
                 if (user) {
-                    toast(`Welcome ${response.data.data.user.username} 😃😃😃`)
+                    toast(`Welcome ${user} 😃😃😃`)
                     navigate("/")
                 }
             })

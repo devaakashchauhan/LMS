@@ -4,6 +4,7 @@ import { MdAddAPhoto } from "react-icons/md";
 import axios from 'axios'
 import { NavLink } from "react-router-dom";
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 
 function RegistrationUI() {
@@ -47,10 +48,12 @@ function RegistrationUI() {
             formdata
         )
             .then(function (response) {
-                // console.log(response);
+                console.log(response);
                 // console.log(response.data.data._id);
                 const user = response.data.data._id;
+
                 if (user) {
+                    toast(`Registration done successfully 😃`)
                     navigate("/login")
                 }
             })

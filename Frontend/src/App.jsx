@@ -24,7 +24,6 @@ import DashboardPage from './component/page/15-Dashboard/DashboardPage.jsx';
 // components
 import PageNotFoundUI from './component/ui/17-PageNotFoundUI/PageNotFoundUI.jsx'
 import CourseSetupUI from './component/ui/14-CourseSetup/CourseSetupUI.jsx';
-import CourseVieew from './component/ui/20-CourseView/CourseVieew.jsx';
 import AllStudentUI from './component/ui/21-AllStudentUI/AllStudentUI.jsx';
 import AllTeacherUI from './component/ui/22-AllTeacherUI/AllTeacherUI.jsx';
 import VideoPlayerUI from './component/ui/23-VideoPlayerUI/VideoPlayerUI.jsx';

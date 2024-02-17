@@ -1,7 +1,9 @@
-import React, { useState, useRef, useEffect } from 'react'
+import { useState, useRef } from 'react'
 import { NavLink } from "react-router-dom";
 import { heroImg } from '../../assets'
 import axios from 'axios'
+import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 // todo image improt error    
 // import { uploadImg } from '../../assets/'
@@ -11,6 +13,7 @@ import { MdAddAPhoto } from "react-icons/md";
 
 
 function CourseSetupUI() {
+    const navigate = useNavigate()
     const inputRef = useRef(null)
     const videoRef = useRef(null)
 
@@ -58,10 +61,14 @@ function CourseSetupUI() {
             formdata
         )
             .then(function (response) {
-                console.log(response);
+                // console.log(response);
                 // console.log(response.data.data._id);
-                // const user = response.data.data._id;
+                const user = response.data.data._id;
 
+                if (user) {
+                    toast(`Course created 😃`)
+                    navigate("/teacherDashboard/courseview")
+                }
             })
             .catch(function (error) {
                 console.log(error);
