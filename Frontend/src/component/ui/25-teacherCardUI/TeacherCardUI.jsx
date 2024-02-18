@@ -4,25 +4,23 @@ import { toast } from 'react-toastify';
 
 const TeacherCardUI = ({ avatar, fullname, username, _id }) => {
     const [id, setId] = useState(_id)
+    const [handleDeletebtn, setHandleDeletebtn] = useState(false)
 
     const handelDeleteTeacher = () => {
+        setHandleDeletebtn(true)
         axios.post('/api/v1/users/deleteteacher',
             { id }
         )
             .then(function ak(response) {
                 // console.log(response);
-                console.log(response.data.statusCode);
-                const chk = response.data.statusCode;
-                if (chk === 200) {
-                    toast(`Teacher deleted successfully 😃`)
-                }
-
-
-
+                // const chk = response.data.statusCode;
+                toast(`Teacher deleted successfully 😃`)
+                setTimeout(() => {
+                    window.location.reload(false);
+                }, 3000);
             })
             .catch(function (error) {
                 console.log(error);
-
             });
     }
 
@@ -48,7 +46,7 @@ const TeacherCardUI = ({ avatar, fullname, username, _id }) => {
                             onClick={handelDeleteTeacher}
                             className="me-[10px] text-white focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800 hover:cursor-pointer"
                         >
-                            Delete
+                            {handleDeletebtn ? "Deleting..." : "Delete"}
                         </a>
                     </div>
                 </div>

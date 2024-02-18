@@ -1,18 +1,17 @@
 import axios from 'axios';
 import { useState } from 'react';
 import { toast } from 'react-toastify';
-import { useNavigate } from 'react-router-dom';
-import { Cookies } from 'react-cookie';
+
 
 
 const CardUI = ({ video, title, description, thumbnail, _id }) => {
 
-  const navigate = useNavigate()
+
   const [id, setId] = useState(_id)
   const [handleDeletebtn, setHandleDeletebtn] = useState(false)
-  const cookies = new Cookies();
 
-  const role = cookies.get('role');
+
+
 
   const handelDeleteVideo = () => {
     setHandleDeletebtn(true)
@@ -22,7 +21,7 @@ const CardUI = ({ video, title, description, thumbnail, _id }) => {
       .then(function (response) {
         // console.log(response);
         // const chk = response.data.statusCode;
-        toast(`Video deleted By ${role} successfully 😃😃😃`)
+        toast(`Video deleted successfully 😃`)
         setTimeout(() => {
           window.location.reload(false);
         }, 3000);
