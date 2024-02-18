@@ -1,38 +1,42 @@
 import axios from 'axios';
 import { useState } from 'react';
 import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
+import { Cookies } from 'react-cookie';
 
 
 const CardUI = ({ video, title, description, thumbnail, _id }) => {
 
+  const navigate = useNavigate()
   const [id, setId] = useState(_id)
+  const [handleDeletebtn, setHandleDeletebtn] = useState(false)
+  const cookies = new Cookies();
+
+  const role = cookies.get('role');
 
   const handelDeleteVideo = () => {
+    setHandleDeletebtn(true)
     axios.post('/api/v1/users/deletevideo',
       { id }
     )
-      .then(function ak(response) {
-
-        console.log(response.data.statusCode);
-        const chk = response.data.statusCode;
-        if (chk === 200) {
-          toast(`Video deleted successfully 😃😃😃`)
-        }
-
+      .then(function (response) {
+        // console.log(response);
+        // const chk = response.data.statusCode;
+        toast(`Video deleted By ${role} successfully 😃😃😃`)
+        setTimeout(() => {
+          window.location.reload(false);
+        }, 3000);
       })
       .catch(function (error) {
         console.log(error);
-
       });
   }
-
 
   const setPlayerVideo = () => {
     localStorage.setItem("playerVideo", video)
   }
   return (
     <>
-
       <div className="bg-white drop-shadow-md overflow-hidden rounded-2xl mr-4 my-4 card h-[400px]  " >
         <img src={thumbnail} alt="" className=" object-center w-full h-[200px]" />
         <div className="p-5  ">
@@ -42,7 +46,6 @@ const CardUI = ({ video, title, description, thumbnail, _id }) => {
         <div className="items-center justify-between">
           <h3 className='p-5 text-2xl font-bold text-gray-900 '>{title}</h3>
           <div className=" px-3 flex justify-between">
-
             <a
               href="/videoPlayer"
               onClick={setPlayerVideo}
@@ -50,12 +53,12 @@ const CardUI = ({ video, title, description, thumbnail, _id }) => {
             >
               Play
             </a>
-            <a
+            <button
               onClick={handelDeleteVideo}
-              className="me-[10px] text-white focus:ring-4 focus:outline-none  font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800"
+              className="me-[10px] text-white focus:ring-4 focus:outline-none  font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800" disabled={handleDeletebtn}
             >
-              Delete
-            </a>
+              {handleDeletebtn ? "Deleting..." : "Delete"}
+            </button>
           </div>
         </div>
         <div className="absolute top-0 bg-white m-5 px-2 py-[2.5px] rounded font-bold">

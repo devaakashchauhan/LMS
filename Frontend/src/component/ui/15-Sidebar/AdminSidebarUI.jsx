@@ -26,7 +26,7 @@ function AdminSidebarUI() {
                     >
                         <div className="flex items-center gap-x-2 py-4">
                             {/* todo put icon */}
-                            <NavLink to="/adminDashboard/courseview"                          >
+                            <NavLink to="/adminDashboard/allcourse"                          >
                                 Course
                             </NavLink>
                         </div>

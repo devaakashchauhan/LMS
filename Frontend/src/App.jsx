@@ -85,7 +85,7 @@ const App = () => {
                             <Route path='profile' element={<ProfilePage />} />
                             <Route path='students' element={<AllStudentUI />} />
                             <Route path='teachers' element={<AllTeacherUI />} />
-                            <Route path='courseview' element={<AdminAllCourseUI />} />
+                            <Route path='allcourse' element={<AdminAllCourseUI />} />
                             <Route path='updatedetails' element={<ProfileUpdateUI />} />
                         </Route>
 

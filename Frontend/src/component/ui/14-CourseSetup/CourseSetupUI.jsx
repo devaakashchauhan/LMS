@@ -17,6 +17,10 @@ function CourseSetupUI() {
     const inputRef = useRef(null)
     const videoRef = useRef(null)
 
+    const [image, setImage] = useState('')
+    const [video, setVideo] = useState('')
+    const [handleSubmitbtn, setHandleSubmitbtn] = useState(false)
+
     const [form, setForm] = useState({
         title: "",
         description: "",
@@ -24,45 +28,49 @@ function CourseSetupUI() {
         video: "",
 
     });
+
+    // handel text input change
     const handleInputChange = (e) => {
         setForm({ ...form, [e.target.name]: e.target.value })
 
     };
 
-    const [image, setImage] = useState('')
-    const [video, setVideo] = useState('')
-
+    // handel open file to input image
     const handleImgClick = () => {
         inputRef.current.click()
     }
 
+    // handel image input change
     const handleImgChange = (event) => {
-        // const img = event.target.files[0]
         setImage(event.target.files[0])
 
     }
+
+    // handel open file to input video
     const handleVideoClick = () => {
         videoRef.current.click()
     }
 
+    // handel video input change
     const handleVideoChange = (event) => {
-        // const img = event.target.files[0]
         setVideo(event.target.files[0])
 
     }
+
     const videoUpload = () => {
+        setHandleSubmitbtn(true)
 
         const formdata = new FormData()
         formdata.append("title", form.title)
         formdata.append("description", form.description)
         formdata.append("thumbnail", image)
         formdata.append("video", video)
+
         axios.post('/api/v1/users/courseupload',
             formdata
         )
             .then(function (response) {
                 // console.log(response);
-                // console.log(response.data.data._id);
                 const user = response.data.data._id;
 
                 if (user) {
@@ -195,8 +203,8 @@ function CourseSetupUI() {
                     </div>
                     <div className="flex justify-center mt-5">
                         <NavLink to={'/teacherDashboard/createcourse'}>
-                            <button onClick={() => videoUpload()} className='w-full max-w-[300px] bg-[#20B486] my-4 px-8 py-3 rounded-md text-white font-bold'>
-                                Submit Course
+                            <button onClick={() => videoUpload()} className='w-full max-w-[300px] bg-[#20B486] my-4 px-8 py-3 rounded-md text-white font-bold' disabled={handleSubmitbtn}>
+                                {handleSubmitbtn ? "Course Uploading..." : "Submit Course"}
                             </button>
                         </NavLink>
                     </div>

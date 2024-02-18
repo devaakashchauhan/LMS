@@ -43,7 +43,6 @@ const NavbarUI = () => {
             })
             .catch(function (error) {
                 console.log(error);
-
                 setImage('')
             });
     })
@@ -54,10 +53,8 @@ const NavbarUI = () => {
         <>
             <div className='w-full h-[80px] bg-white border-b'>
                 <div className="md:max-w-[1480px] max-w-[600px] w-full h-full flex justify-between items-center m-auto">
-                    {/* Logo */}
                     <img src={logo} className='h-[25px]' alt="" />
 
-                    {/* menu */}
                     <div className="hidden md:flex items-center ">
                         <ul className='flex gap-4'>
                             <li>
