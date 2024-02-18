@@ -93,7 +93,6 @@ function CourseSetupUI() {
             <div className='w-full bg-white py-24'>
                 <div className="text-center">
                     <h1 className='text-3xl py-3 font-bold '>Course <span className='text-[#20B486]'>Setup</span></h1>
-                    <p className='text-[#6D737A]'>Complete all fields (1/5)</p>
                 </div>
                 <form onSubmit={(e) => handleSubmit(e)}>
                     <div className=" md:max-w-[1480px] m-auto grid md:grid-cols-2 max-w-[600px] ">
@@ -149,7 +148,7 @@ function CourseSetupUI() {
                                             <MdAddAPhoto size={40} onClick={handleImgClick} className='ms-auto hover:cursor-pointer' />
                                         </div>
 
-                                        <div className="w-full max-w-[300px]">
+                                        <div className="w-full max-w-[300px] rounded-lg overflow-hidden  object-contain   h-[250px] border">
                                             {image ? <img src={URL.createObjectURL(image)} /> : <img src={heroImg} />}
                                         </div>
 
@@ -179,7 +178,7 @@ function CourseSetupUI() {
                                             <MdAddAPhoto size={40} onClick={handleVideoClick} className='ms-auto hover:cursor-pointer' />
                                         </div>
 
-                                        <div className="w-full max-w-[300px]">
+                                        <div className="w-full max-w-[300px] rounded-lg overflow-hidden    h-[150px] border">
 
                                             {video ? <video src={URL.createObjectURL(video)} /> : <img src={heroImg} />}
 

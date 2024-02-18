@@ -43,7 +43,7 @@ function ProfileUI() {
                                     Profile Image
                                 </label>
                             </div>
-                            <div className="w-full max-w-[300px] rounded-lg overflow-hidden">
+                            <div className="w-full max-w-[300px] rounded-lg overflow-hidden  object-center  h-[300px]">
                                 {image ? <img src={image} /> : <img src={heroImg} />}
                             </div>
                             <input

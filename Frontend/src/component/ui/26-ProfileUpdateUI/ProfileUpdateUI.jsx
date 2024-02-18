@@ -3,8 +3,8 @@ import { heroImg } from '../../assets'
 import axios from 'axios'
 import { useState, useRef } from "react";
 import { useNavigate } from 'react-router-dom';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { toast } from 'react-toastify';
+
 
 
 function ProfileUpdateUI() {
@@ -103,7 +103,7 @@ function ProfileUpdateUI() {
 
     return (
         <>
-            <ToastContainer />
+
             <div className=" flex justify-center  ">
                 <div className=" bg-white w-full  max-w-[800px] p-4 shadow-lg rounded-md flex  border border-transparent ">
                     <form className="p-6  w-full   flex flex-col justify-center" onSubmit={(e) => handleSubmit(e)}>
@@ -114,7 +114,7 @@ function ProfileUpdateUI() {
                                 </label>
                                 <MdAddAPhoto size={40} onClick={handleImgClick} className=' ms-auto hover:cursor-pointer' />
                             </div>
-                            <div className="w-full max-w-[300px]">
+                            <div className="w-full max-w-[300px] rounded-lg overflow-hidden  object-center  h-[300px] border">
                                 {image ? <img src={URL.createObjectURL(image)} /> : <img src={heroImg} />}
                             </div>
 
@@ -178,7 +178,7 @@ function ProfileUpdateUI() {
                                 disabled={btndisable}
                                 className="md:w-32 bg-[#20B486]  text-white font-bold py-3 px-6 rounded-lg mt-3 hover:bg-[#20B486]  "
                             >
-                                Submit
+                                {btndisable ? "Submiting..." : "Submit"}
                             </button>
 
                         </div>
