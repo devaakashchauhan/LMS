@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { heroImg } from '../../assets'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom';
@@ -9,6 +9,9 @@ import { toast } from 'react-toastify';
 
 const LoginUI = () => {
 
+    useEffect(() => {
+
+    }, [])
 
 
 
@@ -29,15 +32,18 @@ const LoginUI = () => {
             { ...form }
         )
             .then(function ak(response) {
-                // console.log(response);
+                console.log(response);
                 // console.log(response.data.data.user.role);
 
                 const user = response.data.data.user.username
-                console.log(response.data.data.user.username);
+                console.log(response);
 
                 if (user) {
+
                     toast(`Welcome ${user} 😃😃😃`)
-                    navigate("/")
+                    navigate("/", {
+                        replace: true
+                    })
                 }
             })
             .catch(function (error) {

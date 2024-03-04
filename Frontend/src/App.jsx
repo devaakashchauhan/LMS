@@ -89,6 +89,7 @@ const App = () => {
                             <Route path='updatedetails' element={<ProfileUpdateUI />} />
                         </Route>
 
+
                         <Route path='/teacherDashboard' element={<TeacherDashboardPage />} >
                             <Route path='profile' element={<ProfilePage />} />
                             <Route path='createcourse' element={<CourseSetupUI />} />
