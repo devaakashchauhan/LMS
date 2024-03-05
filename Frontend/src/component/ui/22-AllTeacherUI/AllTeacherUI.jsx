@@ -19,7 +19,7 @@ function AllTeacherUI() {
                 // console.log(error);
                 console.log("please Enter valid User name and Id !!!")
             });
-    }, [])
+    }, [students])
     return (
         <>
             <div className='w-full bg-[#E9F8F3B2] p-0 maincard'>

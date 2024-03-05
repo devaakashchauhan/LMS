@@ -22,9 +22,9 @@ const CardUI = ({ video, title, description, thumbnail, _id, owner }) => {
         // console.log(response);
         // const chk = response.data.statusCode;
         toast(`Video deleted successfully 😃`)
-        setTimeout(() => {
-          window.location.reload(false);
-        }, 3000);
+        // setTimeout(() => {
+        //   window.location.reload(false);
+        // }, 3000);
       })
       .catch(function (error) {
         console.log(error);

@@ -16,7 +16,7 @@ function AdminAllCourseUI() {
       .catch(function (error) {
         console.log(error);
       });
-  }, [])
+  }, [videos])
   return (
     <>
       <div className='w-full bg-[#E9F8F3B2] p-0 maincard'>

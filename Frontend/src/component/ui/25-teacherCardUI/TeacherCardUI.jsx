@@ -15,9 +15,9 @@ const TeacherCardUI = ({ avatar, fullname, username, _id }) => {
                 // console.log(response);
                 // const chk = response.data.statusCode;
                 toast(`Teacher deleted successfully 😃`)
-                setTimeout(() => {
-                    window.location.reload(false);
-                }, 3000);
+                // setTimeout(() => {
+                //     window.location.reload(false);
+                // }, 3000);
             })
             .catch(function (error) {
                 console.log(error);
