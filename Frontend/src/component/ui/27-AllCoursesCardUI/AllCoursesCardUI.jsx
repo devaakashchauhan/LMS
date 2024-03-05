@@ -1,7 +1,12 @@
-const AllCoursesCardUI = ({ video, title, description, thumbnail }) => {
+const AllCoursesCardUI = ({ video, title, description, thumbnail, owner }) => {
 
     const setPlayerVideo = () => {
-        localStorage.setItem("playerVideo", video)
+        localStorage.setItem("video", video)
+        localStorage.setItem("title", title)
+        localStorage.setItem("description", description)
+        localStorage.setItem("thumbnail", thumbnail)
+        localStorage.setItem("ownerid", owner)
+
     }
     return (
         <>

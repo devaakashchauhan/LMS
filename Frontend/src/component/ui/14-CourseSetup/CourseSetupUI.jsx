@@ -148,10 +148,9 @@ function CourseSetupUI() {
                                             <MdAddAPhoto size={40} onClick={handleImgClick} className='ms-auto hover:cursor-pointer' />
                                         </div>
 
-                                        <div className="w-full max-w-[300px] rounded-lg overflow-hidden  object-contain   h-[250px] border">
+                                        <div className="w-full w-[287px] rounded-lg overflow-hidden  object-contain   h-[160px] border">
                                             {image ? <img src={URL.createObjectURL(image)} /> : <img src={heroImg} />}
                                         </div>
-
 
                                         <input
                                             type="file"
@@ -160,7 +159,7 @@ function CourseSetupUI() {
                                             placeholder="Name"
                                             ref={inputRef}
                                             onChange={handleImgChange}
-                                            className="hidden w-100 mt-2 py-3 px-3 rounded-lg bg-white border border-gray-200 text-gray-800 font-semibold focus:border-[#20B486] focus:outline-none"
+                                            className="hidden "
                                         />
                                     </div>
                                 </div>
@@ -178,7 +177,7 @@ function CourseSetupUI() {
                                             <MdAddAPhoto size={40} onClick={handleVideoClick} className='ms-auto hover:cursor-pointer' />
                                         </div>
 
-                                        <div className="w-full max-w-[300px] rounded-lg overflow-hidden    h-[150px] border">
+                                        <div className=" w-[287px] rounded-lg overflow-hidden   h-[160px] border">
 
                                             {video ? <video src={URL.createObjectURL(video)} /> : <img src={heroImg} />}
 
@@ -192,7 +191,7 @@ function CourseSetupUI() {
                                             placeholder="Name"
                                             ref={videoRef}
                                             onChange={handleVideoChange}
-                                            className="hidden w-100 mt-2 py-3 px-3 rounded-lg bg-white border border-gray-200 text-gray-800 font-semibold focus:border-[#20B486] focus:outline-none"
+                                            className="hidden "
                                         />
                                     </div>
                                 </div>

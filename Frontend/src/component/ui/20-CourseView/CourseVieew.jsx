@@ -37,6 +37,7 @@ function CourseVieew() {
                                 description={video.description}
                                 thumbnail={video.thumbnail}
                                 video={video.video}
+                                owner={video.owner}
                             />
                         </div>
                     ))}

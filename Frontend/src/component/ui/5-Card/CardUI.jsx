@@ -4,7 +4,7 @@ import { toast } from 'react-toastify';
 
 
 
-const CardUI = ({ video, title, description, thumbnail, _id }) => {
+const CardUI = ({ video, title, description, thumbnail, _id, owner }) => {
 
 
   const [id, setId] = useState(_id)
@@ -32,7 +32,12 @@ const CardUI = ({ video, title, description, thumbnail, _id }) => {
   }
 
   const setPlayerVideo = () => {
-    localStorage.setItem("playerVideo", video)
+    localStorage.setItem("video", video)
+    localStorage.setItem("title", title)
+    localStorage.setItem("description", description)
+    localStorage.setItem("thumbnail", thumbnail)
+    localStorage.setItem("_id", _id)
+    localStorage.setItem("ownerid", owner)
   }
   return (
     <>

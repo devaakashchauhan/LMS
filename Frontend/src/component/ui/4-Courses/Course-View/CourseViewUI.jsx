@@ -6,7 +6,7 @@ function CourseViewUI() {
 
     const [videos, setVideos] = useState([])
     useEffect(() => {
-        axios.post('/api/v1/users/allvideos',
+        axios.post('/api/v1/users/mycourses',
         )
             .then(function ak(response) {
                 // console.log(response);                ;
@@ -33,6 +33,7 @@ function CourseViewUI() {
                                 thumbnail={video.thumbnail}
                                 video={video.video}
                                 _id={video._id}
+                                owner={video.owner}
                             />
                         </div>
                     ))}

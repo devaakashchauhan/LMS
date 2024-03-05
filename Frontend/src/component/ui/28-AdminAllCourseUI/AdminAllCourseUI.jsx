@@ -10,7 +10,7 @@ function AdminAllCourseUI() {
     axios.post('/api/v1/users/allcourses',
     )
       .then(function ak(response) {
-        // console.log(response);
+        console.log(response.data.data);
         setVideos(response.data.data)
       })
       .catch(function (error) {
@@ -33,6 +33,7 @@ function AdminAllCourseUI() {
                 thumbnail={video.thumbnail}
                 video={video.video}
                 _id={video._id}
+                owner={video.owner}
               />
             </div>
           ))}
