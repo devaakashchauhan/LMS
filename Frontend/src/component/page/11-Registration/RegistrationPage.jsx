@@ -1,4 +1,3 @@
-import React from 'react'
 import RegistrationUI from '../../ui/12-Registration/RegistrationUI'
 
 function RegistrationPage() {

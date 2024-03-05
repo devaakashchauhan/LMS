@@ -5,56 +5,40 @@ import axios from 'axios';
 
 const NavbarUI = () => {
     const navigate = useNavigate()
-    const [toggle, setToggle] = useState(false)
-    const handleClick = () => setToggle(!toggle)
-
     const [image, setImage] = useState('')
+    const [toggle, setToggle] = useState(false)
     const [logout, setLogout] = useState(false)
 
+    const handleClick = () => setToggle(!toggle)
+
+    useEffect(() => {
+        if (localStorage.getItem('accessToken')) {
+            setLogout(true)
+            setImage(localStorage.getItem('avatar'))
+        }
+    }, [localStorage.getItem('accessToken')])
 
     const userLogout = () => {
         axios.post('/api/v1/users/logout',
             null
         )
             .then(function (response) {
+                localStorage.removeItem("accessToken")
+                localStorage.removeItem("avatar")
                 setLogout(false)
-                navigate("/login")
-
-
-            })
-            .catch(function (error) {
-                console.log(error);
-
-            });
-
-    }
-
-    useEffect(() => {
-        axios.post('/api/v1/users/userDetails',
-            {}
-        )
-            .then(function (response) {
-                // console.log(response);
-                // console.log(response.data.data);
-                setImage(response.data.data.avatar)
-                setLogout(true)
-
-
-            })
-            .catch(function (error) {
-                console.log(error);
                 setImage('')
+                navigate("/login")
+            })
+            .catch(function (error) {
+                console.log(error);
             });
-    })
-
-
+    }
 
     return (
         <>
             <div className='w-full h-[80px] bg-white border-b'>
                 <div className="md:max-w-[1480px] max-w-[600px] w-full h-full flex justify-between items-center m-auto">
                     <img src={logo} className='h-[25px]' alt="" />
-
                     <div className="hidden md:flex items-center ">
                         <ul className='flex gap-4'>
                             <li>
@@ -119,8 +103,6 @@ const NavbarUI = () => {
                     <div className="md:hidden" onClick={handleClick}>
                         <img src={toggle ? close : hamburgerMenu} alt="" />
                     </div>
-
-
                 </div>
 
                 {/* sidebar for mobile */}

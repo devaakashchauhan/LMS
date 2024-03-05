@@ -14,7 +14,7 @@ function Userchk() {
             })
             .catch(function (error) {
                 if (error.name === "AxiosError") {
-                    console.log("User Invalid !!!")
+                    // console.log("User Invalid !!!")
                     navigate("/login")
                 }
             });

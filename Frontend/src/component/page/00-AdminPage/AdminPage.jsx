@@ -1,14 +1,8 @@
-import React, { useState } from 'react'
-import { NavLink } from 'react-router-dom';
-import LoginUI from '../../ui/11-Login/LoginUI'
 import Sidebar from '../../ui/15-Sidebar/Sidebar';
-import ProfilePage from '../8-Profile/ProfilePage';
 import ProfileUI from '../../ui/16-Profile/ProfileUI';
 
 
 const AdminPage = () => {
-    const [isActive, setIsActive] = useState(false)
-
 
     return (
         <>

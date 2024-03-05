@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { heroImg } from '../../assets'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom';
@@ -6,41 +6,30 @@ import { NavLink } from "react-router-dom";
 import { toast } from 'react-toastify';
 
 
-
 const LoginUI = () => {
-
-    useEffect(() => {
-
-    }, [])
-
-
-
     const navigate = useNavigate()
     const [form, setForm] = useState({
         username: "",
         password: "",
-
     });
+
     const handleInputChange = (e) => {
         setForm({ ...form, [e.target.name]: e.target.value });
-
     };
 
     const userRegistration = () => {
-
         axios.post('/api/v1/users/login',
             { ...form }
         )
             .then(function ak(response) {
-                console.log(response);
-                // console.log(response.data.data.user.role);
-
+                // console.log(response);
+                console.log(response.data.data);
                 const user = response.data.data.user.username
-                console.log(response);
 
                 if (user) {
-
                     toast(`Welcome ${user} 😃😃😃`)
+                    localStorage.setItem("accessToken", response.data.data.accessToken)
+                    localStorage.setItem("avatar", response.data.data.user.avatar)
                     navigate("/", {
                         replace: true
                     })
@@ -48,16 +37,15 @@ const LoginUI = () => {
             })
             .catch(function (error) {
                 toast(`User does not exist !!!`)
-                console.log(error);
+                // console.log(error);
                 // console.log("please Enter valid User name and Id !!!")
             });
     }
 
     const handleSubmit = (e) => {
         e.preventDefault();
-
-
     }
+
     return (
         <>
             <div className='w-full bg-white py-24'>
@@ -99,7 +87,7 @@ const LoginUI = () => {
 
                             <button
                                 type="submit"
-                                onClick={() => userRegistration()}
+                                onClick={userRegistration}
                                 className=" w-full max-w-[500px] bg-[#20B486] hover:bg-blue-dark text-white font-bold py-3 px-6 rounded-lg mt-3 hover:bg-[#20B486] transition ease-in-out duration-300"
                             >
                                 Login
@@ -110,7 +98,6 @@ const LoginUI = () => {
                                     I did not have an account
                                     <NavLink
                                         to="/signup"
-
                                     >
                                         <span className="hover:text-[#20B486] "> Registration</span>
                                     </NavLink>
