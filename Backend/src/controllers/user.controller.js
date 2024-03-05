@@ -431,8 +431,9 @@ const getusername = asyncHandler(async (req, res) => {
   }
 
   const userName = await User.findById({ _id: objectId }).select(
-    " -_id username avatar"
+    " -_id username avatar updatedAt createdAt"
   );
+  console.log(userName);
   return res
     .status(200)
     .json(new apiResponse(200, userName, "username fetched successFully."));

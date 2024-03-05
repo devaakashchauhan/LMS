@@ -9,7 +9,9 @@ function VideoPlayerUI() {
     const [_id, set_id] = useState('')
     const [avatar, setavatar] = useState('')
     const [owner, setowner] = useState('')
+    const [createdAt, setcreatedAt] = useState('')
     const [ownerid, setownerid] = useState(localStorage.getItem("ownerid"))
+
     useEffect(() => {
         setvideo(localStorage.getItem("video"))
         settitle(localStorage.getItem("title"))
@@ -17,16 +19,17 @@ function VideoPlayerUI() {
         setthumbnail(localStorage.getItem("thumbnail"))
         set_id(localStorage.getItem("_id"))
 
-        console.log(ownerid);
+
 
         axios.post('/api/v1/users/username',
             { ownerid }
         )
             .then(function ak(response) {
                 // console.log(response.data.data.username);
-                // console.log(response.data.data);
+                console.log(response);
                 setavatar(response.data.data.avatar)
                 setowner(response.data.data.username)
+                setcreatedAt(response.data.data.createdAt)
             })
             .catch(function (error) {
                 console.log(error);
@@ -58,6 +61,7 @@ function VideoPlayerUI() {
             </div>
             <div className="px-20 pt-5">
                 <div className="overflow-hidden rounded-2xl border">
+                    <div className="pb-4 font-thin text-xl p-4">{createdAt}</div>
                     <div className="pb-4 font-thin text-xl p-4">{description}</div>
                 </div>
             </div>
