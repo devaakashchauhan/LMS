@@ -431,7 +431,7 @@ const getusername = asyncHandler(async (req, res) => {
   }
 
   const userName = await User.findById({ _id: objectId }).select(
-    " -_id username"
+    " -_id username avatar"
   );
   return res
     .status(200)

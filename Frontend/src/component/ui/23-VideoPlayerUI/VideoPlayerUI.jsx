@@ -16,7 +16,7 @@ function VideoPlayerUI() {
         setdescription(localStorage.getItem("description"))
         setthumbnail(localStorage.getItem("thumbnail"))
         set_id(localStorage.getItem("_id"))
-        setavatar(localStorage.getItem("avatar"))
+
         console.log(ownerid);
 
         axios.post('/api/v1/users/username',
@@ -25,6 +25,7 @@ function VideoPlayerUI() {
             .then(function ak(response) {
                 // console.log(response.data.data.username);
                 // console.log(response.data.data);
+                setavatar(response.data.data.avatar)
                 setowner(response.data.data.username)
             })
             .catch(function (error) {
