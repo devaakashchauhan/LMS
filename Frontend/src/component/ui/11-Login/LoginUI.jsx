@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { heroImg } from '../../assets'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom';
@@ -8,6 +8,14 @@ import { toast } from 'react-toastify';
 
 const LoginUI = () => {
     const navigate = useNavigate()
+    const user = localStorage.getItem('accessToken')
+    console.log(user)
+    useEffect(() => {
+        if (user) {
+            navigate("/")
+        }
+    }, [])
+
     const [form, setForm] = useState({
         username: "",
         password: "",
@@ -23,16 +31,14 @@ const LoginUI = () => {
         )
             .then(function ak(response) {
                 // console.log(response);
-                console.log(response.data.data);
+                // console.log(response.data.data);
                 const user = response.data.data.user.username
 
                 if (user) {
                     toast(`Welcome ${user} 😃😃😃`)
                     localStorage.setItem("accessToken", response.data.data.accessToken)
                     localStorage.setItem("avatar", response.data.data.user.avatar)
-                    navigate("/", {
-                        replace: true
-                    })
+                    navigate("/")
                 }
             })
             .catch(function (error) {
@@ -83,7 +89,6 @@ const LoginUI = () => {
                                     className="w-100 mt-2 py-3 px-3 rounded-lg bg-white border border-gray-400 text-gray-800 font-semibold focus:border-[#20B486] focus:outline-none"
                                 />
                             </div>
-
 
                             <button
                                 type="submit"
