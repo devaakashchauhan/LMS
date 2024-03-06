@@ -408,7 +408,7 @@ const allVideos = asyncHandler(async (req, res) => {
   // console.log(userdataId);
 
   const allVideos = await Video.find({ owner: userdataId });
-  console.log(allVideos);
+  // console.log(allVideos);
 
   return res
     .status(200)
@@ -437,6 +437,22 @@ const getusername = asyncHandler(async (req, res) => {
   return res
     .status(200)
     .json(new apiResponse(200, userName, "username fetched successFully."));
+});
+const allvideos = asyncHandler(async (req, res) => {
+  const { ownerid } = req.body;
+  // console.log(ownerid);
+
+  const objectId = new mongoose.Types.ObjectId(ownerid);
+  if (!objectId) {
+    throw new apiError(400, "Video ID requried !!!");
+  }
+  // console.log(objectId);
+
+  const allvideos = await Video.find({ owner: objectId });
+  // console.log(allvideos);
+  return res
+    .status(200)
+    .json(new apiResponse(200, allvideos, "allvideos fetched successFully."));
 });
 
 const allstudent = asyncHandler(async (req, res) => {
@@ -516,4 +532,5 @@ export {
   deleteStudent,
   deleteTeacher,
   getusername,
+  allvideos,
 };

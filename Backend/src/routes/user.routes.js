@@ -17,6 +17,7 @@ import {
   deleteTeacher,
   deleteStudent,
   getusername,
+  allvideos,
 } from "../controllers/user.controller.js";
 import { upload } from "../middlewares/multer.middleware.js";
 import { verifyJWT } from "../middlewares/auth.middleware.js";
@@ -75,5 +76,6 @@ router.route("/deletevideo").post(deletevideo);
 router.route("/deletestudent").post(deleteStudent);
 router.route("/deleteteacher").post(deleteTeacher);
 router.route("/username").post(getusername);
+router.route("/allvideos").post(allvideos);
 
 export default router;

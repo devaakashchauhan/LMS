@@ -1,16 +1,16 @@
-const AllCoursesCardUI = ({ video, title, description, thumbnail, owner }) => {
+const AllCoursesCardUI = ({ title, description, thumbnail, video, videoid, ownerid }) => {
 
     const setPlayerVideo = () => {
-        localStorage.setItem("video", video)
         localStorage.setItem("title", title)
         localStorage.setItem("description", description)
         localStorage.setItem("thumbnail", thumbnail)
-        localStorage.setItem("ownerid", owner)
-
+        localStorage.setItem("video", video)
+        localStorage.setItem("videoid", videoid)
+        localStorage.setItem("ownerid", ownerid)
     }
+
     return (
         <>
-
             <div className="bg-white drop-shadow-md overflow-hidden rounded-2xl mr-4 my-4 card h-[400px]" >
                 <img src={thumbnail} alt="" className="object-center w-full h-[200px]" />
                 <div className="p-5  ">
