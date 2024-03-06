@@ -31,9 +31,6 @@ import NavbarUI from './component/ui/1-Navbar/NavbarUI.jsx'
 import FooterUI from './component/ui/10-Footer/FooterUI.jsx'
 
 
-
-
-
 const App = () => {
     return (
         <>
@@ -83,9 +80,9 @@ const App = () => {
                         </ProtectRoute>
                     } >
                         <Route path='profile' element={<ProfilePage />} />
-                        <Route path='students' element={<AllStudentUI />} />
-                        <Route path='teachers' element={<AllTeacherUI />} />
                         <Route path='allcourse' element={<AdminAllCourseUI />} />
+                        <Route path='teachers' element={<AllTeacherUI />} />
+                        <Route path='students' element={<AllStudentUI />} />
                         <Route path='updatedetails' element={<ProfileUpdateUI />} />
                     </Route>
 

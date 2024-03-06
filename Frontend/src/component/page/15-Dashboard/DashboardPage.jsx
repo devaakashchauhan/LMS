@@ -4,7 +4,7 @@ import { Cookies } from 'react-cookie';
 
 function DashboardPage() {
     const cookies = new Cookies();
-    const navigate = useNavigate()
+    const navigate = useNavigate();
     const [role, setRole] = useState('');
     useEffect(() => {
         setRole(cookies.get('role'))

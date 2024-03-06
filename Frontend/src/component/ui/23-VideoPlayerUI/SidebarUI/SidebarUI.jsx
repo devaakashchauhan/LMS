@@ -1,7 +1,7 @@
 
-
 function SidebarUI({ title, description, thumbnail, video, videoid, ownerid, owner }) {
     const setPlayerVideo = () => {
+
         localStorage.setItem("title", title)
         localStorage.setItem("description", description)
         localStorage.setItem("thumbnail", thumbnail)
@@ -13,9 +13,7 @@ function SidebarUI({ title, description, thumbnail, video, videoid, ownerid, own
     return (
         <>
             <div className="grid grid-cols-4 gap-4 my-5 ">
-                <a href="/videoPlayer" onClick={setPlayerVideo} className="col-span-2">
-                    <img className=" w-60 h-24 object-cover bg-white shadow-md rounded-lg overflow-hidden hover:cursor-pointer" src={thumbnail} />
-                </a>
+                <img onClick={setPlayerVideo} className="col-span-2 w-60 h-24 object-cover bg-white shadow-md rounded-lg overflow-hidden hover:cursor-pointer" src={thumbnail} />
                 <div className="p-4 col-span-2">
                     <h3 className="text-lg text-gray-600 font-medium">{title}</h3>
                     <p className="text-gray-600 text-sm">{owner}</p>

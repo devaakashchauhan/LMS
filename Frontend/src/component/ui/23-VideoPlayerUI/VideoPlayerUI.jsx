@@ -50,7 +50,7 @@ function VideoPlayerUI() {
             .catch(function (error) {
                 console.log(error);
             });
-    }, [])
+    })
 
     return (
         <>
@@ -61,8 +61,7 @@ function VideoPlayerUI() {
                 </div>
                 <div className="h-[600px] w-full overflow-hidden rounded-3xl border pt-7 px-7">
                     {allvideos.map((video, index) => (
-
-                        (videoid === video._id) ? null :
+                        (video._id === videoid) ? null :
                             <div key={index}>
                                 <SidebarUI
                                     title={video.title}

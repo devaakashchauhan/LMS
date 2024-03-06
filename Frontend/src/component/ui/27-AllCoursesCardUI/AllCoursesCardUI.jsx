@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom"
 const AllCoursesCardUI = ({ title, description, thumbnail, video, videoid, ownerid }) => {
 
     const setPlayerVideo = () => {
@@ -20,15 +21,13 @@ const AllCoursesCardUI = ({ title, description, thumbnail, video, videoid, owner
                 <div className="items-center justify-between">
                     <h3 className='p-5 text-2xl font-bold text-gray-900 '>{title}</h3>
                     <div className=" px-3 flex justify-between">
-
-                        <a
-                            href="/videoPlayer"
+                        <Link
+                            to="/videoPlayer"
                             onClick={setPlayerVideo}
                             className="me-[10px] text-white bg-[#20B486] hover:bg-[#20B486] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
                         >
                             Play
-                        </a>
-
+                        </Link>
                     </div>
                 </div>
                 <div className="absolute top-0 bg-white m-5 px-2 py-[2.5px] rounded font-bold">

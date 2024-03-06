@@ -23,8 +23,7 @@ const NavbarUI = () => {
             null
         )
             .then(function (response) {
-                localStorage.removeItem("accessToken")
-                localStorage.removeItem("avatar")
+                localStorage.clear();
                 setLogout(false)
                 setImage('')
                 navigate("/login")
