@@ -18,6 +18,7 @@ import {
   deleteStudent,
   getusername,
   allvideos,
+  courseUpdate,
 } from "../controllers/user.controller.js";
 import { upload } from "../middlewares/multer.middleware.js";
 import { verifyJWT } from "../middlewares/auth.middleware.js";
@@ -64,8 +65,21 @@ router.route("/courseupload").post(
       maxCount: 1,
     },
   ]),
-
   courseUpload
+);
+router.route("/courseupdate").post(
+  verifyJWT,
+  upload.fields([
+    {
+      name: "thumbnail",
+      maxCount: 1,
+    },
+    {
+      name: "video",
+      maxCount: 1,
+    },
+  ]),
+  courseUpdate
 );
 
 router.route("/mycourses").post(verifyJWT, allVideos);

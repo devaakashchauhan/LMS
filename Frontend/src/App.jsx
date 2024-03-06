@@ -29,6 +29,7 @@ import ProfileUpdateUI from './component/ui/26-ProfileUpdateUI/ProfileUpdateUI.j
 import AdminAllCourseUI from './component/ui/28-AdminAllCourseUI/AdminAllCourseUI.jsx';
 import NavbarUI from './component/ui/1-Navbar/NavbarUI.jsx'
 import FooterUI from './component/ui/10-Footer/FooterUI.jsx'
+import UpdateVideoDetailsUI from './component/ui/29-UpdateVideoDetailUI/UpdateVideoDetailsUI.jsx'
 
 
 const App = () => {
@@ -95,6 +96,7 @@ const App = () => {
                         <Route path='createcourse' element={<CourseSetupUI />} />
                         <Route path='courseview' element={<CourseViewUI />} />
                         <Route path='updatedetails' element={<ProfileUpdateUI />} />
+                        <Route path='updatevideo' element={<UpdateVideoDetailsUI />} />
                     </Route>
 
                     <Route path='/studentDashboard' element={

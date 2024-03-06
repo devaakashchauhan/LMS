@@ -1,6 +1,6 @@
-import CardUI from '../../5-Card/CardUI.jsx'
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import TeacherCardUI from '../../30-TeacherCardUI/TeacherCardUI.jsx';
 
 function CourseViewUI() {
     const [videos, setVideos] = useState([])
@@ -24,7 +24,7 @@ function CourseViewUI() {
                 <div className="grid md:grid-cols-4  ms-5 ">
                     {videos.map((video, index) => (
                         <div key={index}>
-                            <CardUI
+                            <TeacherCardUI
                                 title={video.title}
                                 description={video.description}
                                 thumbnail={video.thumbnail}

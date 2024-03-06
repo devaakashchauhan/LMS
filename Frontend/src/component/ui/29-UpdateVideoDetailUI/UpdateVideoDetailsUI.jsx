@@ -1,33 +1,49 @@
-import { useState, useRef } from 'react'
-import { NavLink } from "react-router-dom";
-import { heroImg } from '../../assets'
+import { useState, useRef, useEffect } from 'react'
 import axios from 'axios'
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, NavLink } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { MdAddAPhoto } from "react-icons/md";
 
+function UpdateVideoDetailsUI() {
 
-function CourseSetupUI() {
     const navigate = useNavigate()
     const inputRef = useRef(null)
     const videoRef = useRef(null)
 
+    const [handleSubmitbtn, setHandleSubmitbtn] = useState(false)
+
     const [image, setImage] = useState('')
     const [video, setVideo] = useState('')
-    const [handleSubmitbtn, setHandleSubmitbtn] = useState(false)
+
+    const [videoIdForUpdate, setVideoIdForUpdate] = useState({})
 
     const [form, setForm] = useState({
         title: "",
         description: "",
         thumbnail: "",
         video: "",
+        videoid: "",
 
     });
+
+    useEffect(() => {
+        const stringToObject = JSON.parse(localStorage.getItem("videoIdForUpdate"));
+        if (stringToObject) {
+            setVideoIdForUpdate(stringToObject);
+            setForm({
+                title: stringToObject.title,
+                description: stringToObject.description,
+                thumbnail: stringToObject.thumbnail,
+                video: stringToObject.video,
+                videoid: stringToObject.videoid,
+            });
+        }
+    }, []);
+
 
     // handel text input change
     const handleInputChange = (e) => {
         setForm({ ...form, [e.target.name]: e.target.value })
-
     };
 
     // handel open file to input image
@@ -38,6 +54,8 @@ function CourseSetupUI() {
     // handel image input change
     const handleImgChange = (event) => {
         setImage(event.target.files[0])
+        console.log("image : ", event.target.files[0])
+        console.log("image : ", image)
     }
 
     // handel open file to input video
@@ -48,6 +66,10 @@ function CourseSetupUI() {
     // handel video input change
     const handleVideoChange = (event) => {
         setVideo(event.target.files[0])
+        console.log("video : ", event.target.files[0])
+        console.log("video : ", video)
+
+
     }
 
     const videoUpload = () => {
@@ -56,10 +78,12 @@ function CourseSetupUI() {
         const formdata = new FormData()
         formdata.append("title", form.title)
         formdata.append("description", form.description)
+        formdata.append("videoid", form.videoid)
         formdata.append("thumbnail", image)
         formdata.append("video", video)
 
-        axios.post('/api/v1/users/courseupload',
+
+        axios.post('/api/v1/users/courseupdate',
             formdata
         )
             .then(function (response) {
@@ -67,7 +91,7 @@ function CourseSetupUI() {
                 const user = response.data.data._id;
 
                 if (user) {
-                    toast(`Course created 😃`)
+                    toast(`Course Updated 😃`)
                     navigate("/teacherDashboard/courseview")
                 }
             })
@@ -101,6 +125,7 @@ function CourseSetupUI() {
                                             name="title"
                                             id="name"
                                             placeholder="Name"
+                                            defaultValue={form.title}
                                             onChange={handleInputChange}
                                             className="w-100 mt-2 py-3 px-3 rounded-lg bg-white border border-gray-200 text-gray-800 font-semibold focus:border-[#20B486] focus:outline-none"
                                         />
@@ -120,6 +145,7 @@ function CourseSetupUI() {
                                             name="description"
                                             id="name"
                                             placeholder="Name"
+                                            defaultValue={form.description}
                                             onChange={handleInputChange}
                                             className="w-100 mt-2 py-3 px-3 rounded-lg bg-white border border-gray-200 text-gray-800 font-semibold focus:border-[#20B486] focus:outline-none"
                                         />
@@ -141,8 +167,8 @@ function CourseSetupUI() {
                                             <MdAddAPhoto size={40} onClick={handleImgClick} className='ms-auto hover:cursor-pointer' />
                                         </div>
 
-                                        <div className="w-[287px] rounded-lg overflow-hidden  object-contain   h-[160px] border">
-                                            {image ? <img src={URL.createObjectURL(image)} /> : <img src={heroImg} />}
+                                        <div className=" w-[287px] rounded-lg overflow-hidden  object-contain   h-[160px] border">
+                                            {image ? <img src={URL.createObjectURL(image)} /> : <img src={form.thumbnail} />}
                                         </div>
 
                                         <input
@@ -151,6 +177,7 @@ function CourseSetupUI() {
                                             id="name"
                                             placeholder="Name"
                                             ref={inputRef}
+
                                             onChange={handleImgChange}
                                             className="hidden "
                                         />
@@ -172,7 +199,7 @@ function CourseSetupUI() {
 
                                         <div className=" w-[287px] rounded-lg overflow-hidden   h-[160px] border">
 
-                                            {video ? <video src={URL.createObjectURL(video)} /> : <img src={heroImg} />}
+                                            {video ? <video src={URL.createObjectURL(video)} /> : <video src={form.video} />}
 
                                         </div>
 
@@ -183,6 +210,7 @@ function CourseSetupUI() {
                                             id="name"
                                             placeholder="Name"
                                             ref={videoRef}
+
                                             onChange={handleVideoChange}
                                             className="hidden "
                                         />
@@ -193,9 +221,10 @@ function CourseSetupUI() {
 
                     </div>
                     <div className="flex justify-center mt-5">
+
                         <NavLink to={'/teacherDashboard/createcourse'}>
-                            <button onClick={() => videoUpload()} className='w-full max-w-[300px] bg-[#20B486] my-4 px-8 py-3 rounded-md text-white font-bold' disabled={handleSubmitbtn}>
-                                {handleSubmitbtn ? "Course Uploading..." : "Submit Course"}
+                            <button onClick={() => videoUpload()} className=' max-w-[300px] bg-[#20B486] my-4 px-8 py-3 rounded-md text-white font-bold' disabled={handleSubmitbtn}>
+                                {handleSubmitbtn ? "Course Updating..." : "Update Course"}
                             </button>
                         </NavLink>
                     </div>
@@ -205,4 +234,4 @@ function CourseSetupUI() {
     )
 }
 
-export default CourseSetupUI
+export default UpdateVideoDetailsUI

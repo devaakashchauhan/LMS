@@ -308,9 +308,94 @@ const updateUserAvatar = asyncHandler(async (req, res) => {
     .json(new apiResponse(200, user, "Avatar Image uploaded Successfully."));
 });
 
+const courseUpdate = asyncHandler(async (req, res) => {
+  const { title, description, thumbnail, video, videoid } = req.body;
+  console.table(req.body);
+
+  const objectId = new mongoose.Types.ObjectId(videoid);
+  if (!objectId) {
+    throw new apiError(400, "Video ID requried !!!");
+  }
+  console.log(objectId);
+
+  try {
+    const token =
+      req.cookies?.accessToken ||
+      req.header("Authorization")?.replace("Bearer ", "");
+
+    if (!token) {
+      throw new apiError(401, "Inauthorized request. ");
+    }
+    const decodedToken = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
+
+    const user = await User.findById(decodedToken?._id).select(
+      "-password -refreshToken"
+    );
+
+    if (!user) {
+      throw new apiError(401, "Invalid accessToken.");
+    }
+
+    req.user = user;
+  } catch (error) {
+    throw new apiError(401, error?.message || "Invalid Access token");
+  }
+
+  const thumbnailLocalPath = req.files?.thumbnail?.[0]?.path;
+  if (thumbnailLocalPath) {
+    console.log("req path =", thumbnailLocalPath);
+
+    if (!thumbnailLocalPath) {
+      throw new apiError(400, "thumbnail files is required !!!");
+    }
+    const thumbnailfile = await uploadOnCloudinary(thumbnailLocalPath);
+
+    if (!thumbnailfile) {
+      throw new apiError(400, "thumbnailfile files is required !!!");
+    }
+
+    const videos = await Video.findByIdAndUpdate(objectId, {
+      thumbnail: thumbnailfile.url,
+    });
+  }
+
+  const videoFileLocalPath = req.files?.video?.[0]?.path;
+  if (videoFileLocalPath) {
+    console.log("req path =", videoFileLocalPath);
+
+    if (!videoFileLocalPath) {
+      throw new apiError(400, "videoFile files is required !!!");
+    }
+    const videoFile = await uploadOnCloudinary(videoFileLocalPath);
+    if (!videoFile) {
+      throw new apiError(400, "videoFile files is required !!!");
+    }
+    const videos = await Video.findByIdAndUpdate(objectId, {
+      video: videoFile.url,
+    });
+  }
+
+  const videos = await Video.findByIdAndUpdate(objectId, {
+    title,
+    description,
+  });
+
+  const createdVideo = await Video.findById(videos._id);
+
+  if (!createdVideo) {
+    throw new apiError(500, "Error when registering the user !!!");
+  }
+
+  return res
+    .status(201)
+    .json(
+      new apiResponse(200, createdVideo, "User registered video successfully.")
+    );
+});
+
 const courseUpload = asyncHandler(async (req, res) => {
   const { title, description, thumbnail, video } = req.body;
-
+  console.table(req.body);
   try {
     const token =
       req.cookies?.accessToken ||
@@ -438,6 +523,7 @@ const getusername = asyncHandler(async (req, res) => {
     .status(200)
     .json(new apiResponse(200, userName, "username fetched successFully."));
 });
+
 const allvideos = asyncHandler(async (req, res) => {
   const { ownerid } = req.body;
   // console.log(ownerid);
@@ -533,4 +619,5 @@ export {
   deleteTeacher,
   getusername,
   allvideos,
+  courseUpdate,
 };
