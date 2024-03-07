@@ -30,84 +30,119 @@ import AdminAllCourseUI from './component/ui/28-AdminAllCourseUI/AdminAllCourseU
 import NavbarUI from './component/ui/1-Navbar/NavbarUI.jsx'
 import FooterUI from './component/ui/10-Footer/FooterUI.jsx'
 import UpdateVideoDetailsUI from './component/ui/29-UpdateVideoDetailUI/UpdateVideoDetailsUI.jsx'
+import LoaderUI from './component/ui/0-LoaderUI/LoaderUI.jsx'
+import axios from 'axios'
+import { useState } from 'react'
 
 
 const App = () => {
+
+    const [Loader, setLoader] = useState(false)
+
+    // Add a request interceptor
+    axios.interceptors.request.use(function (config) {
+        // Do something before request is sent
+        setLoader(true)
+        return config;
+    }, function (error) {
+        // Do something with request error
+        return Promise.reject(error);
+    });
+
+    // Add a response interceptor
+    axios.interceptors.response.use(function (response) {
+        // Any status code that lie within the range of 2xx cause this function to trigger
+        // Do something with response data
+        // setTimeout(() => {
+
+        //     setLoader(false)
+        // }, 3000);
+        setTimeout(setLoader(false), 5000);
+        return response;
+    }, function (error) {
+        // Any status codes that falls outside the range of 2xx cause this function to trigger
+        // Do something with response error
+        return Promise.reject(error);
+    });
     return (
         <>
             <BrowserRouter>
                 <NavbarUI />
-                <Routes>
-
-                    {/* Unprotected Routes */}
-                    <Route path='*' element={<PageNotFoundUI />} />
-                    <Route path='/login' element={<LoginPage />} />
-                    <Route path='/signup' element={<RegistrationPage />} />
-                    <Route path='/about' element={<AboutPage />} />
-                    <Route path='/support' element={<SupportPage />} />
-                    <Route path='/contact' element={<ContactPage />} />
-
-
-                    {/* Protected Routes */}
-                    <Route path='/' element={
-                        <ProtectRoute >
-                            <HomePage />
-                        </ProtectRoute>
-                    } />
-
-                    <Route path='/courses' element={
-                        <ProtectRoute >
-                            <CoursePage />
-                        </ProtectRoute>
-                    } />
-
-                    <Route path='/dashbord' element={
-                        <ProtectRoute >
-                            <DashboardPage />
-                        </ProtectRoute>
-                    } />
-
-                    <Route path='/videoPlayer' element={
-                        <ProtectRoute >
-                            <VideoPlayerUI />
-                        </ProtectRoute>
-                    } />
+                {
+                    Loader ?
+                        <LoaderUI /> :
+                        <Routes>
+                            {/* Unprotected Routes */}
+                            <Route path='*' element={<PageNotFoundUI />} />
+                            <Route path='/login' element={<LoginPage />} />
+                            <Route path='/signup' element={<RegistrationPage />} />
+                            <Route path='/about' element={<AboutPage />} />
+                            <Route path='/support' element={<SupportPage />} />
+                            <Route path='/contact' element={<ContactPage />} />
+                            <Route path='/loader' element={<LoaderUI />} />
 
 
-                    <Route path='/adminDashboard' element={
-                        <ProtectRoute >
-                            <AdminDashboard />
-                        </ProtectRoute>
-                    } >
-                        <Route path='profile' element={<ProfilePage />} />
-                        <Route path='allcourse' element={<AdminAllCourseUI />} />
-                        <Route path='teachers' element={<AllTeacherUI />} />
-                        <Route path='students' element={<AllStudentUI />} />
-                        <Route path='updatedetails' element={<ProfileUpdateUI />} />
-                    </Route>
+                            {/* Protected Routes */}
+                            <Route path='/' element={
+                                <ProtectRoute >
+                                    <HomePage />
+                                </ProtectRoute>
+                            } />
 
-                    <Route path='/teacherDashboard' element={
-                        <ProtectRoute >
-                            <TeacherDashboardPage />
-                        </ProtectRoute>
-                    } >
-                        <Route path='profile' element={<ProfilePage />} />
-                        <Route path='createcourse' element={<CourseSetupUI />} />
-                        <Route path='courseview' element={<CourseViewUI />} />
-                        <Route path='updatedetails' element={<ProfileUpdateUI />} />
-                        <Route path='updatevideo' element={<UpdateVideoDetailsUI />} />
-                    </Route>
+                            <Route path='/courses' element={
+                                <ProtectRoute >
+                                    <CoursePage />
+                                </ProtectRoute>
+                            } />
 
-                    <Route path='/studentDashboard' element={
-                        <ProtectRoute >
-                            <UserDashboarsPage />
-                        </ProtectRoute>
-                    } >
-                        <Route path='profile' element={<ProfilePage />} />
-                        <Route path='updatedetails' element={<ProfileUpdateUI />} />
-                    </Route>
+                            <Route path='/dashbord' element={
+                                <ProtectRoute >
+                                    <DashboardPage />
+                                </ProtectRoute>
+                            } />
 
-                </Routes>
+                            <Route path='/videoPlayer' element={
+                                <ProtectRoute >
+                                    <VideoPlayerUI />
+                                </ProtectRoute>
+                            } />
+
+
+                            <Route path='/adminDashboard' element={
+                                <ProtectRoute >
+                                    <AdminDashboard />
+                                </ProtectRoute>
+                            } >
+                                <Route path='profile' element={<ProfilePage />} />
+                                <Route path='allcourse' element={<AdminAllCourseUI />} />
+                                <Route path='teachers' element={<AllTeacherUI />} />
+                                <Route path='students' element={<AllStudentUI />} />
+                                <Route path='updatedetails' element={<ProfileUpdateUI />} />
+                            </Route>
+
+                            <Route path='/teacherDashboard' element={
+                                <ProtectRoute >
+                                    <TeacherDashboardPage />
+                                </ProtectRoute>
+                            } >
+                                <Route path='profile' element={<ProfilePage />} />
+                                <Route path='createcourse' element={<CourseSetupUI />} />
+                                <Route path='courseview' element={<CourseViewUI />} />
+                                <Route path='updatedetails' element={<ProfileUpdateUI />} />
+                                <Route path='updatevideo' element={<UpdateVideoDetailsUI />} />
+                            </Route>
+
+                            <Route path='/studentDashboard' element={
+                                <ProtectRoute >
+                                    <UserDashboarsPage />
+                                </ProtectRoute>
+                            } >
+                                <Route path='profile' element={<ProfilePage />} />
+                                <Route path='updatedetails' element={<ProfileUpdateUI />} />
+                            </Route>
+
+                        </Routes>
+                }
                 <FooterUI />
             </BrowserRouter>
         </>

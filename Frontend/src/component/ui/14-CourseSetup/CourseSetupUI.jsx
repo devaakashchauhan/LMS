@@ -67,7 +67,6 @@ function CourseSetupUI() {
             .then(function (response) {
                 // console.log(response);
                 const user = response.data.data._id;
-
                 if (user) {
                     toast(`Course created 😃`)
                     navigate("/teacherDashboard/courseview")
