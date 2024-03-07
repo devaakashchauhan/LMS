@@ -86,9 +86,11 @@ router.route("/mycourses").post(verifyJWT, allVideos);
 router.route("/allcourses").post(allcoruses);
 router.route("/allstudent").post(allstudent);
 router.route("/allteacher").post(allTeacher);
+
 router.route("/deletevideo").post(deletevideo);
 router.route("/deletestudent").post(deleteStudent);
 router.route("/deleteteacher").post(deleteTeacher);
+
 router.route("/username").post(getusername);
 router.route("/allvideos").post(allvideos);
 

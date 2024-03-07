@@ -9,7 +9,6 @@ function CourseVieew() {
 
     useEffect(() => {
         axios.post('/api/v1/users/allcourses',
-
         )
             .then(function ak(response) {
                 console.log(response);
@@ -22,7 +21,7 @@ function CourseVieew() {
 
     return (
         <>
-            <div className='w-full bg-[#E9F8F3B2] p-0 maincard'>
+            <div className='w-full bg-[#E9F8F3B2] p-0 '>
                 <div className="text-center">
                     <h1 className='text-3xl py-3 font-bold '>Most Popular <span className='text-[#20B486]'>Courses</span></h1>
                 </div>

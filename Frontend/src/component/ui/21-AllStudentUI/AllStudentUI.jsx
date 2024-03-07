@@ -7,18 +7,34 @@ function AllStudentUI() {
   const [students, setStudent] = useState([])
 
   useEffect(() => {
-    axios.post('/api/v1/users/allstudent',
+    fetchStudent();
+  }, []);
 
-    )
-      .then(function ak(response) {
-        // console.log(response);
-        setStudent(response.data.data)
+  const fetchStudent = () => {
+    axios.post('/api/v1/users/allstudent')
+      .then(function (response) {
+        console.log(response);
+        setStudent(response.data.data);
       })
       .catch(function (error) {
-        // console.log(error);
-        console.log("please Enter valid User name and Id !!!")
+        console.log(error);
       });
-  }, [students])
+  };
+
+  const handleVideoDelete = (studentid) => {
+    axios.post('/api/v1/users/deletestudent',
+      { studentid }
+    )
+      .then(function (response) {
+        console.log(response);
+        setStudent(prevstudents => prevstudents.filter(student => student._id !== studentid));
+
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
+
   return (
     <>
       <div className='w-full bg-[#E9F8F3B2] p-0 maincard'>
@@ -29,10 +45,11 @@ function AllStudentUI() {
           {students.map((student, index) => (
             <div key={index}>
               <StudentCardUI
+                ovStudentDelete={handleVideoDelete}
                 avatar={student.avatar}
                 fullname={student.fullname}
                 username={student.username}
-                _id={student._id}
+                studentid={student._id}
               />
             </div>
           ))}

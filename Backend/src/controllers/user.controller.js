@@ -30,7 +30,6 @@ const generateAccessAndRefreshToken = async (userId) => {
 
 const registerUser = asyncHandler(async (req, res) => {
   const { fullname, email, username, password, role } = req.body;
-  console.log("all data=", req.body);
 
   if (
     [fullname, email, username, password].some((field) => field?.trim() === "")
@@ -47,7 +46,6 @@ const registerUser = asyncHandler(async (req, res) => {
   }
 
   const avatarLocalPath = req.file?.path;
-  console.log("req path =", avatarLocalPath);
 
   if (!avatarLocalPath) {
     throw new apiError(400, "Avatar files is required !!!");
@@ -214,7 +212,6 @@ const changeCurrentPassword = asyncHandler(async (req, res) => {
   //   throw new apiError(400, "newpassword and confirm Password are different.");
   // }
 
-  console.log(req.user, " == ak");
   const user = await User.findById(req.user?._id);
 
   const isPasswordCCorrect = await user.isPasswordCorrect(oldPassword);
@@ -250,7 +247,6 @@ const updateUserDetails = asyncHandler(async (req, res) => {
   }
 
   const avatarLocalPath = req.file?.path;
-  console.log(avatarLocalPath);
   if (!avatarLocalPath) {
     throw new apiError(400, "Avtar file is missing.");
   }
@@ -280,7 +276,7 @@ const updateUserDetails = asyncHandler(async (req, res) => {
 
 const updateUserAvatar = asyncHandler(async (req, res) => {
   const avatarLocalPath = req.file?.path;
-  console.log(avatarLocalPath);
+
   if (!avatarLocalPath) {
     throw new apiError(400, "Avtar file is missing.");
   }
@@ -310,13 +306,11 @@ const updateUserAvatar = asyncHandler(async (req, res) => {
 
 const courseUpdate = asyncHandler(async (req, res) => {
   const { title, description, thumbnail, video, videoid } = req.body;
-  console.table(req.body);
-
   const objectId = new mongoose.Types.ObjectId(videoid);
+
   if (!objectId) {
     throw new apiError(400, "Video ID requried !!!");
   }
-  console.log(objectId);
 
   try {
     const token =
@@ -343,8 +337,6 @@ const courseUpdate = asyncHandler(async (req, res) => {
 
   const thumbnailLocalPath = req.files?.thumbnail?.[0]?.path;
   if (thumbnailLocalPath) {
-    console.log("req path =", thumbnailLocalPath);
-
     if (!thumbnailLocalPath) {
       throw new apiError(400, "thumbnail files is required !!!");
     }
@@ -361,8 +353,6 @@ const courseUpdate = asyncHandler(async (req, res) => {
 
   const videoFileLocalPath = req.files?.video?.[0]?.path;
   if (videoFileLocalPath) {
-    console.log("req path =", videoFileLocalPath);
-
     if (!videoFileLocalPath) {
       throw new apiError(400, "videoFile files is required !!!");
     }
@@ -395,7 +385,7 @@ const courseUpdate = asyncHandler(async (req, res) => {
 
 const courseUpload = asyncHandler(async (req, res) => {
   const { title, description, thumbnail, video } = req.body;
-  console.table(req.body);
+
   try {
     const token =
       req.cookies?.accessToken ||
@@ -422,13 +412,11 @@ const courseUpload = asyncHandler(async (req, res) => {
   const userdataId = req.user._id;
 
   const thumbnailLocalPath = req.files?.thumbnail[0]?.path;
-  console.log("req path =", thumbnailLocalPath);
 
   if (!thumbnailLocalPath) {
     throw new apiError(400, "thumbnail files is required !!!");
   }
   const videoFileLocalPath = req.files?.video[0]?.path;
-  console.log("req path =", videoFileLocalPath);
 
   if (!videoFileLocalPath) {
     throw new apiError(400, "videoFile files is required !!!");
@@ -490,10 +478,8 @@ const allVideos = asyncHandler(async (req, res) => {
   }
 
   const userdataId = req.user._id;
-  // console.log(userdataId);
 
   const allVideos = await Video.find({ owner: userdataId });
-  // console.log(allVideos);
 
   return res
     .status(200)
@@ -518,7 +504,7 @@ const getusername = asyncHandler(async (req, res) => {
   const userName = await User.findById({ _id: objectId }).select(
     " -_id username avatar updatedAt createdAt"
   );
-  console.log(userName);
+
   return res
     .status(200)
     .json(new apiResponse(200, userName, "username fetched successFully."));
@@ -526,16 +512,14 @@ const getusername = asyncHandler(async (req, res) => {
 
 const allvideos = asyncHandler(async (req, res) => {
   const { ownerid } = req.body;
-  // console.log(ownerid);
 
   const objectId = new mongoose.Types.ObjectId(ownerid);
+
   if (!objectId) {
     throw new apiError(400, "Video ID requried !!!");
   }
-  // console.log(objectId);
 
   const allvideos = await Video.find({ owner: objectId });
-  // console.log(allvideos);
   return res
     .status(200)
     .json(new apiResponse(200, allvideos, "allvideos fetched successFully."));
@@ -549,52 +533,53 @@ const allstudent = asyncHandler(async (req, res) => {
 });
 
 const allTeacher = asyncHandler(async (req, res) => {
-  const teachers = await User.find({ role: "teacher" });
+  const allTeachers = await User.find({ role: "teacher" });
   return res
     .status(200)
-    .json(new apiResponse(200, teachers, "All videos fetched successFully."));
+    .json(
+      new apiResponse(200, allTeachers, "All Teachers fetched successFully.")
+    );
 });
 
 const deletevideo = asyncHandler(async (req, res) => {
-  const _id = req.body;
-  console.log(_id);
-  const objectId = new mongoose.Types.ObjectId(_id);
-  if (!_id) {
+  const { videoId } = req.body;
+
+  const objectId = new mongoose.Types.ObjectId(videoId);
+  if (!objectId) {
     throw new apiError(400, "Video ID requried !!!");
   }
 
-  const v = await Video.findOneAndDelete({ _id: objectId });
-  console.log(v);
+  const deletedVideo = await Video.findOneAndDelete({ _id: objectId });
   return res
     .status(200)
     .json(new apiResponse(200, {}, "Video deleted successFully."));
 });
 
 const deleteStudent = asyncHandler(async (req, res) => {
-  const _id = req.body;
-  console.log(_id);
-  const objectId = new mongoose.Types.ObjectId(_id);
-  if (!_id) {
+  const { studentid } = req.body;
+
+  const objectId = new mongoose.Types.ObjectId(studentid);
+  if (!objectId) {
     throw new apiError(400, "Video ID requried !!!");
   }
 
-  const v = await User.findOneAndDelete({ _id: objectId });
-  console.log(v);
+  const deletedStudent = await User.findOneAndDelete({ _id: objectId });
   return res
     .status(200)
     .json(new apiResponse(200, {}, "Student deleted successFully."));
 });
 
 const deleteTeacher = asyncHandler(async (req, res) => {
-  const _id = req.body;
-  console.log(_id);
-  const objectId = new mongoose.Types.ObjectId(_id);
-  if (!_id) {
+  const { teacherid } = req.body;
+  console.log(teacherid);
+  const objectId = new mongoose.Types.ObjectId(teacherid);
+  console.log(objectId);
+  if (!objectId) {
     throw new apiError(400, "Video ID requried !!!");
   }
 
-  const v = await User.findOneAndDelete({ _id: objectId });
-  console.log(v);
+  const deletedTeacher = await User.findOneAndDelete({ _id: objectId });
+
   return res
     .status(200)
     .json(new apiResponse(200, {}, "Teacher deleted successFully."));

@@ -1,26 +1,15 @@
-import axios from 'axios';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
-const CardUI = ({ title, description, thumbnail, video, videoid, ownerid }) => {
+const CardUI = ({ title, description, thumbnail, video, videoid, ownerid, onVideoDelete }) => {
 
-  const [Videoid, setVideoid] = useState(videoid)
   const [handleDeletebtn, setHandleDeletebtn] = useState(false)
 
-  const handelDeleteVideo = () => {
-    setHandleDeletebtn(true)
-    axios.post('/api/v1/users/deletevideo',
-      { Videoid }
-    )
-      .then(function (response) {
-        // console.log(response);
-        toast(`Video deleted successfully 😃`)
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-  }
+  const handleDelete = (Videoid) => {
+    onVideoDelete(Videoid);
+    toast(`Video deleted successfully 😃`)
+  };
 
   const setPlayerVideo = () => {
     localStorage.setItem("title", title)
@@ -37,7 +26,6 @@ const CardUI = ({ title, description, thumbnail, video, videoid, ownerid }) => {
         <img src={thumbnail} alt="" className=" object-center w-full h-[200px]" />
         <div className="p-5  ">
           <h1 className='py-2 truncate'>{description}</h1>
-          {/* <StarRating rating={course.rating} /> */}
         </div>
         <div className="items-center justify-between">
           <h3 className='p-5 text-2xl font-bold text-gray-900 '>{title}</h3>
@@ -50,7 +38,7 @@ const CardUI = ({ title, description, thumbnail, video, videoid, ownerid }) => {
               Play
             </Link>
             <button
-              onClick={handelDeleteVideo}
+              onClick={() => handleDelete(videoid)}
               className="me-[10px] text-white focus:ring-4 focus:outline-none  font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800" disabled={handleDeletebtn}
             >
               {handleDeletebtn ? "Deleting..." : "Delete"}

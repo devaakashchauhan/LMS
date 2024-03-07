@@ -22,7 +22,7 @@ function AdminDashboardPage() {
                 <div className="hidden md:flex h-full  flex-col   ">
                     <AdminSidebarUI />
                 </div>
-                <main className=" col-span-5 py-10"><Outlet /></main>
+                <main className=" col-span-5"><Outlet /></main>
             </div>
         </>
     )

@@ -4,17 +4,37 @@ import TeacherCardUI from '../../30-TeacherCardUI/TeacherCardUI.jsx';
 
 function CourseViewUI() {
     const [videos, setVideos] = useState([])
+
     useEffect(() => {
-        axios.post('/api/v1/users/mycourses',
-        )
-            .then(function ak(response) {
-                // console.log(response);                ;
-                setVideos(response.data.data)
+        fetchVideos();
+    }, []);
+
+    const fetchVideos = () => {
+        axios.post('/api/v1/users/mycourses')
+            .then(function (response) {
+                console.log(response);
+                setVideos(response.data.data);
             })
             .catch(function (error) {
                 console.log(error);
             });
-    }, [])
+    };
+
+    const handleVideoDelete = (videoId) => {
+        axios.post('/api/v1/users/deletevideo',
+            { videoId }
+        )
+            .then(function (response) {
+                console.log(response);
+                setVideos(prevVideos => prevVideos.filter(video => video._id !== videoId));
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+    };
+
+
+
     return (
         <>
             <div className='w-full bg-[#E9F8F3B2] p-0 maincard'>
@@ -25,6 +45,7 @@ function CourseViewUI() {
                     {videos.map((video, index) => (
                         <div key={index}>
                             <TeacherCardUI
+                                onVideoDelete={handleVideoDelete}
                                 title={video.title}
                                 description={video.description}
                                 thumbnail={video.thumbnail}

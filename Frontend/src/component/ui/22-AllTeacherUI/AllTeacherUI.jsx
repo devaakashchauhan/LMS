@@ -1,40 +1,53 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-
 import TeacherCardUI from "../25-teacherCardUI/TeacherCardUI";
 
-
 function AllTeacherUI() {
-    const [students, setStudent] = useState([])
+    const [teachers, setTeachers] = useState([])
 
     useEffect(() => {
-        axios.post('/api/v1/users/allteacher',
+        fetchTeacher();
+    }, []);
 
-        )
-            .then(function ak(response) {
-                // console.log(response);                
-                setStudent(response.data.data)
+    const fetchTeacher = () => {
+        axios.post('/api/v1/users/allteacher')
+            .then(function (response) {
+                console.log(response);
+                setTeachers(response.data.data);
             })
             .catch(function (error) {
-                // console.log(error);
-                console.log("please Enter valid User name and Id !!!")
+                console.log(error);
             });
-    }, [students])
+    };
+
+    const handleTeacherDelete = (teacherid) => {
+        axios.post('/api/v1/users/deleteteacher',
+            { teacherid }
+        )
+            .then(function (response) {
+                console.log(response);
+                setTeachers(prevTeachers => prevTeachers.filter(teacher => teacher._id !== teacherid));
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+    };
+
     return (
         <>
-            <div className='w-full bg-[#E9F8F3B2] p-0 maincard'>
+            <div className='w-full bg-[#E9F8F3B2] '>
                 <div className="text-center">
-                    <h1 className='text-3xl py-3 font-bold '>Most Popular <span className='text-[#20B486]'>Courses</span></h1>
-                    <p className='text-[#6D737A]'>Various versions have evolved over the years, sometimes by accident.</p>
+                    <h1 className='text-3xl py-3 font-bold '>Most Popular <span className='text-[#20B486]'>Teacher</span></h1>
                 </div>
-                <div className=" md:max-w-[1480px] m-auto grid md:grid-cols-4 max-w-[600px]">
-                    {students.map((student, index) => (
+                <div className=" md:max-w-[1480px] max-w-[600px] m-auto px-5 grid md:grid-cols-4 ">
+                    {teachers.map((teacher, index) => (
                         <div key={index}>
                             <TeacherCardUI
-                                avatar={student.avatar}
-                                fullname={student.fullname}
-                                username={student.username}
-                                _id={student._id}
+                                onTeacherDelete={handleTeacherDelete}
+                                avatar={teacher.avatar}
+                                fullname={teacher.fullname}
+                                username={teacher.username}
+                                teacherid={teacher._id}
                             />
                         </div>
                     ))}

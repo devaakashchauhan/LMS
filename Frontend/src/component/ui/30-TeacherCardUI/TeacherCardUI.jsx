@@ -1,26 +1,15 @@
-import axios from 'axios';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
-const TeacherCardUI = ({ title, description, thumbnail, video, videoid, ownerid }) => {
+const TeacherCardUI = ({ title, description, thumbnail, video, videoid, ownerid, onVideoDelete }) => {
 
-    const [Videoid, setVideoid] = useState(videoid)
     const [handleDeletebtn, setHandleDeletebtn] = useState(false)
 
-    const handelDeleteVideo = () => {
-        setHandleDeletebtn(true)
-        axios.post('/api/v1/users/deletevideo',
-            { Videoid }
-        )
-            .then(function (response) {
-                // console.log(response);
-                toast(`Video deleted successfully 😃`)
-            })
-            .catch(function (error) {
-                console.log(error);
-            });
-    }
+    const handleDelete = (Videoid) => {
+        onVideoDelete(Videoid);
+        toast(`Video deleted successfully 😃`)
+    };
 
     const handelUpdateVideo = () => {
         const videoIdForUpdate = {
@@ -63,7 +52,7 @@ const TeacherCardUI = ({ title, description, thumbnail, video, videoid, ownerid 
                             Play
                         </Link>
                         <button
-                            onClick={handelDeleteVideo}
+                            onClick={() => handleDelete(videoid)}
                             className="me-[10px] text-white focus:ring-4 focus:outline-none  font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800" disabled={handleDeletebtn}
                         >
                             {handleDeletebtn ? "Deleting..." : "Delete"}

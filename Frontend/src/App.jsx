@@ -61,7 +61,6 @@ const App = () => {
                         </ProtectRoute>
                     } />
 
-
                     <Route path='/dashbord' element={
                         <ProtectRoute >
                             <DashboardPage />

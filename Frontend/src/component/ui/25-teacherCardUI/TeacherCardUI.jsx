@@ -1,28 +1,14 @@
-import axios from "axios";
 import { useState } from "react"
+import { Link } from "react-router-dom";
 import { toast } from 'react-toastify';
 
-const TeacherCardUI = ({ avatar, fullname, username, _id }) => {
-    const [id, setId] = useState(_id)
+const TeacherCardUI = ({ avatar, fullname, username, teacherid, onTeacherDelete }) => {
     const [handleDeletebtn, setHandleDeletebtn] = useState(false)
 
-    const handelDeleteTeacher = () => {
-        setHandleDeletebtn(true)
-        axios.post('/api/v1/users/deleteteacher',
-            { id }
-        )
-            .then(function ak(response) {
-                // console.log(response);
-                // const chk = response.data.statusCode;
-                toast(`Teacher deleted successfully 😃`)
-                // setTimeout(() => {
-                //     window.location.reload(false);
-                // }, 3000);
-            })
-            .catch(function (error) {
-                console.log(error);
-            });
-    }
+    const handleDelete = (teacherid) => {
+        onTeacherDelete(teacherid);
+        toast(`Teacher deleted successfully 😃`)
+    };
 
     return (
         <>
@@ -36,18 +22,18 @@ const TeacherCardUI = ({ avatar, fullname, username, _id }) => {
                 <div className=" items-center justify-between">
                     <h3 className='p-5 text-2xl font-bold text-gray-900 '>{username}</h3>
                     <div className=" px-3 flex justify-between">
-                        <a
+                        <Link
                             href="/videoPlayer"
                             className="me-[10px] text-white  focus:ring-4 focus:outline-none  font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
                         >
                             View
-                        </a>
-                        <a
-                            onClick={handelDeleteTeacher}
+                        </Link>
+                        <button
+                            onClick={() => handleDelete(teacherid)}
                             className="me-[10px] text-white focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800 hover:cursor-pointer"
                         >
                             {handleDeletebtn ? "Deleting..." : "Delete"}
-                        </a>
+                        </button>
                     </div>
                 </div>
                 <div className="absolute top-0 bg-white m-5 px-2 py-[2.5px] rounded font-bold">
