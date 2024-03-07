@@ -9,12 +9,11 @@ import { toast } from 'react-toastify';
 const LoginUI = () => {
     const navigate = useNavigate()
     const user = localStorage.getItem('accessToken')
-    console.log(user)
     useEffect(() => {
         if (user) {
             navigate("/")
         }
-    }, [])
+    })
 
     const [form, setForm] = useState({
         username: "",
@@ -30,21 +29,20 @@ const LoginUI = () => {
             { ...form }
         )
             .then(function ak(response) {
-                // console.log(response);
-                // console.log(response.data.data);
+                console.log(response);
                 const user = response.data.data.user.username
 
                 if (user) {
                     toast(`Welcome ${user} 😃😃😃`)
                     localStorage.setItem("accessToken", response.data.data.accessToken)
                     localStorage.setItem("avatar", response.data.data.user.avatar)
+                    localStorage.setItem("userId", response.data.data.user._id)
                     navigate("/")
                 }
             })
             .catch(function (error) {
                 toast(`User does not exist !!!`)
-                // console.log(error);
-                // console.log("please Enter valid User name and Id !!!")
+                console.log(error);
             });
     }
 

@@ -384,50 +384,24 @@ const courseUpdate = asyncHandler(async (req, res) => {
 });
 
 const courseUpload = asyncHandler(async (req, res) => {
-  const { title, description, thumbnail, video } = req.body;
-
-  try {
-    const token =
-      req.cookies?.accessToken ||
-      req.header("Authorization")?.replace("Bearer ", "");
-
-    if (!token) {
-      throw new apiError(401, "Inauthorized request. ");
-    }
-    const decodedToken = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
-
-    const user = await User.findById(decodedToken?._id).select(
-      "-password -refreshToken"
-    );
-
-    if (!user) {
-      throw new apiError(401, "Invalid accessToken.");
-    }
-
-    req.user = user;
-  } catch (error) {
-    throw new apiError(401, error?.message || "Invalid Access token");
-  }
-
-  const userdataId = req.user._id;
+  const { title, description, userId } = req.body;
 
   const thumbnailLocalPath = req.files?.thumbnail[0]?.path;
-
   if (!thumbnailLocalPath) {
     throw new apiError(400, "thumbnail files is required !!!");
   }
-  const videoFileLocalPath = req.files?.video[0]?.path;
 
+  const videoFileLocalPath = req.files?.video[0]?.path;
   if (!videoFileLocalPath) {
     throw new apiError(400, "videoFile files is required !!!");
   }
 
   const thumbnailfile = await uploadOnCloudinary(thumbnailLocalPath);
-  const videoFile = await uploadOnCloudinary(videoFileLocalPath);
-
   if (!thumbnailfile) {
     throw new apiError(400, "thumbnailfile files is required !!!");
   }
+
+  const videoFile = await uploadOnCloudinary(videoFileLocalPath);
   if (!videoFile) {
     throw new apiError(400, "videoFile files is required !!!");
   }
@@ -437,7 +411,7 @@ const courseUpload = asyncHandler(async (req, res) => {
     thumbnail: thumbnailfile.url,
     title,
     description,
-    owner: userdataId,
+    owner: userId,
   });
 
   const createdVideo = await Video.findById(videos._id);
@@ -445,7 +419,6 @@ const courseUpload = asyncHandler(async (req, res) => {
   if (!createdVideo) {
     throw new apiError(500, "Error when registering the user !!!");
   }
-
   return res
     .status(201)
     .json(

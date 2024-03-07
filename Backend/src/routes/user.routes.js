@@ -54,7 +54,6 @@ router
   .post(verifyJWT, upload.single("avatar"), updateUserAvatar);
 
 router.route("/courseupload").post(
-  verifyJWT,
   upload.fields([
     {
       name: "thumbnail",
@@ -67,6 +66,7 @@ router.route("/courseupload").post(
   ]),
   courseUpload
 );
+
 router.route("/courseupdate").post(
   verifyJWT,
   upload.fields([

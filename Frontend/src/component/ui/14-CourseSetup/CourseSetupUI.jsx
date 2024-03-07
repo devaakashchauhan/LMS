@@ -1,14 +1,17 @@
-import { useState, useRef } from 'react'
-import { NavLink } from "react-router-dom";
-import { heroImg } from '../../assets'
 import axios from 'axios'
-import { useNavigate } from 'react-router-dom';
+import { useState, useRef } from 'react'
+import { NavLink, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
+
+// assetes
 import { MdAddAPhoto } from "react-icons/md";
+import { heroImg } from '../../assets'
 
 
 function CourseSetupUI() {
+
     const navigate = useNavigate()
+
     const inputRef = useRef(null)
     const videoRef = useRef(null)
 
@@ -21,13 +24,11 @@ function CourseSetupUI() {
         description: "",
         thumbnail: "",
         video: "",
-
     });
 
     // handel text input change
     const handleInputChange = (e) => {
         setForm({ ...form, [e.target.name]: e.target.value })
-
     };
 
     // handel open file to input image
@@ -58,6 +59,7 @@ function CourseSetupUI() {
         formdata.append("description", form.description)
         formdata.append("thumbnail", image)
         formdata.append("video", video)
+        formdata.append("userId", localStorage.getItem('userId'))
 
         axios.post('/api/v1/users/courseupload',
             formdata
@@ -74,7 +76,6 @@ function CourseSetupUI() {
             .catch(function (error) {
                 console.log(error);
             });
-
     }
 
     const handleSubmit = (e) => {
@@ -133,18 +134,15 @@ function CourseSetupUI() {
                             <div className=" bg-gray-100 w-full  max-w-[800px] p-4 shadow-lg rounded-md flex  border border-transparent ">
                                 <div className="w-full flex flex-col justify-center">
                                     <div className="flex flex-col "  >
-
                                         <div className="flex ">
                                             <label htmlFor="name" className="text-xl py-1 font-bold ">
                                                 Course Image
                                             </label>
                                             <MdAddAPhoto size={40} onClick={handleImgClick} className='ms-auto hover:cursor-pointer' />
                                         </div>
-
                                         <div className="w-[287px] rounded-lg overflow-hidden  object-contain   h-[160px] border">
                                             {image ? <img src={URL.createObjectURL(image)} /> : <img src={heroImg} />}
                                         </div>
-
                                         <input
                                             type="file"
                                             name="name"
@@ -194,7 +192,7 @@ function CourseSetupUI() {
                     </div>
                     <div className="flex justify-center mt-5">
                         <NavLink to={'/teacherDashboard/createcourse'}>
-                            <button onClick={() => videoUpload()} className='w-full max-w-[300px] bg-[#20B486] my-4 px-8 py-3 rounded-md text-white font-bold' disabled={handleSubmitbtn}>
+                            <button onClick={videoUpload} className='w-full max-w-[300px] bg-[#20B486] my-4 px-8 py-3 rounded-md text-white font-bold' disabled={handleSubmitbtn}>
                                 {handleSubmitbtn ? "Course Uploading..." : "Submit Course"}
                             </button>
                         </NavLink>
