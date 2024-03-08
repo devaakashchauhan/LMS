@@ -27,6 +27,11 @@ function VideoPlayerUI() {
         setvideoid(localStorage.getItem("videoid"))
         setownerid(localStorage.getItem("ownerid"))
 
+        fecthUserInfo(localStorage.getItem("ownerid"));
+        fetchUserAllVideos(localStorage.getItem("ownerid"));
+    }, [localStorage.getItem("videoid")])
+
+    const fecthUserInfo = (ownerid) => {
         axios.post('/api/v1/users/username',
             { ownerid }
         )
@@ -39,7 +44,9 @@ function VideoPlayerUI() {
             .catch(function (error) {
                 console.log(error);
             });
+    }
 
+    const fetchUserAllVideos = (ownerid) => {
         axios.post('/api/v1/users/allvideos',
             { ownerid }
         )
@@ -50,7 +57,7 @@ function VideoPlayerUI() {
             .catch(function (error) {
                 console.log(error);
             });
-    })
+    }
 
     return (
         <>
@@ -71,6 +78,7 @@ function VideoPlayerUI() {
                                     videoid={video._id}
                                     ownerid={video.owner}
                                     owner={ownerUsername}
+                                    onVideoChange={fetchUserAllVideos}
                                 />
                             </div>
                     ))}

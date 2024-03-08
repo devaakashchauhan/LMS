@@ -23,6 +23,7 @@ const NavbarUI = () => {
             null
         )
             .then(function (response) {
+                console.log(response);
                 localStorage.clear();
                 setLogout(false)
                 setImage('')

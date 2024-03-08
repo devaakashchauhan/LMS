@@ -3,6 +3,7 @@ import axios from 'axios'
 import { useNavigate, NavLink } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { MdAddAPhoto } from "react-icons/md";
+import LoaderUI from '../0-LoaderUI/LoaderUI';
 
 function UpdateVideoDetailsUI() {
 
@@ -14,6 +15,7 @@ function UpdateVideoDetailsUI() {
 
     const [image, setImage] = useState('')
     const [video, setVideo] = useState('')
+    const [Loader, setLoader] = useState(false)
 
     const [videoIdForUpdate, setVideoIdForUpdate] = useState({})
 
@@ -74,6 +76,7 @@ function UpdateVideoDetailsUI() {
 
     const videoUpload = () => {
         setHandleSubmitbtn(true)
+        setLoader(true)
 
         const formdata = new FormData()
         formdata.append("title", form.title)
@@ -87,8 +90,10 @@ function UpdateVideoDetailsUI() {
             formdata
         )
             .then(function (response) {
-                // console.log(response);
+                console.log(response);
                 const user = response.data.data._id;
+                setHandleSubmitbtn(false)
+                setLoader(false)
 
                 if (user) {
                     toast(`Course Updated 😃`)
@@ -97,6 +102,8 @@ function UpdateVideoDetailsUI() {
             })
             .catch(function (error) {
                 console.log(error);
+                setHandleSubmitbtn(false)
+                setLoader(false)
             });
 
     }
@@ -106,7 +113,9 @@ function UpdateVideoDetailsUI() {
     }
 
     return (
-        <>
+        <><div className="grid justify-items-center">
+            <LoaderUI show={Loader} />
+        </div>
             <div className='w-full bg-white py-24'>
                 <div className="text-center">
                     <h1 className='text-3xl py-3 font-bold '>Course <span className='text-[#20B486]'>Setup</span></h1>
@@ -222,11 +231,11 @@ function UpdateVideoDetailsUI() {
                     </div>
                     <div className="flex justify-center mt-5">
 
-                        <NavLink to={'/teacherDashboard/createcourse'}>
-                            <button onClick={() => videoUpload()} className=' max-w-[300px] bg-[#20B486] my-4 px-8 py-3 rounded-md text-white font-bold' disabled={handleSubmitbtn}>
-                                {handleSubmitbtn ? "Course Updating..." : "Update Course"}
-                            </button>
-                        </NavLink>
+
+                        <button onClick={() => videoUpload()} className=' max-w-[300px] bg-[#20B486] my-4 px-8 py-3 rounded-md text-white font-bold' disabled={handleSubmitbtn}>
+                            {handleSubmitbtn ? "Course Updating..." : "Update Course"}
+                        </button>
+
                     </div>
                 </form>
             </div>

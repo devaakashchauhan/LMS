@@ -6,6 +6,7 @@ import { toast } from 'react-toastify';
 // assetes
 import { MdAddAPhoto } from "react-icons/md";
 import { heroImg } from '../../assets'
+import LoaderUI from '../0-LoaderUI/LoaderUI';
 
 
 function CourseSetupUI() {
@@ -18,6 +19,7 @@ function CourseSetupUI() {
     const [image, setImage] = useState('')
     const [video, setVideo] = useState('')
     const [handleSubmitbtn, setHandleSubmitbtn] = useState(false)
+    const [Loader, setLoader] = useState(false)
 
     const [form, setForm] = useState({
         title: "",
@@ -53,6 +55,7 @@ function CourseSetupUI() {
 
     const videoUpload = () => {
         setHandleSubmitbtn(true)
+        setLoader(true)
 
         const formdata = new FormData()
         formdata.append("title", form.title)
@@ -65,7 +68,9 @@ function CourseSetupUI() {
             formdata
         )
             .then(function (response) {
-                // console.log(response);
+                setHandleSubmitbtn(false)
+                setLoader(false)
+                console.log(response);
                 const user = response.data.data._id;
                 if (user) {
                     toast(`Course created 😃`)
@@ -74,6 +79,8 @@ function CourseSetupUI() {
             })
             .catch(function (error) {
                 console.log(error);
+                setHandleSubmitbtn(false)
+                setLoader(false)
             });
     }
 
@@ -83,7 +90,10 @@ function CourseSetupUI() {
 
     return (
         <>
-            <div className='w-full bg-white py-24'>
+            <div className="grid justify-items-center">
+                <LoaderUI show={Loader} />
+            </div>
+            <div className='w-full bg-white py-18'>
                 <div className="text-center">
                     <h1 className='text-3xl py-3 font-bold '>Course <span className='text-[#20B486]'>Setup</span></h1>
                 </div>
@@ -172,8 +182,6 @@ function CourseSetupUI() {
                                             {video ? <video src={URL.createObjectURL(video)} /> : <img src={heroImg} />}
 
                                         </div>
-
-
                                         <input
                                             type="file"
                                             name="name"
@@ -187,7 +195,6 @@ function CourseSetupUI() {
                                 </div>
                             </div>
                         </div>
-
                     </div>
                     <div className="flex justify-center mt-5">
                         <NavLink to={'/teacherDashboard/createcourse'}>

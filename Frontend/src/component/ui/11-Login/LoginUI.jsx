@@ -8,12 +8,11 @@ import { toast } from 'react-toastify';
 
 const LoginUI = () => {
     const navigate = useNavigate()
-    const user = localStorage.getItem('accessToken')
     useEffect(() => {
-        if (user) {
+        if (localStorage.getItem('accessToken')) {
             navigate("/")
         }
-    })
+    }, [])
 
     const [form, setForm] = useState({
         username: "",
@@ -52,13 +51,10 @@ const LoginUI = () => {
 
     return (
         <>
-            <div className='w-full bg-white py-24'>
-
+            <div className='w-full bg-white py-24 '>
                 <div className=" md:max-w-[1480px] m-auto grid md:grid-cols-2 max-w-[600px] ">
                     <div className="flex flex-col justify-start gap-4   ">
-
-                        <h1 className=' md:leading-[72px] py-4 md:text-6xl text-5xl font-semibold'>Crack your goal with India’s top educators
-                        </h1>
+                        <h1 className=' md:leading-[72px] py-4 md:text-6xl text-5xl font-semibold'>Crack your goal with India’s top educators</h1>
                         <p className='py-4 text-lg text-gray-600 font-bold'>Over <span className='text-[#20B486]'>10 crore</span>  learners trust us for their preparation</p>
                         <form action="" onSubmit={(e) => handleSubmit(e)} className=' max-w-[500px] py-4 input-bx-shadow rounded-md '>
                             <div className="flex flex-col mt-2">
@@ -87,7 +83,6 @@ const LoginUI = () => {
                                     className="w-100 mt-2 py-3 px-3 rounded-lg bg-white border border-gray-400 text-gray-800 font-semibold focus:border-[#20B486] focus:outline-none"
                                 />
                             </div>
-
                             <button
                                 type="submit"
                                 onClick={userRegistration}
@@ -96,7 +91,6 @@ const LoginUI = () => {
                                 Login
                             </button>
                             <ul className='pt-4' >
-
                                 <li>
                                     I did not have an account
                                     <NavLink
@@ -108,7 +102,6 @@ const LoginUI = () => {
                             </ul>
                         </form>
                     </div>
-
                     <img src={heroImg} className='md:order-last order-first' alt="" />
                 </div>
             </div>

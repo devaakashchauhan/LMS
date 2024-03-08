@@ -23,7 +23,7 @@ const AllCoursesCardUI = ({ title, description, thumbnail, video, videoid, owner
                     <div className=" px-3 flex justify-between">
                         <Link
                             to="/videoPlayer"
-                            onClick={setPlayerVideo}
+                            onClick={() => setPlayerVideo()}
                             className="me-[10px] text-white bg-[#20B486] hover:bg-[#20B486] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
                         >
                             Play

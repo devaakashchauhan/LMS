@@ -44,8 +44,6 @@ function ProfileUpdateUI() {
         )
             .then(function (response) {
                 // console.log(response);
-                // console.log(response.data.data);
-                // const user = response.data.data;
                 const role = response.data.data.role
 
                 function firstFunction() {
@@ -127,21 +125,6 @@ function ProfileUpdateUI() {
                                 className="hidden w-100 mt-2 py-3 px-3 rounded-lg bg-white border border-gray-200 text-gray-800 font-semibold focus:border-[#20B486] focus:outline-none"
                             />
                         </div>
-                        {/* <div className="flex flex-col mt-2">
-                            <label htmlFor="tel" className="text-xl py-1 font-bold ">
-                                User Name
-                            </label>
-                            <input
-                                type="tel"
-                                name="username"
-                                id="tel"
-                                placeholder="User Name"
-
-
-                                onChange={handleInputChange}
-                                className="w-100 mt-2 py-3 px-3 rounded-lg bg-white border border-gray-400 text-gray-800 font-semibold focus:border-[#20B486] focus:outline-none"
-                            />
-                        </div> */}
                         <div className="flex flex-col mt-2">
                             <label htmlFor="name" className="text-xl py-1 font-bold ">
                                 Full Name
@@ -170,7 +153,6 @@ function ProfileUpdateUI() {
                                 className="w-100 mt-2 py-3 px-3 rounded-lg bg-white border border-gray-400 text-gray-800 font-semibold focus:border-[#20B486] focus:outline-none"
                             />
                         </div>
-
                         <div className=" flex gap-3">
                             <button
                                 type="submit"
