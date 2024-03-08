@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { useState, useRef, useEffect } from 'react'
-import { useNavigate, NavLink } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import LoaderUI from '../0-LoaderUI/LoaderUI';
 
@@ -30,6 +30,18 @@ function UpdateVideoDetailsUI() {
 
     });
 
+
+
+    const [image2, setImage2] = useState('')
+    const [video2, setvideo2] = useState('')
+    const [form2, setForm2] = useState({
+        title: "",
+        description: "",
+        thumbnail: "",
+        video: "",
+        videoid: "",
+    });
+
     useEffect(() => {
         const stringToObject = JSON.parse(localStorage.getItem("videoIdForUpdate"));
         if (stringToObject) {
@@ -47,7 +59,7 @@ function UpdateVideoDetailsUI() {
 
     // handel text input change
     const handleInputChange = (e) => {
-        setForm({ ...form, [e.target.name]: e.target.value })
+        setForm2({ ...form2, [e.target.name]: e.target.value })
     };
 
     // handel open file to input image
@@ -57,7 +69,7 @@ function UpdateVideoDetailsUI() {
 
     // handel image input change
     const handleImgChange = (event) => {
-        setImage(event.target.files[0])
+        setImage2(event.target.files[0])
         console.log("image : ", event.target.files[0])
         console.log("image : ", image)
     }
@@ -69,7 +81,7 @@ function UpdateVideoDetailsUI() {
 
     // handel video input change
     const handleVideoChange = (event) => {
-        setVideo(event.target.files[0])
+        setvideo2(event.target.files[0])
         console.log("video : ", event.target.files[0])
         console.log("video : ", video)
 
@@ -81,13 +93,13 @@ function UpdateVideoDetailsUI() {
         setLoader(true)
 
         const formdata = new FormData()
-        formdata.append("title", form.title)
-        formdata.append("description", form.description)
+        formdata.append("title", form2.title)
+        formdata.append("description", form2.description)
         formdata.append("videoid", form.videoid)
-        formdata.append("thumbnail", image)
-        formdata.append("video", video)
+        formdata.append("thumbnail", image2)
+        formdata.append("video", video2)
 
-
+        console.log(form2);
         axios.post('/api/v1/users/courseupdate',
             formdata
         )
@@ -179,7 +191,7 @@ function UpdateVideoDetailsUI() {
                                         </div>
 
                                         <div className=" w-[287px] rounded-lg overflow-hidden  object-contain   h-[160px] border">
-                                            {image ? <img src={URL.createObjectURL(image)} /> : <img src={form.thumbnail} />}
+                                            {image2 ? <img src={URL.createObjectURL(image2)} /> : <img src={form.thumbnail} />}
                                         </div>
 
                                         <input
@@ -210,7 +222,7 @@ function UpdateVideoDetailsUI() {
 
                                         <div className=" w-[287px] rounded-lg overflow-hidden   h-[160px] border">
 
-                                            {video ? <video src={URL.createObjectURL(video)} /> : <video src={form.video} />}
+                                            {video2 ? <video src={URL.createObjectURL(video2)} /> : <video src={form.video} />}
 
                                         </div>
 

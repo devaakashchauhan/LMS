@@ -236,42 +236,64 @@ const getCurrentUser = asyncHandler(async (req, res) => {
 const updateUserDetails = asyncHandler(async (req, res) => {
   const { fullname, email } = req.body;
 
-  if (!fullname && !email) {
-    throw new apiError(400, "1All feilds required.");
+  if (fullname) {
+    const user = await User.findByIdAndUpdate(
+      req.user?._id,
+      {
+        $set: {
+          fullname,
+        },
+      },
+      { new: true }
+    ).select("-password");
   }
 
-  const exitedUseremail = await User.findOne({ email });
+  if (email) {
+    const exitedUseremail = await User.findOne({ email });
 
-  if (exitedUseremail) {
-    throw new apiError(402, "email already exists !!!");
+    if (exitedUseremail) {
+      throw new apiError(402, "email already exists !!!");
+    }
+
+    const user1 = await User.findByIdAndUpdate(
+      req.user?._id,
+      {
+        $set: {
+          email,
+        },
+      },
+      { new: true }
+    ).select("-password");
   }
 
   const avatarLocalPath = req.file?.path;
-  if (!avatarLocalPath) {
-    throw new apiError(400, "Avtar file is missing.");
-  }
+  if (avatarLocalPath) {
+    const avatar = await uploadOnCloudinary(avatarLocalPath);
 
-  const avatar = await uploadOnCloudinary(avatarLocalPath);
+    if (!avatar) {
+      throw new apiError(400, "Error while uploading avatar file.");
+    }
 
-  if (!avatar) {
-    throw new apiError(400, "Error while uploading avatar file.");
+    const user = await User.findByIdAndUpdate(
+      req.user?._id,
+      {
+        $set: {
+          avatar: avatar.url,
+        },
+      },
+      { new: true }
+    ).select("-password");
   }
 
   const user = await User.findByIdAndUpdate(
     req.user?._id,
-    {
-      $set: {
-        fullname,
-        email,
-        avatar: avatar.url,
-      },
-    },
+    {},
     { new: true }
   ).select("-password");
 
   return res
     .status(200)
-    .json(new apiResponse(200, user, "Account details updated successfully."));
+    .json(new apiResponse(200, user, "updated successfully."));
 });
 
 const updateUserAvatar = asyncHandler(async (req, res) => {
@@ -312,34 +334,9 @@ const courseUpdate = asyncHandler(async (req, res) => {
     throw new apiError(400, "Video ID requried !!!");
   }
 
-  try {
-    const token =
-      req.cookies?.accessToken ||
-      req.header("Authorization")?.replace("Bearer ", "");
-
-    if (!token) {
-      throw new apiError(401, "Inauthorized request. ");
-    }
-    const decodedToken = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
-
-    const user = await User.findById(decodedToken?._id).select(
-      "-password -refreshToken"
-    );
-
-    if (!user) {
-      throw new apiError(401, "Invalid accessToken.");
-    }
-
-    req.user = user;
-  } catch (error) {
-    throw new apiError(401, error?.message || "Invalid Access token");
-  }
-
   const thumbnailLocalPath = req.files?.thumbnail?.[0]?.path;
+
   if (thumbnailLocalPath) {
-    if (!thumbnailLocalPath) {
-      throw new apiError(400, "thumbnail files is required !!!");
-    }
     const thumbnailfile = await uploadOnCloudinary(thumbnailLocalPath);
 
     if (!thumbnailfile) {
@@ -353,9 +350,6 @@ const courseUpdate = asyncHandler(async (req, res) => {
 
   const videoFileLocalPath = req.files?.video?.[0]?.path;
   if (videoFileLocalPath) {
-    if (!videoFileLocalPath) {
-      throw new apiError(400, "videoFile files is required !!!");
-    }
     const videoFile = await uploadOnCloudinary(videoFileLocalPath);
     if (!videoFile) {
       throw new apiError(400, "videoFile files is required !!!");
@@ -365,21 +359,28 @@ const courseUpdate = asyncHandler(async (req, res) => {
     });
   }
 
-  const videos = await Video.findByIdAndUpdate(objectId, {
-    title,
-    description,
-  });
+  if (title) {
+    const videos = await Video.findByIdAndUpdate(objectId, {
+      title,
+    });
+  }
 
-  const createdVideo = await Video.findById(videos._id);
+  if (description) {
+    const videos = await Video.findByIdAndUpdate(objectId, {
+      description,
+    });
+  }
 
-  if (!createdVideo) {
+  const updatedVideo = await Video.findById(objectId);
+
+  if (!updatedVideo) {
     throw new apiError(500, "Error when registering the user !!!");
   }
 
   return res
     .status(201)
     .json(
-      new apiResponse(200, createdVideo, "User registered video successfully.")
+      new apiResponse(200, updatedVideo, "User registered video successfully.")
     );
 });
 

@@ -17,7 +17,16 @@ function ProfileUpdateUI() {
     const [image, setImage] = useState('')
     const [userIdForUpdate, setUserIdForUpdate] = useState({})
 
+
     const [form, setForm] = useState({
+        fullname: "",
+        email: "",
+        avatar: ""
+    });
+
+
+    const [image2, setImage2] = useState('')
+    const [form2, setForm2] = useState({
         fullname: "",
         email: "",
         avatar: ""
@@ -36,8 +45,10 @@ function ProfileUpdateUI() {
         }
     }, []);
 
-    const handleInputChange = (e) => {
-        setForm({ ...form, [e.target.name]: e.target.value })
+
+
+    const handleInputChange2 = (e) => {
+        setForm2({ ...form2, [e.target.name]: e.target.value })
     };
 
     const handleImgClick = () => {
@@ -45,7 +56,7 @@ function ProfileUpdateUI() {
     }
 
     const handleImgChange = (event) => {
-        setImage(event.target.files[0])
+        setImage2(event.target.files[0])
     }
 
     const updateDetails = () => {
@@ -53,9 +64,11 @@ function ProfileUpdateUI() {
         setLoader(true)
 
         const formdata = new FormData()
-        formdata.append("fullname", form.fullname)
-        formdata.append("email", form.email)
-        formdata.append("avatar", image)
+        formdata.append("fullname", form2.fullname)
+        formdata.append("email", form2.email)
+        formdata.append("avatar", image2)
+        console.log(form2)
+
 
         axios.post('/api/v1/users/updatedetails',
             formdata
@@ -109,7 +122,7 @@ function ProfileUpdateUI() {
                                 name="image"
                                 id="image"
                                 ref={inputRef}
-                                onChange={handleImgChange}
+                                onChange={() => handleImgChange(event)}
                                 className="hidden w-100 mt-2 py-3 px-3 rounded-lg bg-white border border-gray-200 text-gray-800 font-semibold focus:border-[#20B486] focus:outline-none"
                             />
                         </div>
@@ -123,7 +136,7 @@ function ProfileUpdateUI() {
                                 id="name"
                                 placeholder="Name"
                                 defaultValue={form.fullname}
-                                onChange={handleInputChange}
+                                onChange={handleInputChange2}
                                 className="w-100 mt-2 py-3 px-3 rounded-lg bg-white border border-gray-400 text-gray-800 font-semibold focus:border-[#20B486] focus:outline-none"
                             />
                         </div>
@@ -137,7 +150,7 @@ function ProfileUpdateUI() {
                                 id="email"
                                 placeholder="Email"
                                 defaultValue={form.email}
-                                onChange={handleInputChange}
+                                onChange={handleInputChange2}
                                 className="w-100 mt-2 py-3 px-3 rounded-lg bg-white border border-gray-400 text-gray-800 font-semibold focus:border-[#20B486] focus:outline-none"
                             />
                         </div>
