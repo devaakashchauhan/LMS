@@ -2,6 +2,7 @@ import axios from 'axios'
 import { useState, useRef, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import Swal from 'sweetalert2'
 
 // image,icon,svg
 import { MdAddAPhoto } from "react-icons/md";
@@ -57,6 +58,22 @@ function ProfileUpdateUI() {
 
     const handleImgChange = (event) => {
         setImage2(event.target.files[0])
+    }
+
+    const handelUpdate = () => {
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, Update it!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                updateDetails()
+            }
+        });
     }
 
     const updateDetails = () => {
@@ -157,7 +174,7 @@ function ProfileUpdateUI() {
                         <div className=" flex gap-3">
                             <button
                                 type="submit"
-                                onClick={() => updateDetails()}
+                                onClick={() => handelUpdate()}
                                 disabled={btndisable}
                                 className="md:w-32 bg-[#20B486]  text-white font-bold py-3 px-6 rounded-lg mt-3 hover:bg-[#20B486]  "
                             >

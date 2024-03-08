@@ -1,9 +1,26 @@
 import { useState } from "react"
 import { Link } from "react-router-dom";
 import { toast } from 'react-toastify';
+import Swal from 'sweetalert2';
 
 const TeacherCardUI = ({ avatar, fullname, username, studentid, ovStudentDelete }) => {
     const [handleDeletebtn, setHandleDeletebtn] = useState(false)
+
+    const handelUpdate = (studentid) => {
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, Delete it!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                handleDelete(studentid)
+            }
+        });
+    }
 
     const handleDelete = (studentid) => {
         ovStudentDelete(studentid);
@@ -30,7 +47,7 @@ const TeacherCardUI = ({ avatar, fullname, username, studentid, ovStudentDelete 
                             View
                         </Link>
                         <button
-                            onClick={() => handleDelete(studentid)}
+                            onClick={() => handelUpdate(studentid)}
                             className="me-[10px] text-white focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800 hover:cursor-pointer"
                         >
                             {handleDeletebtn ? "Deleting..." : "Delete"}
