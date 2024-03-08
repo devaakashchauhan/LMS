@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { heroImg } from '../../assets'
 import axios from 'axios'
-
+import { Link } from 'react-router-dom'
 
 function ProfileUI() {
 
@@ -9,6 +9,7 @@ function ProfileUI() {
     const [fullname, setFullname] = useState('')
     const [email, setEmail] = useState('')
     const [userName, setUserName] = useState('')
+    const [userid, setUserid] = useState('')
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -19,24 +20,36 @@ function ProfileUI() {
             {}
         )
             .then(function (response) {
-                // console.log(response);                
+                console.log(response);
                 setImage(response.data.data.avatar)
                 setFullname(response.data.data.fullname)
                 setEmail(response.data.data.email)
                 setUserName(response.data.data.username)
+                setUserid(response.data.data._id)
             })
             .catch(function (error) {
                 console.log(error);
             });
     }, [])
 
+    const handelUpdateUser = () => {
+        const userIdForUpdate = {
+            "fullname": fullname,
+            "email": email,
+            "avatar": image,
+            "userName": userName,
+            "userid": userid,
+
+        }
+        const stringifiedObject = JSON.stringify(userIdForUpdate)
+        localStorage.setItem("userIdForUpdate", stringifiedObject)
+    }
 
     return (
         <>
             <div className=" flex justify-center  ">
                 <div className=" bg-white w-full  max-w-[800px] p-4 shadow-lg rounded-md flex  border border-transparent ">
                     <form className="p-6  w-full   flex flex-col justify-center" onSubmit={(e) => handleSubmit(e)}>
-
                         <div className="flex flex-col "  >
                             <div className="flex ">
                                 <label className="text-xl py-1 font-bold ">
@@ -93,7 +106,15 @@ function ProfileUI() {
                                 className="w-100 mt-2 py-3 px-3 rounded-lg bg-white border border-gray-400 text-gray-800 font-semibold focus:border-[#20B486] focus:outline-none"
                             />
                         </div>
-
+                        <div className="">
+                            <Link
+                                onClick={handelUpdateUser}
+                                to="/updatedetails"
+                                className="me-[10px] text-white focus:ring-4 focus:outline-none  font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                            >
+                                Update
+                            </Link>
+                        </div>
                     </form>
                 </div>
             </div>

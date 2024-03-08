@@ -1,75 +1,77 @@
-import { MdAddAPhoto } from "react-icons/md";
-import { heroImg } from '../../assets'
 import axios from 'axios'
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
-
+// image,icon,svg
+import { MdAddAPhoto } from "react-icons/md";
+import LoaderUI from '../0-LoaderUI/LoaderUI';
 
 function ProfileUpdateUI() {
+
     const navigate = useNavigate()
     const inputRef = useRef(null)
+
+    const [btndisable, setBtndisable] = useState(false)
+    const [Loader, setLoader] = useState(false)
     const [image, setImage] = useState('')
+    const [userIdForUpdate, setUserIdForUpdate] = useState({})
+
     const [form, setForm] = useState({
         fullname: "",
         email: "",
+        avatar: ""
     });
-    const [btndisable, setBtndisable] = useState(false)
 
-    const handleBtndisable = () => {
-        setBtndisable(true);
-    }
+    useEffect(() => {
+        const stringToObject = JSON.parse(localStorage.getItem("userIdForUpdate"));
+        if (stringToObject) {
+            setUserIdForUpdate(stringToObject);
+            setForm({
+                fullname: stringToObject.fullname,
+                email: stringToObject.email,
+                avatar: stringToObject.avatar,
+                userid: stringToObject.userid,
+            });
+        }
+    }, []);
+
+    const handleInputChange = (e) => {
+        setForm({ ...form, [e.target.name]: e.target.value })
+    };
+
     const handleImgClick = () => {
         inputRef.current.click()
     }
 
     const handleImgChange = (event) => {
         setImage(event.target.files[0])
-
     }
 
-    const handleInputChange = (e) => {
-        setForm({ ...form, [e.target.name]: e.target.value })
-
-    };
-
     const updateDetails = () => {
+        setBtndisable(true)
+        setLoader(true)
+
         const formdata = new FormData()
         formdata.append("fullname", form.fullname)
         formdata.append("email", form.email)
         formdata.append("avatar", image)
+
         axios.post('/api/v1/users/updatedetails',
             formdata
         )
             .then(function (response) {
-                // console.log(response);
+                console.log(response);
                 const role = response.data.data.role
 
-                function firstFunction() {
+                if (role) {
                     toast("Profile updated 😃")
-                    return new Promise(resolve => {
-                        setTimeout(() => {
-                            resolve();
-                        }, 7000);
-                    });
-                }
-
-                function secondFunction() {
                     navigate(`/${role}Dashboard/profile`)
                 }
-
-                function callFunctionsSequentially() {
-                    firstFunction().then(() => {
-                        secondFunction();
-                    })
-                }
-                callFunctionsSequentially();
             })
             .catch(function (error) {
                 console.log(error.response.status);
                 const us = error.response.status;
-
                 if (us === 402) {
                     toast("Email already exist !!!");
                 }
@@ -80,28 +82,11 @@ function ProfileUpdateUI() {
         e.preventDefault();
     }
 
-    function firstFunction() {
-        return new Promise(resolve => {
-            handleBtndisable();
-            setTimeout(() => {
-                resolve();
-            }, 1000);
-        });
-    }
-
-    function secondFunction() {
-        updateDetails();
-    }
-
-    const btnOnclickHandel = () => {
-        firstFunction().then(() => {
-            secondFunction();
-        })
-    }
-
     return (
         <>
-
+            <div className="grid justify-items-center">
+                <LoaderUI show={Loader} />
+            </div>
             <div className=" flex justify-center  ">
                 <div className=" bg-white w-full  max-w-[800px] p-4 shadow-lg rounded-md flex  border border-transparent ">
                     <form className="p-6  w-full   flex flex-col justify-center" onSubmit={(e) => handleSubmit(e)}>
@@ -113,9 +98,8 @@ function ProfileUpdateUI() {
                                 <MdAddAPhoto size={40} onClick={handleImgClick} className=' ms-auto hover:cursor-pointer' />
                             </div>
                             <div className="w-full max-w-[300px] rounded-lg overflow-hidden  object-center  h-[300px] border">
-                                {image ? <img src={URL.createObjectURL(image)} /> : <img src={heroImg} />}
+                                {image ? <img src={URL.createObjectURL(image)} /> : <img src={form.avatar} />}
                             </div>
-
                             <input
                                 type="file"
                                 name="image"
@@ -134,6 +118,7 @@ function ProfileUpdateUI() {
                                 name="fullname"
                                 id="name"
                                 placeholder="Name"
+                                defaultValue={form.fullname}
                                 onChange={handleInputChange}
                                 className="w-100 mt-2 py-3 px-3 rounded-lg bg-white border border-gray-400 text-gray-800 font-semibold focus:border-[#20B486] focus:outline-none"
                             />
@@ -147,8 +132,7 @@ function ProfileUpdateUI() {
                                 name="email"
                                 id="email"
                                 placeholder="Email"
-
-
+                                defaultValue={form.email}
                                 onChange={handleInputChange}
                                 className="w-100 mt-2 py-3 px-3 rounded-lg bg-white border border-gray-400 text-gray-800 font-semibold focus:border-[#20B486] focus:outline-none"
                             />
@@ -156,15 +140,13 @@ function ProfileUpdateUI() {
                         <div className=" flex gap-3">
                             <button
                                 type="submit"
-                                onClick={btnOnclickHandel}
+                                onClick={() => updateDetails()}
                                 disabled={btndisable}
                                 className="md:w-32 bg-[#20B486]  text-white font-bold py-3 px-6 rounded-lg mt-3 hover:bg-[#20B486]  "
                             >
                                 {btndisable ? "Submiting..." : "Submit"}
                             </button>
-
                         </div>
-
                     </form>
                 </div>
             </div>

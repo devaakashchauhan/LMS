@@ -97,6 +97,11 @@ const App = () => {
                             <VideoPlayerUI />
                         </ProtectRoute>
                     } />
+                    <Route path='/updatedetails' element={
+                        <ProtectRoute >
+                            <ProfileUpdateUI />
+                        </ProtectRoute>
+                    } />
 
 
                     <Route path='/adminDashboard' element={
@@ -108,7 +113,7 @@ const App = () => {
                         <Route path='allcourse' element={<AdminAllCourseUI />} />
                         <Route path='teachers' element={<AllTeacherUI />} />
                         <Route path='students' element={<AllStudentUI />} />
-                        <Route path='updatedetails' element={<ProfileUpdateUI />} />
+
                     </Route>
 
                     <Route path='/teacherDashboard' element={
@@ -119,7 +124,7 @@ const App = () => {
                         <Route path='profile' element={<ProfilePage />} />
                         <Route path='createcourse' element={<CourseSetupUI />} />
                         <Route path='courseview' element={<CourseViewUI />} />
-                        <Route path='updatedetails' element={<ProfileUpdateUI />} />
+
                         <Route path='updatevideo' element={<UpdateVideoDetailsUI />} />
                     </Route>
 
@@ -129,7 +134,7 @@ const App = () => {
                         </ProtectRoute>
                     } >
                         <Route path='profile' element={<ProfilePage />} />
-                        <Route path='updatedetails' element={<ProfileUpdateUI />} />
+
                     </Route>
 
                 </Routes>

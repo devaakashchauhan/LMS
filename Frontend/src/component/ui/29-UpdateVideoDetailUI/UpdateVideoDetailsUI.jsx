@@ -1,9 +1,11 @@
-import { useState, useRef, useEffect } from 'react'
 import axios from 'axios'
+import { useState, useRef, useEffect } from 'react'
 import { useNavigate, NavLink } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import { MdAddAPhoto } from "react-icons/md";
 import LoaderUI from '../0-LoaderUI/LoaderUI';
+
+// icon,svg
+import { MdAddAPhoto } from "react-icons/md";
 
 function UpdateVideoDetailsUI() {
 
