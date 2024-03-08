@@ -72,7 +72,6 @@ const App = () => {
                     <Route path='/contact' element={<ContactPage />} />
                     <Route path='/loader' element={<LoaderUI />} />
 
-
                     {/* Protected Routes */}
                     <Route path='/' element={
                         <ProtectRoute >
@@ -103,7 +102,6 @@ const App = () => {
                         </ProtectRoute>
                     } />
 
-
                     <Route path='/adminDashboard' element={
                         <ProtectRoute >
                             <AdminDashboard />
@@ -113,7 +111,6 @@ const App = () => {
                         <Route path='allcourse' element={<AdminAllCourseUI />} />
                         <Route path='teachers' element={<AllTeacherUI />} />
                         <Route path='students' element={<AllStudentUI />} />
-
                     </Route>
 
                     <Route path='/teacherDashboard' element={
@@ -124,7 +121,6 @@ const App = () => {
                         <Route path='profile' element={<ProfilePage />} />
                         <Route path='createcourse' element={<CourseSetupUI />} />
                         <Route path='courseview' element={<CourseViewUI />} />
-
                         <Route path='updatevideo' element={<UpdateVideoDetailsUI />} />
                     </Route>
 
@@ -134,11 +130,8 @@ const App = () => {
                         </ProtectRoute>
                     } >
                         <Route path='profile' element={<ProfilePage />} />
-
                     </Route>
-
                 </Routes>
-
                 <FooterUI />
             </BrowserRouter>
         </>

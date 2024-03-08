@@ -5,19 +5,24 @@ import axios from 'axios'
 import { NavLink } from "react-router-dom";
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import LoaderUI from '../0-LoaderUI/LoaderUI';
 
 
 function RegistrationUI() {
+
     const navigate = useNavigate()
     const inputRef = useRef(null)
+
     const [image, setImage] = useState('')
+    const [handelUserRegistration, setHandelUserRegistration] = useState(false)
+    const [Loader, setLoader] = useState(false)
+
     const [form, setForm] = useState({
         fullname: "",
         username: "",
         email: "",
         password: "",
         role: "",
-
     });
 
     const handleImgClick = () => {
@@ -26,16 +31,15 @@ function RegistrationUI() {
 
     const handleImgChange = (e) => {
         setImage(e.target.files[0])
-
-
     }
 
     const handleInputChange = (e) => {
         setForm({ ...form, [e.target.name]: e.target.value })
-
     };
 
     const userRegistration = () => {
+        setHandelUserRegistration(true)
+        setLoader(true)
 
         const formdata = new FormData()
         formdata.append("fullname", form.fullname)
@@ -44,14 +48,16 @@ function RegistrationUI() {
         formdata.append("password", form.password)
         formdata.append("role", form.role)
         formdata.append("avatar", image)
+
         axios.post('/api/v1/users/register',
             formdata
         )
             .then(function (response) {
                 console.log(response);
                 // console.log(response.data.data._id);
+                setHandelUserRegistration(false)
+                setLoader(false)
                 const user = response.data.data._id;
-
                 if (user) {
                     toast(`Registration done successfully 😃`)
                     navigate("/login")
@@ -59,6 +65,8 @@ function RegistrationUI() {
             })
             .catch(function (error) {
                 console.log(error);
+                setHandelUserRegistration(false)
+                setLoader(false)
             });
 
     }
@@ -69,31 +77,24 @@ function RegistrationUI() {
 
     return (
         <>
-
-
-
-
-
+            <div className="grid justify-items-center">
+                <LoaderUI show={Loader} />
+            </div>
             <div className=" flex justify-center  ">
                 <div className=" bg-white w-full  max-w-[800px] p-4 shadow-lg rounded-md flex  border border-transparent ">
                     <form className="p-6  w-full   flex flex-col justify-center" onSubmit={(e) => handleSubmit(e)}>
                         <div className="flex flex-col "  >
-
                             <div className="flex ">
                                 <label htmlFor="name" className="text-xl py-1 font-bold ">
                                     Profile Image
                                 </label>
                                 <MdAddAPhoto size={40} onClick={() => handleImgClick()} className='ms-auto hover:cursor-pointer' />
                             </div>
-
                             <div className="w-full max-w-[300px]">
                                 {image ? <img src={URL.createObjectURL(image)} /> : <img src={heroImg} />}
                             </div>
-
-
                             <input
                                 type="file"
-
                                 name="avatar"
                                 placeholder="Name"
                                 ref={inputRef}
@@ -154,7 +155,6 @@ function RegistrationUI() {
                             />
                         </div>
                         <div className="flex flex-col mt-2">
-
                             <label htmlFor="tel" className="text-xl py-1 font-bold ">
                                 Role
                             </label>
@@ -164,17 +164,16 @@ function RegistrationUI() {
                                 <option name="teacher" value="teacher">Teacher</option>
                                 {/* <option value="admin">Admin</option> */}
                             </select>
-
                         </div>
                         <button
                             type="submit"
                             onClick={() => userRegistration()}
+                            disabled={handelUserRegistration}
                             className="md:w-35 bg-[#20B486] hover:bg-blue-dark text-white font-bold py-3 px-6 rounded-lg mt-3 hover:bg-[#20B486] transition ease-in-out duration-300"
                         >
-                            Resgistration
+                            {handelUserRegistration ? "Resgistrating..." : "Resgistration"}
                         </button>
                         <ul className='pt-4'>
-
                             <li>
                                 I  have an account
                                 <NavLink to="/login"                                >
@@ -185,7 +184,6 @@ function RegistrationUI() {
                     </form>
                 </div >
             </div >
-
         </>
     )
 }

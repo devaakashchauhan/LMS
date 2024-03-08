@@ -106,13 +106,13 @@ function ProfileUI() {
                                 className="w-100 mt-2 py-3 px-3 rounded-lg bg-white border border-gray-400 text-gray-800 font-semibold focus:border-[#20B486] focus:outline-none"
                             />
                         </div>
-                        <div className="">
+                        <div className="mt-5">
                             <Link
                                 onClick={handelUpdateUser}
                                 to="/updatedetails"
-                                className="me-[10px] text-white focus:ring-4 focus:outline-none  font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                                className="md:w-35 bg-[#20B486] hover:bg-blue-dark text-white font-bold py-3 px-6 rounded-lg mt-3 hover:bg-[#20B486] transition ease-in-out duration-300"
                             >
-                                Update
+                                Edit
                             </Link>
                         </div>
                     </form>

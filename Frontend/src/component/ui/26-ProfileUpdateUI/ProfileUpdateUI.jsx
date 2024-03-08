@@ -61,6 +61,8 @@ function ProfileUpdateUI() {
             formdata
         )
             .then(function (response) {
+                setBtndisable(false)
+                setLoader(false)
                 console.log(response);
                 const role = response.data.data.role
 
@@ -70,6 +72,8 @@ function ProfileUpdateUI() {
                 }
             })
             .catch(function (error) {
+                setBtndisable(false)
+                setLoader(false)
                 console.log(error.response.status);
                 const us = error.response.status;
                 if (us === 402) {
@@ -144,7 +148,7 @@ function ProfileUpdateUI() {
                                 disabled={btndisable}
                                 className="md:w-32 bg-[#20B486]  text-white font-bold py-3 px-6 rounded-lg mt-3 hover:bg-[#20B486]  "
                             >
-                                {btndisable ? "Submiting..." : "Submit"}
+                                {btndisable ? "Updating..." : "Update"}
                             </button>
                         </div>
                     </form>
