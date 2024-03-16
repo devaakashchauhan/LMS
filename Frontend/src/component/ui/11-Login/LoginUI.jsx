@@ -36,6 +36,7 @@ const LoginUI = () => {
                     localStorage.setItem("accessToken", response.data.data.accessToken)
                     localStorage.setItem("avatar", response.data.data.user.avatar)
                     localStorage.setItem("userId", response.data.data.user._id)
+                    localStorage.setItem("userName", response.data.data.user.username)
                     navigate("/")
                 }
             })

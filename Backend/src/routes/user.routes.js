@@ -19,6 +19,8 @@ import {
   getusername,
   allvideos,
   courseUpdate,
+  setComment,
+  getComment,
 } from "../controllers/user.controller.js";
 import { upload } from "../middlewares/multer.middleware.js";
 import { verifyJWT } from "../middlewares/auth.middleware.js";
@@ -93,5 +95,7 @@ router.route("/deleteteacher").post(deleteTeacher);
 
 router.route("/username").post(getusername);
 router.route("/allvideos").post(allvideos);
+router.route("/setComment").post(setComment);
+router.route("/getComments").post(getComment);
 
 export default router;

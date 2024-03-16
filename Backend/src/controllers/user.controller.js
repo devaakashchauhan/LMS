@@ -5,6 +5,7 @@ import { uploadOnCloudinary } from "../utils/cloudinary.js";
 import { apiResponse } from "../utils/apiResponse.js";
 import jwt from "jsonwebtoken";
 import { Video } from "../models/video.model.js";
+import { Comment } from "../models/comments.model.js";
 import mongoose from "mongoose";
 
 const generateAccessAndRefreshToken = async (userId) => {
@@ -559,6 +560,59 @@ const deleteTeacher = asyncHandler(async (req, res) => {
     .json(new apiResponse(200, {}, "Teacher deleted successFully."));
 });
 
+const setComment = asyncHandler(async (req, res) => {
+  const { videoid, userId, comment, username, userAvatar } = req.body;
+  console.log(videoid, userId, comment, username, userAvatar);
+
+  const objectId = new mongoose.Types.ObjectId(videoid);
+  console.log(objectId);
+
+  if (!objectId) {
+    throw new apiError(400, "Video ID requried !!!");
+  }
+
+  const createComment = await Comment.create({
+    videoid: objectId,
+    userId,
+    comment,
+    username,
+    userAvatar,
+  });
+
+  const chkComment = await Comment.findById(createComment._id);
+
+  if (!chkComment) {
+    throw new apiError(500, "Error when inserting the comment !!!");
+  }
+
+  return res
+    .status(200)
+    .json(new apiResponse(200, chkComment, "Comment created successFully."));
+});
+
+const getComment = asyncHandler(async (req, res) => {
+  const { videoid } = req.body;
+  console.log(videoid);
+
+  const objectId = new mongoose.Types.ObjectId(videoid);
+  console.log(objectId);
+
+  if (!objectId) {
+    throw new apiError(400, "Video ID requried !!!");
+  }
+  const allComments = await Comment.find({ videoid: objectId });
+
+  if (!allComments) {
+    throw new apiError(400, "comments not found ");
+  }
+
+  return res
+    .status(200)
+    .json(
+      new apiResponse(200, allComments, "All comments fetched successFully.")
+    );
+});
+
 export {
   registerUser,
   loginUser,
@@ -579,4 +633,6 @@ export {
   getusername,
   allvideos,
   courseUpdate,
+  setComment,
+  getComment,
 };

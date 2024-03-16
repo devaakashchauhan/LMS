@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react"
 import axios from "axios";
 import SidebarUI from "./SidebarUI/SidebarUI";
+import CommentUI from "../31-CommentsUI/CommentUI";
+import ShowCommentBoxUI from "../32-ShowCommentBoxUI/ShowCommentBoxUI";
 
 function VideoPlayerUI() {
     // video info
@@ -11,6 +13,10 @@ function VideoPlayerUI() {
     const [videoid, setvideoid] = useState('')
     const [ownerid, setownerid] = useState(localStorage.getItem("ownerid"))
     const [videoCreatedAt, setVideoCreatedAt] = useState('')
+    const [userId, setuserId] = useState('')
+    const [username, setusername] = useState('')
+    const [userAvatar, setuserAvatar] = useState('')
+    const [hide, sethide] = useState(true)
 
     // owner  info
     const [owneravatar, setOwneravatar] = useState('')
@@ -18,6 +24,7 @@ function VideoPlayerUI() {
 
     // sidebar info
     const [allvideos, setAllvideos] = useState([])
+    const [allComments, setallComments] = useState([])
 
     useEffect(() => {
         settitle(localStorage.getItem("title"))
@@ -26,6 +33,10 @@ function VideoPlayerUI() {
         setvideo(localStorage.getItem("video"))
         setvideoid(localStorage.getItem("videoid"))
         setownerid(localStorage.getItem("ownerid"))
+        setuserId(localStorage.getItem('userId'))
+        setusername(localStorage.getItem('userName'))
+        setuserAvatar(localStorage.getItem('avatar'))
+
 
         fecthUserInfo(localStorage.getItem("ownerid"));
         fetchUserAllVideos(localStorage.getItem("ownerid"));
@@ -46,7 +57,40 @@ function VideoPlayerUI() {
             });
     }
 
+
+
+    const fecthVideoComments = (videoid) => {
+        axios.post('/api/v1/users/getComments',
+            { videoid }
+        )
+            .then(function ak(response) {
+                console.log(response);
+                setallComments(response.data.data)
+
+
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+    }
+
+    const sendVideoComments = (videoid, userId, comment, username, userAvatar) => {
+        axios.post('/api/v1/users/setComment',
+            { videoid, userId, comment, username, userAvatar }
+        )
+            .then(function ak(response) {
+                console.log(response);
+
+
+
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+    }
+
     const fetchUserAllVideos = (ownerid) => {
+
         axios.post('/api/v1/users/allvideos',
             { ownerid }
         )
@@ -57,6 +101,15 @@ function VideoPlayerUI() {
             .catch(function (error) {
                 console.log(error);
             });
+    }
+
+    useEffect(() => {
+        fecthVideoComments(videoid)
+    }, [videoid]);
+
+    const handelhide = () => {
+        sethide(!hide)
+        fecthVideoComments(videoid)
     }
 
     return (
@@ -98,6 +151,36 @@ function VideoPlayerUI() {
                     <div className="pb-4 font-thin text-xl p-4">{videoCreatedAt}</div>
                     <div className="pb-4 font-thin text-xl p-4">{description}</div>
                 </div>
+            </div>
+            <div className="px-20 pt-5">
+
+                <div className="">
+                    <CommentUI
+                        setcommentfun={sendVideoComments}
+                        getcomment={fecthVideoComments}
+                        videoid={videoid}
+                        userId={userId}
+                        username={username}
+                        userAvatar={userAvatar}
+                    />
+                </div>
+
+                <div className="py-3">
+                    <button type="button" onClick={handelhide} className="p-3  text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 font-medium rounded-lg text-sm  text-center "> {hide ? "Show" : "Hide"} Comments</button>
+                </div>
+
+                <div className="  ">
+                    {hide ? null : allComments.map((comment, index) => (
+                        <div key={index}>
+                            <ShowCommentBoxUI
+                                comment={comment.comment}
+                                userAvatar={comment.userAvatar}
+                                username={comment.username}
+                            />
+                        </div>
+                    ))}
+                </div>
+
             </div>
         </>
     )
