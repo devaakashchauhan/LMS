@@ -69,8 +69,7 @@ const App = () => {
                     <Route path='*' element={<PageNotFoundUI />} />
                     <Route path='/login' element={<LoginPage />} />
                     <Route path='/signup' element={<RegistrationPage />} />
-                    <Route path='/about' element={<AboutPage />} />
-                    <Route path='/contact' element={<ContactPage />} />
+                    {/* <Route path='/about' element={<AboutPage />} /> */}
                     <Route path='/support' element={<SupportPage />} />
                     <Route path='/contact' element={<ContactPage />} />
                     <Route path='/loader' element={<LoaderUI />} />

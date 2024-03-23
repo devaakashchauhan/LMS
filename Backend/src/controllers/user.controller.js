@@ -6,6 +6,7 @@ import { apiResponse } from "../utils/apiResponse.js";
 import jwt from "jsonwebtoken";
 import { Video } from "../models/video.model.js";
 import { Comment } from "../models/comments.model.js";
+import { Feedback } from "../models/feedback.modal.js";
 import mongoose from "mongoose";
 
 const generateAccessAndRefreshToken = async (userId) => {
@@ -613,6 +614,46 @@ const getComment = asyncHandler(async (req, res) => {
     );
 });
 
+const setfeedback = asyncHandler(async (req, res) => {
+  const { fullname, username, email, feedback, role, userId } = req.body;
+  console.log(fullname, username, email, feedback, role, userId);
+
+  if (
+    [fullname, username, email, feedback, role, userId].some(
+      (field) => field?.trim() === ""
+    )
+  ) {
+    throw new apiError(400, "All feilds all required !!! ");
+  }
+
+  const objectId = new mongoose.Types.ObjectId(userId);
+  console.log(objectId);
+
+  if (!objectId) {
+    throw new apiError(400, "Video ID requried !!!");
+  }
+
+  const createFeedback = await Feedback.create({
+    fullname,
+    username,
+    email,
+    feedback,
+    role,
+    userId: objectId,
+  });
+
+  console.log(createFeedback);
+  const chkfeedback = await Feedback.findById(createFeedback._id);
+
+  if (!chkfeedback) {
+    throw new apiError(500, "Error when inserting the feedback !!!");
+  }
+
+  return res
+    .status(200)
+    .json(new apiResponse(200, chkfeedback, "feedback created successFully."));
+});
+
 export {
   registerUser,
   loginUser,
@@ -635,4 +676,5 @@ export {
   courseUpdate,
   setComment,
   getComment,
+  setfeedback,
 };

@@ -51,7 +51,7 @@ const NavbarUI = () => {
                                     Home
                                 </NavLink>
                             </li>
-                            <li>
+                            {/* <li>
                                 <NavLink
                                     to="/about"
                                     className={({ isActive }) =>
@@ -60,7 +60,7 @@ const NavbarUI = () => {
                                 >
                                     About
                                 </NavLink>
-                            </li>
+                            </li> */}
                             <li>
                                 <NavLink
                                     to="/contact"
