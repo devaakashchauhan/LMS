@@ -35,22 +35,24 @@ function AllTeacherUI() {
 
     return (
         <>
-            <div className='w-full bg-[#E9F8F3B2] '>
+            <div className='w-full bg-[#E9F8F3B2] bg-white'>
                 <div className="text-center">
-                    <h1 className='text-3xl py-3 font-bold '>Most Popular <span className='text-[#20B486]'>Teacher</span></h1>
+                    <h1 className='text-3xl py-3 font-bold '>All <span className='text-[#20B486]'>Teacher </span>Info</h1>
                 </div>
-                <div className=" md:max-w-[1480px] max-w-[600px] m-auto px-5 grid md:grid-cols-4 ">
-                    {teachers.map((teacher, index) => (
-                        <div key={index}>
-                            <TeacherCardUI
-                                onTeacherDelete={handleTeacherDelete}
-                                avatar={teacher.avatar}
-                                fullname={teacher.fullname}
-                                username={teacher.username}
-                                teacherid={teacher._id}
-                            />
-                        </div>
-                    ))}
+                <div className="px-32 ">
+                    <ul role="list" className="divide-y divide-gray-100">
+                        {teachers.map((teacher, index) => (
+                            <div key={index}>
+                                <TeacherCardUI
+                                    onTeacherDelete={handleTeacherDelete}
+                                    avatar={teacher.avatar}
+                                    fullname={teacher.fullname}
+                                    username={teacher.username}
+                                    teacherid={teacher._id}
+                                />
+                            </div>
+                        ))}
+                    </ul>
                 </div>
             </div>
         </>

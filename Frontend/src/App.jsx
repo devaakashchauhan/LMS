@@ -1,6 +1,7 @@
 import './index.css'
 import './App.css'
 import { Route, BrowserRouter, Routes, Navigate } from 'react-router-dom'
+// import { toast } from 'react-toastify';
 
 
 // pages
@@ -31,6 +32,7 @@ import NavbarUI from './component/ui/1-Navbar/NavbarUI.jsx'
 import FooterUI from './component/ui/10-Footer/FooterUI.jsx'
 import UpdateVideoDetailsUI from './component/ui/29-UpdateVideoDetailUI/UpdateVideoDetailsUI.jsx'
 import LoaderUI from './component/ui/0-LoaderUI/LoaderUI.jsx'
+import InfoUI from './component/ui/33-InfoUI/InfoUI.jsx';
 // import axios from 'axios'
 // import { useEffect, useState } from 'react'
 
@@ -68,6 +70,7 @@ const App = () => {
                     <Route path='/login' element={<LoginPage />} />
                     <Route path='/signup' element={<RegistrationPage />} />
                     <Route path='/about' element={<AboutPage />} />
+                    <Route path='/contact' element={<ContactPage />} />
                     <Route path='/support' element={<SupportPage />} />
                     <Route path='/contact' element={<ContactPage />} />
                     <Route path='/loader' element={<LoaderUI />} />
@@ -111,6 +114,7 @@ const App = () => {
                         <Route path='allcourse' element={<AdminAllCourseUI />} />
                         <Route path='teachers' element={<AllTeacherUI />} />
                         <Route path='students' element={<AllStudentUI />} />
+                        <Route path='info' element={<InfoUI />} />
                     </Route>
 
                     <Route path='/teacherDashboard' element={
@@ -147,7 +151,11 @@ export const ProtectRoute = ({ children }) => {
         return children
     }
     else {
-        return <Navigate to={'/login'} />
+        return (<>
+
+            <Navigate to={'/login'} />
+            toast(`Please first login.`)
+        </>)
     }
 
 

@@ -3,61 +3,48 @@ import { NavLink } from "react-router-dom";
 function AdminSidebarUI() {
     return (
         <>
-            <div className="h-full border-r flex flex-col overflow-y-auto bg-white shadow-sm">
+            <div className="h-full border-r flex flex-col overflow-y-auto bg-white shadow-sm p-2">
 
-                <div className="flex flex-col w-full gap-1">
+                <div className="flex flex-col w-full gap-2 ">
 
-                    <button
-
-                        type="button"
-                        className={"flex items-center py-4 gap-x-2 text-sky-700 text-sm font-[500]  transition-all bg-sky-200/20 hover:bg-sky-200/20 hover:text-sky-700 pl-6"}
-                    >
-                        <div className="flex items-center gap-x-2 py-4">
-                            {/* todo put icon */}
-                            <NavLink to="/adminDashboard/profile">
+                    <NavLink to="/adminDashboard/info" className={({ isActive }) => `block ${isActive ? "bg-green-200/100 " : "bg-white hover:bg-green-200/40"}  flex items-center  gap-x-2 rounded-lg overflow-hidden text-green-700 text-sm font-[500]  transition-all   pl-6`}>
+                        <button type="button">
+                            <div className="flex items-center gap-x-2 py-4">
+                                All Info
+                            </div>
+                        </button>
+                    </NavLink>
+                    <NavLink to="/adminDashboard/profile" className={({ isActive }) => `block ${isActive ? "bg-green-200/100 " : "bg-white hover:bg-green-200/40"}  flex items-center  gap-x-2 rounded-lg overflow-hidden text-green-700 text-sm font-[500]  transition-all   pl-6`}>
+                        <button type="button">
+                            <div className="flex items-center gap-x-2 py-4">
                                 Profile
-                            </NavLink>
-                        </div>
-                    </button>
-                    <button
+                            </div>
+                        </button>
+                    </NavLink>
 
-                        type="button"
-                        className={"flex items-center py-4 gap-x-2 text-sky-700 text-sm font-[500]  transition-all bg-sky-200/20 hover:bg-sky-200/20 hover:text-sky-700 pl-6"}
-                    >
-                        <div className="flex items-center gap-x-2 py-4">
-                            {/* todo put icon */}
-                            <NavLink to="/adminDashboard/allcourse"                          >
+                    <NavLink to="/adminDashboard/allcourse" className={({ isActive }) => `block ${isActive ? "bg-green-200/100 " : "bg-white hover:bg-green-200/40"}  flex items-center  gap-x-2 rounded-lg overflow-hidden text-green-700 text-sm font-[500]  transition-all   pl-6`}>
+                        <button type="button">
+                            <div className="flex items-center gap-x-2 py-4">
                                 Course
-                            </NavLink>
-                        </div>
-                    </button>
-                    <button
+                            </div>
+                        </button>
+                    </NavLink>
 
-                        type="button"
-                        className={"flex items-center py-4 gap-x-2 text-sky-700 text-sm font-[500]  transition-all bg-sky-200/20 hover:bg-sky-200/20 hover:text-sky-700 pl-6"}
-                    >
-                        <div className="flex items-center gap-x-2 py-4">
-                            {/* todo put icon */}
-                            <NavLink to="/adminDashboard/teachers"                          >
+                    <NavLink to="/adminDashboard/teachers" className={({ isActive }) => `block ${isActive ? "bg-green-200/100 " : "bg-white hover:bg-green-200/40"}  flex items-center  gap-x-2 rounded-lg overflow-hidden text-green-700 text-sm font-[500]  transition-all   pl-6`}>
+                        <button type="button" >
+                            <div className="flex items-center gap-x-2 py-4">
                                 Teachers
-                            </NavLink>
-                        </div>
-                    </button>
-                    <button
+                            </div>
+                        </button>
+                    </NavLink>
 
-                        type="button"
-                        className={"flex items-center py-4 gap-x-2 text-sky-700 text-sm font-[500]  transition-all bg-sky-200/20 hover:bg-sky-200/20 hover:text-sky-700 pl-6"}
-                    >
-                        <div className="flex items-center gap-x-2 py-4">
-                            {/* todo put icon */}
-                            <NavLink to="/adminDashboard/students" >
+                    <NavLink to="/adminDashboard/students" className={({ isActive }) => `block ${isActive ? "bg-green-200/100 " : "bg-white hover:bg-green-200/40"}  flex items-center  gap-x-2 rounded-lg overflow-hidden text-green-700 text-sm font-[500]  transition-all   pl-6`}>
+                        <button type="button" >
+                            <div className="flex items-center gap-x-2 py-4">
                                 Students
-                            </NavLink>
-                        </div>
-                    </button>
-
-
-
+                            </div>
+                        </button>
+                    </NavLink>
 
                 </div>
             </div>

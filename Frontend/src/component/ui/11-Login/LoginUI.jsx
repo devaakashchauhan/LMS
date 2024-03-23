@@ -87,8 +87,10 @@ const LoginUI = () => {
                             <button
                                 type="submit"
                                 onClick={userRegistration}
+                                disabled={(form.username && form.password) ? false : true}
                                 className=" w-full max-w-[500px] bg-[#20B486] hover:bg-blue-dark text-white font-bold py-3 px-6 rounded-lg mt-3 hover:bg-[#20B486] transition ease-in-out duration-300"
                             >
+
                                 Login
                             </button>
                             <ul className='pt-4' >
