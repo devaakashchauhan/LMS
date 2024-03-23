@@ -49,6 +49,7 @@ function AllTeacherUI() {
                                     fullname={teacher.fullname}
                                     username={teacher.username}
                                     teacherid={teacher._id}
+                                    email={teacher.email}
                                 />
                             </div>
                         ))}

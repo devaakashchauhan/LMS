@@ -1,8 +1,10 @@
 import axios from 'axios'
 import { useState, useRef, useEffect } from "react";
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import Swal from 'sweetalert2'
+import { NavLink } from "react-router-dom";
+
 
 // image,icon,svg
 import { MdAddAPhoto } from "react-icons/md";
@@ -17,7 +19,6 @@ function ProfileUpdateUI() {
     const [Loader, setLoader] = useState(false)
     const [image, setImage] = useState('')
     const [userIdForUpdate, setUserIdForUpdate] = useState({})
-
 
     const [form, setForm] = useState({
         fullname: "",
@@ -171,15 +172,26 @@ function ProfileUpdateUI() {
                                 className="w-100 mt-2 py-3 px-3 rounded-lg bg-white border border-gray-400 text-gray-800 font-semibold focus:border-[#20B486] focus:outline-none"
                             />
                         </div>
-                        <div className=" flex gap-3">
-                            <button
-                                type="submit"
-                                onClick={() => handelUpdate()}
-                                disabled={btndisable}
-                                className="md:w-32 bg-[#20B486]  text-white font-bold py-3 px-6 rounded-lg mt-3 hover:bg-[#20B486]  "
-                            >
-                                {btndisable ? "Updating..." : "Update"}
-                            </button>
+                        <div className="flex gap-3">
+                            <div className=" flex gap-3">
+                                <button
+                                    type="submit"
+                                    onClick={() => handelUpdate()}
+                                    disabled={btndisable}
+                                    className=" bg-[#20B486]  text-white font-bold py-3 px-6 rounded-lg mt-3 hover:bg-[#20B486]  "
+                                >
+                                    {btndisable ? "Updating..." : "Update"}
+                                </button>
+                            </div>
+                            <div className=" flex gap-3">
+                                <NavLink to="/adminDashboard/profile"
+                                    className=" bg-[#20B486]  text-white font-bold py-3 px-6 rounded-lg mt-3 hover:bg-[#20B486]  "
+                                >
+                                    <button>
+                                        Cancel
+                                    </button>
+                                </NavLink>
+                            </div>
                         </div>
                     </form>
                 </div>

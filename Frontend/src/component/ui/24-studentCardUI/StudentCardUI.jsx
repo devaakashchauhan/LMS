@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { toast } from 'react-toastify';
 import Swal from 'sweetalert2';
 
-const TeacherCardUI = ({ avatar, fullname, username, studentid, ovStudentDelete }) => {
+const TeacherCardUI = ({ avatar, fullname, username, studentid, ovStudentDelete, email }) => {
     const [handleDeletebtn, setHandleDeletebtn] = useState(false)
 
     const handelUpdate = (studentid) => {
@@ -35,11 +35,11 @@ const TeacherCardUI = ({ avatar, fullname, username, studentid, ovStudentDelete 
                     <img className="h-12 w-12 flex-none rounded-full bg-gray-50" src={avatar} alt="" />
                     <div className="min-w-0 flex-auto">
                         <p className="text-sm font-semibold leading-6 text-gray-900">{fullname}</p>
-                        <p className="mt-1 truncate text-xs leading-5 text-gray-500">leslie.alexander@example.com</p>
+                        <p className="mt-1 truncate text-xs leading-5 text-gray-500">{email}</p>
                     </div>
                 </div>
                 <div className="hidden shrink-0 sm:flex sm:flex-col sm:items-end">
-                    <p className="text-sm leading-6 text-gray-900">Teacher</p>
+                    <p className="text-sm leading-6 text-gray-900">Student</p>
                     <p className="mt-1 text-xs leading-5 text-gray-500">{username}</p>
                 </div>
                 <div className="hidden shrink-0 sm:flex sm:flex-col sm:items-end">

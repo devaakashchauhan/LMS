@@ -35,7 +35,7 @@ function AdminAllCourseUI() {
 
   return (
     <>
-      <div className='w-full bg-[#E9F8F3B2] p-0 maincard'>
+      <div className='w-full bg-white'>
         <div className="text-center">
           <h1 className='text-3xl py-3 font-bold '><span className='text-[#20B486]'>Courses</span></h1>
         </div>

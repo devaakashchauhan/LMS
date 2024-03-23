@@ -51,6 +51,7 @@ function AllStudentUI() {
                   fullname={student.fullname}
                   username={student.username}
                   studentid={student._id}
+                  email={student.email}
                 />
               </div>
             ))}

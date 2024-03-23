@@ -18,11 +18,11 @@ function AdminDashboardPage() {
         });
     return (
         <>
-            <div className="h-full grid grid-cols-6 border border-b">
-                <div className="hidden md:flex h-full  flex-col   ">
+            <div className="h-full grid grid-cols-6 ">
+                <div className="hidden md:flex  flex-col ">
                     <AdminSidebarUI />
                 </div>
-                <main className=" col-span-5"><Outlet /></main>
+                <main className=" col-span-5 pt-5 pb-14"><Outlet /></main>
             </div>
         </>
     )
