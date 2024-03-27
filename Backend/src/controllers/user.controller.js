@@ -468,6 +468,12 @@ const allcoruses = asyncHandler(async (req, res) => {
     .status(200)
     .json(new apiResponse(200, allVideos, "All videos fetched successFully."));
 });
+const topcourses = asyncHandler(async (req, res) => {
+  const allVideos = await Video.find().sort({ createdAt: 1 }).limit(10);
+  return res
+    .status(200)
+    .json(new apiResponse(200, allVideos, "All videos fetched successFully."));
+});
 
 const getusername = asyncHandler(async (req, res) => {
   const { ownerid } = req.body;
@@ -478,12 +484,14 @@ const getusername = asyncHandler(async (req, res) => {
   }
 
   const userName = await User.findById({ _id: objectId }).select(
-    " -_id username avatar updatedAt createdAt"
+    " username avatar updatedAt createdAt"
   );
 
   return res
     .status(200)
-    .json(new apiResponse(200, userName, "username fetched successFully."));
+    .json(
+      new apiResponse(200, userName, "video owner info fetched successFully.")
+    );
 });
 
 const allvideos = asyncHandler(async (req, res) => {
@@ -529,6 +537,21 @@ const deletevideo = asyncHandler(async (req, res) => {
   return res
     .status(200)
     .json(new apiResponse(200, {}, "Video deleted successFully."));
+});
+const deleteteachervideo = asyncHandler(async (req, res) => {
+  const { teacherid } = req.body;
+  console.log("teacher id for delete =", teacherid);
+
+  const objectId = new mongoose.Types.ObjectId(teacherid);
+  if (!objectId) {
+    throw new apiError(400, "Video ID requried !!!");
+  }
+
+  const deletedVideo = await Video.deleteMany({ owner: objectId });
+  console.log(deletedVideo);
+  return res
+    .status(200)
+    .json(new apiResponse(200, {}, "all videos Video deleted successFully."));
 });
 
 const deleteStudent = asyncHandler(async (req, res) => {
@@ -654,7 +677,7 @@ const setfeedback = asyncHandler(async (req, res) => {
     .json(new apiResponse(200, chkfeedback, "feedback created successFully."));
 });
 const getallfeedback = asyncHandler(async (req, res) => {
-  const allfeedback = await Feedback.find({}).limit(5);
+  const allfeedback = await Feedback.find({}).sort({ createdAt: 1 }).limit(5);
 
   console.log(allfeedback);
 
@@ -738,4 +761,6 @@ export {
   getvideocount,
   getstudentcount,
   getteachercount,
+  topcourses,
+  deleteteachervideo,
 };

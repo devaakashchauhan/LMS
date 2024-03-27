@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom"
 
-function SidebarUI({ title, description, thumbnail, video, videoid, ownerid, owner, onVideoChange }) {
+function SidebarUI({ title, description, thumbnail, video, videoid, ownerid, owner, onVideoChange, createdAt, avatar }) {
     const setPlayerVideo = (ownerid) => {
         onVideoChange(ownerid)
         localStorage.setItem("title", title)
@@ -10,6 +10,8 @@ function SidebarUI({ title, description, thumbnail, video, videoid, ownerid, own
         localStorage.setItem("videoid", videoid)
         localStorage.setItem("ownerid", ownerid)
         localStorage.setItem("ownername", owner)
+        localStorage.setItem("createdAt", createdAt)
+        localStorage.setItem("avatar", avatar)
     }
     return (
         <>

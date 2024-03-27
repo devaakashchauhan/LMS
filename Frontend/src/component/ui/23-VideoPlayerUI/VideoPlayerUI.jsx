@@ -17,6 +17,9 @@ function VideoPlayerUI() {
     const [username, setusername] = useState('')
     const [userAvatar, setuserAvatar] = useState('')
     const [hide, sethide] = useState(true)
+    const [time1, setTime1] = useState("")
+
+
 
     // owner  info
     const [owneravatar, setOwneravatar] = useState('')
@@ -36,6 +39,7 @@ function VideoPlayerUI() {
         setuserId(localStorage.getItem('userId'))
         setusername(localStorage.getItem('userName'))
         setuserAvatar(localStorage.getItem('avatar'))
+        setVideoCreatedAt(localStorage.getItem('createdAt').substring(0, 10))
 
 
         fecthUserInfo(localStorage.getItem("ownerid"));
@@ -47,10 +51,9 @@ function VideoPlayerUI() {
             { ownerid }
         )
             .then(function ak(response) {
-                // console.log(response);
-                setOwneravatar(response.data.data.avatar)
+                console.log(response);
+                setOwneravatar(response.data.data.userAvatar)
                 setOwnerUsername(response.data.data.username)
-                setVideoCreatedAt(response.data.data.createdAt)
             })
             .catch(function (error) {
                 console.log(error);
@@ -64,10 +67,8 @@ function VideoPlayerUI() {
             { videoid }
         )
             .then(function ak(response) {
-                console.log(response);
+                // console.log(response);
                 setallComments(response.data.data)
-
-
             })
             .catch(function (error) {
                 console.log(error);
@@ -79,10 +80,7 @@ function VideoPlayerUI() {
             { videoid, userId, comment, username, userAvatar }
         )
             .then(function ak(response) {
-                console.log(response);
-
-
-
+                // console.log(response);
             })
             .catch(function (error) {
                 console.log(error);
@@ -95,7 +93,7 @@ function VideoPlayerUI() {
             { ownerid }
         )
             .then(function ak(response) {
-                console.log("all video info", response.data.data);
+                // console.log("all video info", response.data.data);
                 setAllvideos(response.data.data)
             })
             .catch(function (error) {
@@ -130,6 +128,8 @@ function VideoPlayerUI() {
                                     video={video.video}
                                     videoid={video._id}
                                     ownerid={video.owner}
+                                    createdAt={video.createdAt}
+                                    avatar={video.avatar}
                                     owner={ownerUsername}
                                     onVideoChange={fetchUserAllVideos}
                                 />

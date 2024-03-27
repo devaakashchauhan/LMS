@@ -21,6 +21,11 @@ function AllTeacherUI() {
     };
 
     const handleTeacherDelete = (teacherid) => {
+        hendleteacherinfo(teacherid);
+        hendleteachervideos(teacherid)
+    };
+
+    const hendleteacherinfo = (teacherid) => {
         axios.post('/api/v1/users/deleteteacher',
             { teacherid }
         )
@@ -31,7 +36,20 @@ function AllTeacherUI() {
             .catch(function (error) {
                 console.log(error);
             });
-    };
+    }
+
+    const hendleteachervideos = (teacherid) => {
+        axios.post('/api/v1/users/deleteteachervideo',
+            { teacherid }
+        )
+            .then(function (response) {
+                console.log(response);
+                setTeachers(prevTeachers => prevTeachers.filter(teacher => teacher._id !== teacherid));
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+    }
 
     return (
         <>

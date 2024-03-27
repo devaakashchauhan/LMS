@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom"
-const AllCoursesCardUI = ({ title, description, thumbnail, video, videoid, ownerid }) => {
+const AllCoursesCardUI = ({ title, description, thumbnail, video, videoid, ownerid, createdAt }) => {
 
     const setPlayerVideo = () => {
         localStorage.setItem("title", title)
@@ -8,6 +8,7 @@ const AllCoursesCardUI = ({ title, description, thumbnail, video, videoid, owner
         localStorage.setItem("video", video)
         localStorage.setItem("videoid", videoid)
         localStorage.setItem("ownerid", ownerid)
+        localStorage.setItem("createdAt", createdAt)
     }
 
     return (

@@ -10,7 +10,7 @@ const CoursesSliderUI = () => {
 
   const [videos, setVideos] = useState([])
   useEffect(() => {
-    axios.post('/api/v1/users/allcourses',
+    axios.post('/api/v1/users/topcourses',
     )
       .then(function ak(response) {
         // console.log(response);

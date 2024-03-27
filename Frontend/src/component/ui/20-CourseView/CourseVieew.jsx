@@ -35,6 +35,7 @@ function CourseVieew() {
                                 video={video.video}
                                 videoid={video._id}
                                 ownerid={video.owner}
+                                createdAt={video.createdAt}
                             />
                         </div>
                     ))}
