@@ -41,7 +41,7 @@ function AdminAllCourseUI() {
         </div>
         <div className="grid md:grid-cols-4  ms-5 ">
           {videos.map((video, index) => (
-            <div key={index}>
+            <div key={index} >
               <CardUI
                 onVideoDelete={handleVideoDelete}
                 title={video.title}

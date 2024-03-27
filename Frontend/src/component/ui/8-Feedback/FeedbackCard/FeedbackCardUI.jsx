@@ -1,7 +1,9 @@
-import React from 'react'
 import { avatar, quotationMark, } from '../../../assets'
 
-const FeedbackCardUI = () => {
+const FeedbackCardUI = ({ username, _id, fullname, email, role, createdAt, userId, feedback }) => {
+    const time1 = createdAt
+    const time = time1.substring(0, 10)
+
     return (
         <>
             <div className="bg-white p-8 rounded-3xl shadow-xl my-8 mx-2">
@@ -10,20 +12,24 @@ const FeedbackCardUI = () => {
                     <div className="flex gap-4">
                         <img src={avatar} alt="" />
                         <div className="">
-                            <h1>Akash Chauhan</h1>
-                            <p>Developer</p>
+                            <h1>{username} | {fullname}</h1>
+                            <p>{role}</p>
                         </div>
                     </div>
                     <img className='h-8' src={quotationMark} alt="" />
                 </div>
                 <div className="py-8">
-                    <h3 className='text-lg'>
-                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Temporibus labore distinctio doloremque veniam alias ratione saepe, laborum, quaerat dolor ullam nemo autem quisquam aut! Molestiae error labore commodi voluptates repellendus!
-                    </h3>
+                    <h3 className='text-lg'> {feedback} </h3>
+                </div>
+                <div className="flex justify-between">
+                    <h3 className='text-lg '> {email} </h3>
+                    <h3 className='text-lg '> {time} </h3>
                 </div>
             </div>
         </>
     )
 }
+
+
 
 export default FeedbackCardUI

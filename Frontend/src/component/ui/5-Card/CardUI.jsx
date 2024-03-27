@@ -39,7 +39,7 @@ const CardUI = ({ title, description, thumbnail, video, videoid, ownerid, onVide
 
   return (
     <>
-      <div className="bg-white drop-shadow-md overflow-hidden rounded-2xl mr-4 my-4 card h-[400px]  " >
+      <div className="bg-white drop-shadow-md overflow-hidden rounded-2xl mr-4 my-4  h-[400px]  " >
         <img src={thumbnail} alt="" className=" object-center w-full h-[200px]" />
         <div className="p-5  ">
           <h1 className='py-2 truncate'>{description}</h1>

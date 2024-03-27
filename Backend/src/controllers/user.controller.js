@@ -653,6 +653,63 @@ const setfeedback = asyncHandler(async (req, res) => {
     .status(200)
     .json(new apiResponse(200, chkfeedback, "feedback created successFully."));
 });
+const getallfeedback = asyncHandler(async (req, res) => {
+  const allfeedback = await Feedback.find({}).limit(5);
+
+  console.log(allfeedback);
+
+  if (!allfeedback) {
+    throw new apiError(500, "Error when inserting the feedback !!!");
+  }
+
+  return res
+    .status(200)
+    .json(new apiResponse(200, allfeedback, "feedback created successFully."));
+});
+
+const getvideocount = asyncHandler(async (req, res) => {
+  const allvideocount = await Video.estimatedDocumentCount();
+  console.log(allvideocount);
+
+  if (!allvideocount) {
+    throw new apiError(500, "Error when count all videos !!!");
+  }
+
+  return res
+    .status(200)
+    .json(
+      new apiResponse(200, allvideocount, "count all videos successFully.")
+    );
+});
+
+const getstudentcount = asyncHandler(async (req, res) => {
+  const allstudentcount = await User.countDocuments({ role: "student" });
+  console.log(allstudentcount);
+
+  if (!allstudentcount) {
+    throw new apiError(500, "Error when count all student !!!");
+  }
+
+  return res
+    .status(200)
+    .json(
+      new apiResponse(200, allstudentcount, "count all student successFully.")
+    );
+});
+const getteachercount = asyncHandler(async (req, res) => {
+  const allteachercount = await User.countDocuments({ role: "teacher" });
+  console.log(allteachercount);
+
+  if (!allteachercount) {
+    throw new apiError(500, "Error when count all teacher !!!");
+  }
+
+  return res
+    .status(200)
+    .json(
+      new apiResponse(200, allteachercount, "count all teacher successFully.")
+    );
+});
 
 export {
   registerUser,
@@ -677,4 +734,8 @@ export {
   setComment,
   getComment,
   setfeedback,
+  getallfeedback,
+  getvideocount,
+  getstudentcount,
+  getteachercount,
 };

@@ -22,6 +22,10 @@ import {
   setComment,
   getComment,
   setfeedback,
+  getallfeedback,
+  getvideocount,
+  getstudentcount,
+  getteachercount,
 } from "../controllers/user.controller.js";
 import { upload } from "../middlewares/multer.middleware.js";
 import { verifyJWT } from "../middlewares/auth.middleware.js";
@@ -99,5 +103,10 @@ router.route("/allvideos").post(allvideos);
 router.route("/setComment").post(setComment);
 router.route("/getComments").post(getComment);
 router.route("/setfeedback").post(setfeedback);
+router.route("/getallfeedback").post(getallfeedback);
+
+router.route("/getteachercount").post(getteachercount);
+router.route("/getstudentcount").post(getstudentcount);
+router.route("/getvideocount").post(getvideocount);
 
 export default router;

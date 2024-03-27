@@ -1,7 +1,8 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Slider from 'react-slick';
 import '../../..//App.css'
 import FeedbackCardUI from './FeedbackCard/FeedbackCardUI.jsx'
+import axios from 'axios';
 
 
 
@@ -41,6 +42,29 @@ const FeedbackUI = () => {
             // instead of a settings object
         ]
     };
+
+    const [allfeedbacks, setAllfeedbacks] = useState([])
+
+    useEffect(() => {
+        getallfeedback()
+    }, [])
+
+
+
+
+    const getallfeedback = () => {
+        axios.post('/api/v1/users/getallfeedback',
+            {}
+        )
+            .then(function ak(response) {
+                console.log(response);
+                setAllfeedbacks(response.data.data)
+                console.table(allfeedbacks);
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+    }
     return (
         <>
             <div className='w-full bg-white py-32'>
@@ -56,10 +80,23 @@ const FeedbackUI = () => {
                                 <Card course={course} />
                             </div>)} */}
 
-                        <FeedbackCardUI />
-                        <FeedbackCardUI />
-                        <FeedbackCardUI />
-                        <FeedbackCardUI />
+
+
+                        {allfeedbacks.map((feedback, index) => (
+                            <div key={index}>
+                                <FeedbackCardUI
+                                    username={feedback.username}
+                                    feedback={feedback.feedback}
+                                    _id={feedback._id}
+                                    fullname={feedback.fullname}
+                                    email={feedback.email}
+                                    role={feedback.role}
+                                    createdAt={feedback.createdAt}
+                                    userId={feedback.userId}
+                                />
+                            </div>
+                        ))}
+
 
                     </Slider>
 
