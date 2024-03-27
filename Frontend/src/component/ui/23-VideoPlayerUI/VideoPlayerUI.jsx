@@ -39,7 +39,7 @@ function VideoPlayerUI() {
         setuserId(localStorage.getItem('userId'))
         setusername(localStorage.getItem('userName'))
         setuserAvatar(localStorage.getItem('avatar'))
-        setVideoCreatedAt(localStorage.getItem('createdAt').substring(0, 10))
+        setVideoCreatedAt(localStorage.getItem('createdAt')?.substring(0, 10))
 
 
         fecthUserInfo(localStorage.getItem("ownerid"));
@@ -52,7 +52,7 @@ function VideoPlayerUI() {
         )
             .then(function ak(response) {
                 console.log(response);
-                setOwneravatar(response.data.data.userAvatar)
+                setOwneravatar(response.data.data.avatar)
                 setOwnerUsername(response.data.data.username)
             })
             .catch(function (error) {
@@ -129,7 +129,7 @@ function VideoPlayerUI() {
                                     videoid={video._id}
                                     ownerid={video.owner}
                                     createdAt={video.createdAt}
-                                    avatar={video.avatar}
+                                   
                                     owner={ownerUsername}
                                     onVideoChange={fetchUserAllVideos}
                                 />

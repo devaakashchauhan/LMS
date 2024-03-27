@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import Swal from 'sweetalert2';
 
-const CardUI = ({ title, description, thumbnail, video, videoid, ownerid, onVideoDelete }) => {
+const CardUI = ({ title, description, thumbnail, video, videoid, ownerid, onVideoDelete, createdAt }) => {
 
   const [handleDeletebtn, setHandleDeletebtn] = useState(false)
 
@@ -35,6 +35,7 @@ const CardUI = ({ title, description, thumbnail, video, videoid, ownerid, onVide
     localStorage.setItem("video", video)
     localStorage.setItem("videoid", videoid)
     localStorage.setItem("ownerid", ownerid)
+    localStorage.setItem("createdAt", createdAt)
   }
 
   return (

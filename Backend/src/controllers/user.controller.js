@@ -677,7 +677,7 @@ const setfeedback = asyncHandler(async (req, res) => {
     .json(new apiResponse(200, chkfeedback, "feedback created successFully."));
 });
 const getallfeedback = asyncHandler(async (req, res) => {
-  const allfeedback = await Feedback.find({}).sort({ createdAt: 1 }).limit(5);
+  const allfeedback = await Feedback.find({}).sort({ createdAt: -1 }).limit(5);
 
   console.log(allfeedback);
 
