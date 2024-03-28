@@ -468,6 +468,7 @@ const allcoruses = asyncHandler(async (req, res) => {
     .status(200)
     .json(new apiResponse(200, allVideos, "All videos fetched successFully."));
 });
+
 const topcourses = asyncHandler(async (req, res) => {
   const allVideos = await Video.find().sort({ createdAt: 1 }).limit(10);
   return res
@@ -538,6 +539,7 @@ const deletevideo = asyncHandler(async (req, res) => {
     .status(200)
     .json(new apiResponse(200, {}, "Video deleted successFully."));
 });
+
 const deleteteachervideo = asyncHandler(async (req, res) => {
   const { teacherid } = req.body;
   console.log("teacher id for delete =", teacherid);
@@ -624,7 +626,9 @@ const getComment = asyncHandler(async (req, res) => {
   if (!objectId) {
     throw new apiError(400, "Video ID requried !!!");
   }
-  const allComments = await Comment.find({ videoid: objectId });
+  const allComments = await Comment.find({ videoid: objectId }).sort({
+    createdAt: -1,
+  });
 
   if (!allComments) {
     throw new apiError(400, "comments not found ");
@@ -638,9 +642,9 @@ const getComment = asyncHandler(async (req, res) => {
 });
 
 const setfeedback = asyncHandler(async (req, res) => {
-  const { fullname, username, email, feedback, role, userId } = req.body;
-  console.log(fullname, username, email, feedback, role, userId);
-
+  const { fullname, username, email, feedback, role, userId, avatar } =
+    req.body;
+  console.log(fullname, username, email, feedback, role, userId, avatar);
   if (
     [fullname, username, email, feedback, role, userId].some(
       (field) => field?.trim() === ""
@@ -663,6 +667,7 @@ const setfeedback = asyncHandler(async (req, res) => {
     feedback,
     role,
     userId: objectId,
+    avatar,
   });
 
   console.log(createFeedback);
@@ -676,6 +681,7 @@ const setfeedback = asyncHandler(async (req, res) => {
     .status(200)
     .json(new apiResponse(200, chkfeedback, "feedback created successFully."));
 });
+
 const getallfeedback = asyncHandler(async (req, res) => {
   const allfeedback = await Feedback.find({}).sort({ createdAt: -1 }).limit(5);
 
@@ -719,6 +725,7 @@ const getstudentcount = asyncHandler(async (req, res) => {
       new apiResponse(200, allstudentcount, "count all student successFully.")
     );
 });
+
 const getteachercount = asyncHandler(async (req, res) => {
   const allteachercount = await User.countDocuments({ role: "teacher" });
   console.log(allteachercount);

@@ -7,23 +7,27 @@ import { toast } from 'react-toastify';
 
 export default function ContactUI() {
 
+    const cookies = new Cookies();
+
     const [handelUserRegistration, setHandelUserRegistration] = useState(false)
     const [Loader, setLoader] = useState(false)
     const [userId, setuserid] = useState('')
     const [username, setusername1] = useState('')
     const [role, setrole] = useState('')
-    const cookies = new Cookies();
+    const [avatar, setAvatar] = useState('')
 
     const [form, setForm] = useState({
         fullname: "",
         email: "",
         feedback: "",
+        avatar: ""
     });
 
     useEffect(() => {
         setuserid(localStorage.getItem('userId'))
         setusername1(localStorage.getItem('userName'))
         setrole(cookies.get('role'))
+        setAvatar(localStorage.getItem('avatar'))
     }, [])
 
     const handleInputChange = (e) => {
@@ -34,10 +38,11 @@ export default function ContactUI() {
         setHandelUserRegistration(true)
         setLoader(true)
 
-        console.log(form, role, userId, username);
+        console.log(form, role, userId, username, avatar);
+
 
         axios.post('/api/v1/users/setfeedback',
-            { ...form, role, userId, username }
+            { ...form, role, userId, username, avatar }
         )
             .then(function (response) {
                 console.log(response);

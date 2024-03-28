@@ -93,6 +93,7 @@ const FeedbackUI = () => {
                                     role={feedback.role}
                                     createdAt={feedback.createdAt}
                                     userId={feedback.userId}
+                                    avatar={feedback.avatar}
                                 />
                             </div>
                         ))}

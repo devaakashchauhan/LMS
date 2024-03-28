@@ -3,39 +3,34 @@ import { NavLink } from "react-router-dom";
 function TeacherSidebarUI() {
     return (
         <>
-            <div className="h-full border-r flex flex-col overflow-y-auto bg-white shadow-sm">
+            <div className="  flex flex-col overflow-y-auto bg-white drop-shadow-md overflow-hidden rounded-2xl p-2 m-4">
 
-                <div className="flex flex-col w-full gap-1">
+                <div className="flex flex-col w-full gap-2">
 
-                    <button type="button"
-                        className={"flex items-center py-4 gap-x-2 text-green-700 text-sm font-[500]  transition-all bg-green-200/20 hover:bg-green-200/20 hover:text-green-700 pl-6"}
-                    >
-                        <div className="flex items-center gap-x-2 py-4">
-                            <NavLink to="/teacherDashboard/profile"                          >
+                    <NavLink to="/teacherDashboard/profile" className={({ isActive }) => `block ${isActive ? "bg-green-200/100 " : "bg-white hover:bg-green-200/40"}  flex items-center  gap-x-2 rounded-lg overflow-hidden text-green-700 text-sm font-[500]  transition-all   pl-6`}>
+                        <button type="button">
+                            <div className="flex items-center gap-x-2 py-4">
                                 Profile
-                            </NavLink>
-                        </div>
-                    </button>
-                    <button
-                        type="button"
-                        className={"flex items-center py-4 gap-x-2 text-green-700 text-sm font-[500]  transition-all bg-green-200/20 hover:bg-green-200/20 hover:text-green-700 pl-6"}
-                    >
-                        <div className="flex items-center gap-x-2 py-4">
-                            <NavLink to="/teacherDashboard/courseview"                           >
+                            </div>
+                        </button>
+                    </NavLink>
+
+                    <NavLink to="/teacherDashboard/courseview" className={({ isActive }) => `block ${isActive ? "bg-green-200/100 " : "bg-white hover:bg-green-200/40"}  flex items-center  gap-x-2 rounded-lg overflow-hidden text-green-700 text-sm font-[500]  transition-all   pl-6`}>
+                        <button type="button">
+                            <div className="flex items-center gap-x-2 py-4">
                                 All Course
-                            </NavLink>
-                        </div>
-                    </button>
-                    <button
-                        type="button"
-                        className={"flex items-center py-4 gap-x-2 text-green-700 text-sm font-[500]  transition-all bg-green-200/20 hover:bg-green-200/20 hover:text-green-700 pl-6"}
-                    >
-                        <div className="flex items-center gap-x-2 py-4">
-                            <NavLink to="/teacherDashboard/createcourse"                           >
+                            </div>
+                        </button>
+                    </NavLink>
+                    <NavLink to="/teacherDashboard/createcourse" className={({ isActive }) => `block ${isActive ? "bg-green-200/100 " : "bg-white hover:bg-green-200/40"}  flex items-center  gap-x-2 rounded-lg overflow-hidden text-green-700 text-sm font-[500]  transition-all   pl-6`}>
+                        <button type="button">
+                            <div className="flex items-center gap-x-2 py-4">
                                 Create Courses
-                            </NavLink>
-                        </div>
-                    </button>
+                            </div>
+                        </button>
+                    </NavLink>
+
+
 
                 </div>
             </div>

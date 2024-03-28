@@ -37,12 +37,12 @@ function CourseViewUI() {
 
     return (
         <>
-            <div className='w-full bg-[#E9F8F3B2] p-0 maincard'>
+            <div className='w-full bg-white p-0 '>
                 <div className="text-center">
                     <h1 className='text-3xl py-3 font-bold '><span className='text-[#20B486]'>Courses</span></h1>
                 </div>
                 <div className="grid md:grid-cols-4  ms-5 ">
-                    {videos.map((video, index) => (
+                    {videos.length==0 ? <h1 className='text-center  font-semibold text-[#20B486] '>No videos availabel...</h1> : videos.map((video, index) => (
                         <div key={index}>
                             <TeacherCardUI
                                 onVideoDelete={handleVideoDelete}

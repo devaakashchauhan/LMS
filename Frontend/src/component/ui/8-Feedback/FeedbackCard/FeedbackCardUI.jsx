@@ -1,6 +1,6 @@
-import { avatar, quotationMark, } from '../../../assets'
+import { quotationMark, } from '../../../assets'
 
-const FeedbackCardUI = ({ username, _id, fullname, email, role, createdAt, userId, feedback }) => {
+const FeedbackCardUI = ({ username, _id, fullname, email, role, createdAt, userId, feedback, avatar }) => {
     const time1 = createdAt
     const time = time1.substring(0, 10)
 
@@ -10,7 +10,7 @@ const FeedbackCardUI = ({ username, _id, fullname, email, role, createdAt, userI
                 <div className="flex justify-between">
 
                     <div className="flex gap-4">
-                        <img src={avatar} alt="" />
+                        <img src={avatar} className='max-h-[60px] max-w-[60px] rounded-full overflow-hidde6' alt="" />
                         <div className="">
                             <h1>{username} | {fullname}</h1>
                             <p>{role}</p>

@@ -27,6 +27,12 @@ const feedbackschema = new Schema(
       type: Schema.Types.ObjectId,
       ref: "User",
     },
+    avatar: {
+      type: String, //cloudinary url
+      required: true,
+      trim: true,
+      index: true,
+    },
   },
   { timestamps: true }
 );

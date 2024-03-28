@@ -81,6 +81,7 @@ function VideoPlayerUI() {
         )
             .then(function ak(response) {
                 // console.log(response);
+                fecthVideoComments(videoid)
             })
             .catch(function (error) {
                 console.log(error);
@@ -129,7 +130,7 @@ function VideoPlayerUI() {
                                     videoid={video._id}
                                     ownerid={video.owner}
                                     createdAt={video.createdAt}
-                                   
+
                                     owner={ownerUsername}
                                     onVideoChange={fetchUserAllVideos}
                                 />
@@ -179,6 +180,7 @@ function VideoPlayerUI() {
                             />
                         </div>
                     ))}
+                    {!allComments.length == 0 ? null : <div className="text-center text-[#20B486] font-semibold">No Comments...</div>}
                 </div>
 
             </div>

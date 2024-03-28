@@ -9,22 +9,21 @@ function TeacherDashboardPage() {
     )
         .then(function ak(response) {
             // console.log(response);
-
             const user = response.data.data.role;
             if (user !== "teacher") {
                 navigate("/login")
             }
         })
         .catch(function (error) {
-            // console.log(error);
+            console.log(error);
         });
     return (
         <>
-            <div className="h-full grid grid-cols-6 border border-b">
-                <div className="hidden md:flex h-full  flex-col   ">
+            <div className="h-full grid grid-cols-6 ">
+                <div className="hidden md:flex  flex-col   ">
                     <TeacherSidebarUI />
                 </div>
-                <main className=" col-span-5 "><Outlet /></main>
+                <main className=" col-span-5 pt-5 pb-14"><Outlet /></main>
             </div>
         </>
     )
