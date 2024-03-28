@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import Slider from 'react-slick';
 import '../../..//App.css'
 import FeedbackCardUI from './FeedbackCard/FeedbackCardUI.jsx'
@@ -49,9 +49,6 @@ const FeedbackUI = () => {
         getallfeedback()
     }, [])
 
-
-
-
     const getallfeedback = () => {
         axios.post('/api/v1/users/getallfeedback',
             {}
@@ -94,6 +91,7 @@ const FeedbackUI = () => {
                                     createdAt={feedback.createdAt}
                                     userId={feedback.userId}
                                     avatar={feedback.avatar}
+                                    rating={feedback.rating}
                                 />
                             </div>
                         ))}

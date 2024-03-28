@@ -70,14 +70,19 @@ const App = () => {
                     <Route path='/login' element={<LoginPage />} />
                     <Route path='/signup' element={<RegistrationPage />} />
                     {/* <Route path='/about' element={<AboutPage />} /> */}
-                    <Route path='/support' element={<SupportPage />} />
-                    <Route path='/contact' element={<ContactPage />} />
+                    {/* <Route path='/support' element={<SupportPage />} /> */}
+                    {/* <Route path='/contact' element={<ContactPage />} /> */}
                     <Route path='/loader' element={<LoaderUI />} />
 
                     {/* Protected Routes */}
                     <Route path='/' element={
                         <ProtectRoute >
                             <HomePage />
+                        </ProtectRoute>
+                    } />
+                    <Route path='/feedback' element={
+                        <ProtectRoute >
+                            <ContactPage />
                         </ProtectRoute>
                     } />
 

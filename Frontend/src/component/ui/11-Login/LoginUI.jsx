@@ -37,6 +37,8 @@ const LoginUI = () => {
                     localStorage.setItem("avatar", response.data.data.user.avatar)
                     localStorage.setItem("userId", response.data.data.user._id)
                     localStorage.setItem("userName", response.data.data.user.username)
+                    localStorage.setItem("fullname", response.data.data.user.fullname)
+                    localStorage.setItem("email", response.data.data.user.email)
                     navigate("/")
                 }
             })

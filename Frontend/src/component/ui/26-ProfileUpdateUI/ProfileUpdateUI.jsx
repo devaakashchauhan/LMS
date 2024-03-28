@@ -98,6 +98,9 @@ function ProfileUpdateUI() {
                 const role = response.data.data.role
 
                 if (role) {
+                    localStorage.setItem("avatar", response.data.data.avatar)
+                    localStorage.setItem("fullname", response.data.data.fullname)
+                    localStorage.setItem("email", response.data.data.email)
                     toast("Profile updated 😃")
                     navigate(`/${role}Dashboard/profile`)
                 }
@@ -133,14 +136,14 @@ function ProfileUpdateUI() {
                                 <MdAddAPhoto size={40} onClick={handleImgClick} className=' ms-auto hover:cursor-pointer' />
                             </div>
                             <div className="w-full max-w-[300px] rounded-lg overflow-hidden  object-center  h-[300px] border">
-                                {image ? <img src={URL.createObjectURL(image)} /> : <img src={form.avatar} />}
+                                {image2 ? <img src={URL.createObjectURL(image2)} /> : <img src={form.avatar} />}
                             </div>
                             <input
                                 type="file"
                                 name="image"
                                 id="image"
                                 ref={inputRef}
-                                onChange={() => handleImgChange(event)}
+                                onChange={handleImgChange}
                                 className="hidden w-100 mt-2 py-3 px-3 rounded-lg bg-white border border-gray-200 text-gray-800 font-semibold focus:border-[#20B486] focus:outline-none"
                             />
                         </div>

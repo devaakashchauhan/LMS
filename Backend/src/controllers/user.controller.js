@@ -642,11 +642,22 @@ const getComment = asyncHandler(async (req, res) => {
 });
 
 const setfeedback = asyncHandler(async (req, res) => {
-  const { fullname, username, email, feedback, role, userId, avatar } =
+  const { fullname, username, email, feedback, role, userId, avatar, rating } =
     req.body;
-  console.log(fullname, username, email, feedback, role, userId, avatar);
+
+  console.log(
+    fullname,
+    username,
+    email,
+    feedback,
+    role,
+    userId,
+    avatar,
+    rating
+  );
+
   if (
-    [fullname, username, email, feedback, role, userId].some(
+    [fullname, username, email, feedback, role, userId, avatar, rating].some(
       (field) => field?.trim() === ""
     )
   ) {
@@ -668,6 +679,7 @@ const setfeedback = asyncHandler(async (req, res) => {
     role,
     userId: objectId,
     avatar,
+    rating,
   });
 
   console.log(createFeedback);

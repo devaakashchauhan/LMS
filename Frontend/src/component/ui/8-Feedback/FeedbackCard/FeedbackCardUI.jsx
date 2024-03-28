@@ -1,6 +1,7 @@
 import { quotationMark, } from '../../../assets'
+import StarRating from '../../5-Card/StarRating'
 
-const FeedbackCardUI = ({ username, _id, fullname, email, role, createdAt, userId, feedback, avatar }) => {
+const FeedbackCardUI = ({ username, _id, fullname, email, role, createdAt, userId, feedback, avatar, rating }) => {
     const time1 = createdAt
     const time = time1.substring(0, 10)
 
@@ -20,6 +21,9 @@ const FeedbackCardUI = ({ username, _id, fullname, email, role, createdAt, userI
                 </div>
                 <div className="py-8">
                     <h3 className='text-lg'> {feedback} </h3>
+                </div>
+                <div className="">
+                    <StarRating rating={rating} />
                 </div>
                 <div className="flex justify-between">
                     <h3 className='text-lg '> {email} </h3>

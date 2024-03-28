@@ -1,4 +1,6 @@
 import { Link } from "react-router-dom"
+
+import StarRating from "../5-Card/StarRating"
 const AllCoursesCardUI = ({ title, description, thumbnail, video, videoid, ownerid, createdAt }) => {
 
     const setPlayerVideo = () => {
@@ -17,7 +19,7 @@ const AllCoursesCardUI = ({ title, description, thumbnail, video, videoid, owner
                 <img src={thumbnail} alt="" className="object-center w-full h-[200px]" />
                 <div className="p-5  ">
                     <h1 className='py-2 truncate'>{description}</h1>
-                    {/* <StarRating rating={course.rating} /> */}
+                    {/* <StarRating rating={3} /> */}
                 </div>
                 <div className="items-center justify-between">
                     <h3 className='p-5 text-2xl font-bold text-gray-900 '>{title}</h3>
